@@ -15,9 +15,9 @@ function getChaoticFeature(template){
 		}else{
 			powM = .1;
 		}
-		if(rnd <= Number(template.characteristics.pow.value.current)*powM || 1==1 ){
+		if(rnd <= Number(template.characteristics.pow.value.current)*powM  ){
 			rnd = Math.floor(Math.random()*1000);
-			rnd  = 191;
+			
 			if(rnd < 5){
 				chaos = "Acid Touch: Anything that the creature touches or touches the creature takes 1d2 damage";
 			}else if(rnd < 7 ){
