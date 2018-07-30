@@ -24,7 +24,7 @@ function formatPreResults2(template, level){
 		var subEl = "";
 		var colorStr = 0;
 		var colors = [];
-		r = r +"12345678901234567890123456789012345678901<br/>";
+		r = r +"<br/>";//12345678901234567890123456789012345678901<br/>";
 		for(var ln = 0; ln < lines.length; ln++){
 			for(var ele=0; ele<lines[ln].elements.length; ele++){
 				if(lines[ln].elements[ele].type=="char"){
