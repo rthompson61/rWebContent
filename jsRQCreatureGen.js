@@ -108,7 +108,7 @@ function genStats(templateName){
 			template = getChaoticFeature(template);	
 			if(template.hasOwnProperty("chaos") && template.chaos > 100){
 				for(var c = 0; c <(template.chaos/100)-1; c++){
-					template.chaos = 50;
+//Commented out test value RDT 7/30/18					template.chaos = 50;
 					template = getChaoticFeature(template);	
 				}
 			}
