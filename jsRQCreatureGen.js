@@ -106,10 +106,11 @@ function genStats(templateName){
 		}
 		if(template != null){
 			template = getChaoticFeature(template);	
-			window.alert("jsRQCreatureGen.genBasicStats Chaos: "+(template.chaos/100)-1);
 			if(template.hasOwnProperty("chaos") && template.chaos > 100){
-				for(var c = 0; c <(template.chaos/100)-1; c++){
- 					template.chaos = 50;
+//test			window.alert("jsRQCreatureGen.genBasicStats Chaos: "+(template.chaos)/100);
+				for(var c = 0; c <((template.chaos)/100)-1; c++){
+
+//test					window.alert("jsRQCreatureGen.genBasicStats Chaos: "+c+" of "+(template.chaos)/100);
 					template = getChaoticFeature(template);	
 				}
 			}

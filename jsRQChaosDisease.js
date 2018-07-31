@@ -11,10 +11,14 @@ function getChaoticFeature(template){
 		var skinColors = "";
 		var powM = 0;
 		if(template.hasOwnProperty("chaos")){
-			powM = template.chaos;
+			powM = Number(template.chaos);
 		}else{
 			powM = .1;
 		}
+		if(Number(template.characteristics.pow.value.current)<Number(template.characteristics.pow.value.base)){
+			template.characteristics.pow.value.current=template.characteristics.pow.value.base;
+		}
+//Test		window.alert("jsRQChaosDisease.getChaoticfeature 1 "+powM+" : "+template.characteristics.pow.value.current);
 		if(rnd <= Number(template.characteristics.pow.value.current)*powM  ){
 			rnd = Math.floor(Math.random()*1000);
 			
@@ -988,6 +992,7 @@ function getChaoticFeature(template){
 			}else{
 				chaos = "Wreathed in Flames: The creature's body is wreathed in flames. Attackers with weapons less rhan on meter in length take 1d4 fire damage every round";
 			}
+//Test			window.alert("jsRQChaosDisease.getChaoticfeature "+rnd+" : "+chaos);
 			if(template.hasOwnProperty("special")){
 				template.special = template.special + " <br/>"+chaos;
 			}else{
