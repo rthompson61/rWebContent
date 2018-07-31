@@ -106,9 +106,10 @@ function genStats(templateName){
 		}
 		if(template != null){
 			template = getChaoticFeature(template);	
+			window.alert("jsRQCreatureGen.genBasicStats Chaos: "+(template.chaos/100)-1);
 			if(template.hasOwnProperty("chaos") && template.chaos > 100){
 				for(var c = 0; c <(template.chaos/100)-1; c++){
-//Commented out test value RDT 7/30/18					template.chaos = 50;
+ 					template.chaos = 50;
 					template = getChaoticFeature(template);	
 				}
 			}
