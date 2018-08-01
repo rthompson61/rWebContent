@@ -11,6 +11,8 @@ function formatPreResults2(template, level){
 		 }
 		 //set HP for level
 		template = locationHitPointCalc(template, level);
+
+//Test		window.alert("jsRQDisplay.formatPreResults TF "+template.tf);
 		var r = template.name+"<br/><pre>";
 		var hL ={label:"",roll:"",aphp:"", next:0};
 		var lines = [{elements:[{type:"char", label:"STR", el:"str"},{type:"char", label:"CON", el:"con"}]},
@@ -34,7 +36,12 @@ function formatPreResults2(template, level){
 					subEl = formatFixedLengthElement(3,0,[template.characteristics[lines[ln].elements[ele].el].value[level]]);
 					}
 				}else if(lines[ln].elements[ele].type=="template"){
-					subEl = formatFixedLengthElement(3,0,[template.exp[level][lines[ln].elements[ele].el]]);
+//test					 window.alert("display "+lines[ln].elements[ele].el+" > "+template.exp[level][lines[ln].elements[ele].el]+" : "+template[lines[ln].elements[ele].el]);
+					if(typeof template.exp[level][lines[ln].elements[ele].el] !== 'undefined' ){
+						subEl = formatFixedLengthElement(3,0,[template.exp[level][lines[ln].elements[ele].el]]);
+					}else{
+						subEl = formatFixedLengthElement(3,0,[template[lines[ln].elements[ele].el]]);
+					}
 				}else if(lines[ln].elements[ele].type=="t_c"){
 					subEl = formatFixedLengthElement(3,0,[template.exp[level][lines[ln].elements[ele].el]]);
 				}

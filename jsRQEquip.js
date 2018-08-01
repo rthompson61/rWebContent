@@ -347,24 +347,31 @@ function getTreasureFactors(t){
 		var atkTf = 0;
 		var apTf = 99;
 		var mTf = 0;
+		
 		for(var k = 0; k < eKeys.length; k++){
-			if(t.equipment[eKeys[k]].hasOwnProperty("attack") && Math.ceil(t.equipment[eKeys[k]].attack.current/25) > atkTf){
-				atkTf = Math.ceil(t.equipment[eKeys[k]].attack.current/25);
+			if(t.equipment[eKeys[k]].hasOwnProperty("attack") ){
+				if(t.equipment[eKeys[k]].attack.current == 0){
+					t.equipment[eKeys[k]].attack.current = t.equipment[eKeys[k]].attack.base;
+				}
+				if(Math.ceil(t.equipment[eKeys[k]].attack.current/25 ) > atkTf){
+					atkTf = Math.ceil(t.equipment[eKeys[k]].attack.current/25);
+				}
 			}
 		}
+//Test		window.alert("jsEquip.getTreasureFactors() Attack: "+atkTf);
 		for(var hl =0; hl<t.body.hitLocations.length; hl++){
-//			window.alert("jsEquip.getTreasureFactors() "+apTf + " ? "+ t.body.hitLocations[hl].armor.current);
 			  if(t.body.hitLocations[hl].armor.current < apTf && t.body.hitLocations[hl].hidden < 1){
 				  apTf =t.body.hitLocations[hl].armor.current;
 			  }
 		  }
+//Test		window.alert("jsEquip.getTreasureFactors() Armor "+apTf);
 		for(var m = 0; m < t.magic.basicMagic.length; m++){
 			if(t.magic.basicMagic[m].type !== "nonCombat"){
 				mTf++;
 			}
 		}
 		tf = Math.ceil(t.hp/5) + atkTf + apTf+ mTf;
-//		window.alert("jsEquip.getTreasureFactors() "+tf + " = "+ Math.ceil(t.hp/5)+" + "+atkTf+" + "+apTf);
+//Test		window.alert("jsEquip.getTreasureFactors() "+tf + " = "+ Math.ceil(t.hp/5)+" + "+atkTf+" + "+apTf);
 		return(tf)
 	}catch(err){
 		window.alert("Error: jsEquip.getTreasureFactors() "+err);

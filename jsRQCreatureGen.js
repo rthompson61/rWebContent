@@ -128,6 +128,7 @@ function genStats(templateName){
 
 			//Treasure factor
 			template.tf = getTreasureFactors(template);
+//Test			window.alert("jsRQCreatureGen.genBasicStats TF(1) "+template.tf);
 			//Skills
 			if(template.skills.set.length <1){
 				template.skills = setSkillsList2(template.skills, template.name, template.exp, template.characteristics.int.value.current);
@@ -250,10 +251,11 @@ function updateCreature(paramAry, template, doc, level){
 		}
 		var e = doc.activeElement;
 		if(e != undefined){e.options[e.selectedIndex].value}
-//		template = updateEnc(template, level);
-//		template = updateSkillsList(template, level);
+		template = updateEnc(template, level);
+		template = updateSkillsList(template, level);
 		//Treasure factor
-//		template.tf = getTreasureFactors(template);
+		template.exp[level].tf = getTreasureFactors(template);
+//		window.alert("jsRQCreatureGen.genBasicStats TF(2) "+template.tf);
 		return template
 	}catch(err){
 		template.error =template.error +"<br/>Error jsRQCreatureGen.updateCreature: " + err;
