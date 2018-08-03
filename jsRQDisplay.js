@@ -77,7 +77,7 @@ function formatPreResults2(template, level){
 					 name = template.equipment[equipKeys[key]].name.split(",");
 					 name[0] = formatFixedLengthElement(15,1,[name[0],","]);
 				 }
-				// window.alert("Check jsRQCreatureGen.formatPreResults: "+ template.equipment[equipKeys[key]].name +"  "+name[0]);
+//				 window.alert("Check jsRQCreatureGen.formatPreResults: "+ template.exp[level].damageBonus);
 				 sr = formatFixedLengthElement(2,0,[formatFixedLengthElement(1,1,[template.equipment[equipKeys[key]].sr.current])]);
 				 atk = formatFixedLengthElement(3,0,[template.equipment[equipKeys[key]].attack.current]);
 				 r=r+name[0]+sr+" "+atk+" "+formatFixedLengthElement(11,1,["  ",template.equipment[equipKeys[key]].damage])+"  ";
@@ -133,9 +133,9 @@ function formatPreResults2(template, level){
 		 }
 		 
 		 
-		 r = r + "<br/><br/>Base Attack "+template.baseSkills.attack+"&nbsp;&nbsp;Base Parry "+template.baseSkills.parry+"&nbsp;&nbsp;Base Defense "+template.defense.base+"&nbsp;&nbsp;Damage Bonus "+template.damageBonus+"<br/>";
-		 r = r + "Base Manipulation "+template.baseSkills.manipulation+"&nbsp;&nbsp;Base Stealth "+template.baseSkills.stealth+"&nbsp;&nbsp;Base Knowledge "+template.baseSkills.knowledge+"<br/>";
-		 r = r + "Base Perception "+template.baseSkills.perception+"&nbsp;&nbsp;Base Oratory "+template.baseSkills.oratory+"<br/>";
+		 r = r + "<br/><br/>Base Attack "+template.exp[level].attack+"&nbsp;&nbsp;Base Parry "+template.exp[level].parry+"&nbsp;&nbsp;Base Defense "+template.defense.base+"&nbsp;&nbsp;Damage Bonus "+template.exp[level].damageBonus+"<br/>";
+		 r = r + "Base Manipulation "+template.exp[level].manipulation+"&nbsp;&nbsp;Base Stealth "+template.exp[level].stealth+"&nbsp;&nbsp;Base Knowledge "+template.exp[level].knowledge+"<br/>";
+		 r = r + "Base Perception "+template.exp[level].perception+"&nbsp;&nbsp;Base Oratory "+template.exp[level].oratory+"<br/>";
 		 r = r + "Base Move "+template.move.base+"&nbsp;&nbsp;Max Encumbrance "+template.enc.max+"<br/>";
 		 r = r + "Strike Rank (SIZ) "+template.sr.siz+"&nbsp;&nbsp;Strike rank (DEX) "+template.sr.dex+"&nbsp;&nbsp;Treasure Factors "+template.tf;
 

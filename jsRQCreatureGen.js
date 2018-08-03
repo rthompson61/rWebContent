@@ -76,7 +76,7 @@ function genStats(templateName){
 			template.exp[explvls[el]].oratory = generalBonusCalc(template.characteristics.int.value[explvls[el]], -1, 5, 1)+generalBonusCalc(template.characteristics.pow.value[explvls[el]], -1, 5, 1) + generalBonusCalc(template.characteristics.cha.value[explvls[el]], -2, 5, 1);
 			template.exp[explvls[el]].knowledge = template.exp[explvls[el]].perception;
 			template.exp[explvls[el]].hp = template.characteristics.con.value[explvls[el]]+generalBonusCalc(template.characteristics.siz.value[explvls[el]], -2, 1, 1)+generalBonusCalc(template.characteristics.pow.value[explvls[el]], -1, 1, 1);
-			template.exp[explvls[el]].damageBonus = damageBonusCalc(template.characteristics.str.value.current, template.characteristics.siz.value.current);
+			template.exp[explvls[el]].damageBonus = damageBonusCalc(template.characteristics.str.value[explvls[el]], template.characteristics.siz.value[explvls[el]]);
 			template.exp[explvls[el]].enc = calcMaxEnc(template.characteristics.str.value[explvls[el]],template.characteristics.con.value[explvls[el]]);
 			template.exp[explvls[el]].sr = {};
 			template.exp[explvls[el]].sr.siz = calcStrikeRank(template.characteristics.siz.value[explvls[el]], "siz");
@@ -127,6 +127,10 @@ function genStats(templateName){
 			}
 
 			//Treasure factor
+			/**
+			 * @param template
+			 * @returns {___anonymous9378_9385}
+			 */
 			template.tf = getTreasureFactors(template);
 //Test			window.alert("jsRQCreatureGen.genBasicStats TF(1) "+template.tf);
 			//Skills
@@ -153,7 +157,7 @@ function genStats(templateName){
 
 
 
-
+// looks like I deprecated the entire method
 function generalStatCalc(template){
 	try{
 
@@ -161,12 +165,12 @@ function generalStatCalc(template){
 			template.baseSkills.attack = generalBonusCalc(template.characteristics.str.value.current, -1, 5, 1)+generalBonusCalc(template.characteristics.int.value.current, -2, 5, 1) + generalBonusCalc(template.characteristics.pow.value.current, -1, 5, 1) + generalBonusCalc(template.characteristics.dex.value.current, -2, 5, 1);
 			template.defense.base = generalBonusCalc(template.characteristics.siz.value.current, -1, 5, -1)+generalBonusCalc(template.characteristics.int.value.current, -2, 5, 1) + generalBonusCalc(template.characteristics.pow.value.current, -1, 5, 1) + generalBonusCalc(template.characteristics.dex.value.current, -2, 5, 1);			
 		}else{
-			template.baseSkills.attack = generalBonusCalc(template.characteristics.str.value.current, -1, 5, 1)+generalBonusCalc(10, -2, 5, 1) + generalBonusCalc(template.characteristics.pow.value.current, -1, 5, 1) + generalBonusCalc(template.characteristics.dex.value.current, -2, 5, 1);
-			template.defense.base = generalBonusCalc(template.characteristics.siz.value.current, -1, 5, -1)+generalBonusCalc(10, -2, 5, 1) + generalBonusCalc(template.characteristics.pow.value.current, -1, 5, 1) + generalBonusCalc(template.characteristics.dex.value.current, -2, 5, 1);			
+			template.baseSkills.attack = generalBonusCalc(template.characteristics.str.value.base, -1, 5, 1)+generalBonusCalc(10, -2, 5, 1) + generalBonusCalc(template.characteristics.pow.value.base, -1, 5, 1) + generalBonusCalc(template.characteristics.dex.value.base, -2, 5, 1);
+			template.defense.base = generalBonusCalc(template.characteristics.siz.value.base, -1, 5, -1)+generalBonusCalc(10, -2, 5, 1) + generalBonusCalc(template.characteristics.pow.value.base, -1, 5, 1) + generalBonusCalc(template.characteristics.dex.value.base, -2, 5, 1);			
 		}
 		template.baseSkills.parry = generalBonusCalc(template.characteristics.str.value.current, -1, 5, 1)+generalBonusCalc(template.characteristics.siz.value.current, -1, 5, -1) + generalBonusCalc(template.characteristics.pow.value.current, -1, 5, 1) + generalBonusCalc(template.characteristics.dex.value.current, -2, 5, 1);
 		if(template.defense.hasOwnProperty("delta")){
-//			window.alert("jsRQCreatureGen.genStatCalc: 1 "+template.sr.delta);
+			window.alert("jsRQCreatureGen.genStatCalc: 1 "+template.sr.delta);
 			template.defense.base = template.defense.base+template.defense.delta;
 			if(template.defense.base<template.defense.delta){
 				template.defense.base=template.defense.delta;
@@ -498,10 +502,10 @@ function updateNaturalWeapons(template, level){
 			if(template.equipment.keys[e].substring(0,template.equipment.keys[e].length-1) !== "naturalMut" || (template.equipment.keys[e].substring(0,template.equipment.keys[e].length-1) == "naturalMut" && template.equipment[template.equipment.keys[e]].name !=="Light Crossbow" && template.equipment[template.equipment.keys[e]].name !=="Assault Rifle" && template.equipment[template.equipment.keys[e]].name !=="Bazooka" && template.equipment[template.equipment.keys[e]].name !=="Laser Pistol" && template.equipment[template.equipment.keys[e]].name !=="Breathe Fire"  )){
 //				window.alert("updatenaturalWeapons: "+template.equipment[template.equipment.keys[e]].name);
 				if(damPat.test(template.equipment[template.equipment.keys[e]].damage)  ){
-					if(template.alt.alt > 0 && template.alt.damageBonus != "none" && template.damageBonus != 0 ){
+					if(template.alt.alt > 0 && template.alt.damageBonus != "none"  ){
 						template.equipment[template.equipment.keys[e]].damage= template.equipment[template.equipment.keys[e]].damage+template.alt.damageBonus;
-					}else if(template.damageBonus != "none" && template.damageBonus != 0){
-						template.equipment[template.equipment.keys[e]].damage= template.equipment[template.equipment.keys[e]].damage+template.damageBonus;
+					}else if(template.damageBonus != "none" ){
+						template.equipment[template.equipment.keys[e]].damage= template.equipment[template.equipment.keys[e]].damage+template.exp[level].damageBonus;
 					}
 					//window.alert("updatenaturalWeapons: "+level+"  "+  template.alt.attack+"  "+template.equipment[template.equipment.keys[e]].damage);
 				}
@@ -591,7 +595,7 @@ function updateWeaponsAndShield(template, params, level){
 		template.equipment[params[1]].damage = params[10];
 		template.equipment[params[1]].sr.base = params[11];
 		if(template.damageBonus != "none" ){
-			template.equipment[params[1]].damage= template.equipment[params[1]].damage+template.damageBonus;
+			template.equipment[params[1]].damage= template.equipment[params[1]].damage+template.exp[level].damageBonus;
 	//		window.alert("jsRQCreatureGen.updateWeaponsAndShield: "+template.equipment[params[1]].damage);
 		}
 //		template.error = template.error +"<br/>updateWeaponsAndShield "+template.equipment[params[1]].name;
@@ -671,7 +675,7 @@ function damageBonusCalc(str, siz){
 	     var nD = Math.ceil(((str+siz)/2-20)/8)+1;
 	        bonus = "+"+nD+"d6";
 	}
-	//	window.alert(siz+"  " +str+"  "+(Math.ceil(str+siz)/2)+"  "+bonus);
+//		window.alert("Test: "+siz+"  " +str+"  "+(Math.ceil(str+siz)/2)+"  "+bonus);
 		return bonus;
 	}catch(err){
 		return "Error jsRQCreatureGen.generalBonusCalc: " + err;

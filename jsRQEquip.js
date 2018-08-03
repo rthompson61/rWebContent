@@ -371,7 +371,7 @@ function getTreasureFactors(t){
 			}
 		}
 		tf = Math.ceil(t.hp/5) + atkTf + apTf+ mTf;
-//Test		window.alert("jsEquip.getTreasureFactors() "+tf + " = "+ Math.ceil(t.hp/5)+" + "+atkTf+" + "+apTf);
+//Test		window.alert("jsEquip.getTreasureFactors() "+tf + " = HP:"+ Math.ceil(t.hp/5)+" + Best Attack:"+atkTf+" + Minimum Protection:"+apTf);
 		return(tf)
 	}catch(err){
 		window.alert("Error: jsEquip.getTreasureFactors() "+err);
@@ -430,7 +430,12 @@ function setEquipment(type, equipment, template, document, searchTerm){
 						template.equipment[equipSlots[es]].parry.base = equipment[7];
 						template.equipment[equipSlots[es]].parry.current = equipment[7];
 						template.equipment[equipSlots[es]].parry.prof = 0;
-						template.equipment[equipSlots[es]].damage = equipment[10];
+						//add damage bonus if applicable
+						if(template.damageBonus !=="undefined" && template.damageBonus !==0){
+							template.equipment[equipSlots[es]].damage = equipment[10]+":"+template.damageBonus;
+						}else{
+							template.equipment[equipSlots[es]].damage = equipment[10];
+						}
 						template.equipment[equipSlots[es]].sr.base = equipment[11];
 						template.equipment[equipSlots[es]].sr.current = equipment[11];
 					}
