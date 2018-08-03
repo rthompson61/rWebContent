@@ -123,7 +123,8 @@ function genStats(templateName){
 				}
 			}
 			if(naturalWpns > 0){
-				template = updateNaturalWeapons(template, "Novice");
+//				window.alert("Test jsRQCreatureGen.genBasicStats getNaturalWeapons "+explvls[3]);
+				template = updateNaturalWeapons(template, explvls[1]);
 			}
 
 			//Treasure factor
@@ -502,10 +503,11 @@ function updateNaturalWeapons(template, level){
 			if(template.equipment.keys[e].substring(0,template.equipment.keys[e].length-1) !== "naturalMut" || (template.equipment.keys[e].substring(0,template.equipment.keys[e].length-1) == "naturalMut" && template.equipment[template.equipment.keys[e]].name !=="Light Crossbow" && template.equipment[template.equipment.keys[e]].name !=="Assault Rifle" && template.equipment[template.equipment.keys[e]].name !=="Bazooka" && template.equipment[template.equipment.keys[e]].name !=="Laser Pistol" && template.equipment[template.equipment.keys[e]].name !=="Breathe Fire"  )){
 //				window.alert("updatenaturalWeapons: "+template.equipment[template.equipment.keys[e]].name);
 				if(damPat.test(template.equipment[template.equipment.keys[e]].damage)  ){
-					if(template.alt.alt > 0 && template.alt.damageBonus != "none"  ){
+//					window.alert("Test updatenaturalWeapons: Alt DamageBonus " +template.alt.damageBonus);
+					if(template.alt.alt > 0 && template.alt.damageBonus !== "none"  && template.alt.damageBonus !== 0){
 						template.equipment[template.equipment.keys[e]].damage= template.equipment[template.equipment.keys[e]].damage+template.alt.damageBonus;
-					}else if(template.damageBonus != "none" ){
-						template.equipment[template.equipment.keys[e]].damage= template.equipment[template.equipment.keys[e]].damage+template.exp[level].damageBonus;
+					}else if(template.alt.damageBonus !== "none" ){
+						template.equipment[template.equipment.keys[e]].damage= template.equipment[template.equipment.keys[e]].damage+template.alt.damageBonus;
 					}
 					//window.alert("updatenaturalWeapons: "+level+"  "+  template.alt.attack+"  "+template.equipment[template.equipment.keys[e]].damage);
 				}
@@ -528,7 +530,7 @@ function updateNaturalWeapons(template, level){
 				if(template.equipment[template.equipment.keys[e]] === -1){
 					template.equipment[template.equipment.keys[e]]   = getRateOfFire(template.sr.dex);
 				}
-				if(template.damageBonus != "none" && template.equipment[template.equipment.keys[e]].damBonus >0){
+				if(template.exp[level].damageBonus !== "none" && template.equipment[template.equipment.keys[e]].damBonus >0){
 					var halfBonus = "";
 					if(template.damageBonus == "+1d4"){
 						halfBonus = "+1d2";
@@ -594,9 +596,9 @@ function updateWeaponsAndShield(template, params, level){
 		template.equipment[params[1]].parry.base = params[7];
 		template.equipment[params[1]].damage = params[10];
 		template.equipment[params[1]].sr.base = params[11];
-		if(template.damageBonus != "none" ){
+		if(template.exp[level].damageBonus !== "none" ){
 			template.equipment[params[1]].damage= template.equipment[params[1]].damage+template.exp[level].damageBonus;
-	//		window.alert("jsRQCreatureGen.updateWeaponsAndShield: "+template.equipment[params[1]].damage);
+			window.alert("Test jsRQCreatureGen.updateWeaponsAndShield: DamageBonus "+template.equipment[params[1]].damage);
 		}
 //		template.error = template.error +"<br/>updateWeaponsAndShield "+template.equipment[params[1]].name;
 		template.equipment[params[1]].attack.current = setSkills(level,  template.baseSkills.attack,template.equipment[params[1]].attack.base, template.equipment[params[1]].attack.prof, "w");
