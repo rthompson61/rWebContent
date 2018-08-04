@@ -339,7 +339,7 @@ function getEquip(){
 	}
 }
 
-function getTreasureFactors(t){
+function getTreasureFactors(t, level){
 	//t = template
 	try{
 		var tf = 0;
@@ -347,6 +347,7 @@ function getTreasureFactors(t){
 		var atkTf = 0;
 		var apTf = 99;
 		var mTf = 0;
+		var dbTf =0;
 		
 		for(var k = 0; k < eKeys.length; k++){
 			if(t.equipment[eKeys[k]].hasOwnProperty("attack") ){
@@ -370,8 +371,12 @@ function getTreasureFactors(t){
 				mTf++;
 			}
 		}
-		tf = Math.ceil(t.hp/5) + atkTf + apTf+ mTf;
-//Test		window.alert("jsEquip.getTreasureFactors() "+tf + " = HP:"+ Math.ceil(t.hp/5)+" + Best Attack:"+atkTf+" + Minimum Protection:"+apTf);
+		//dbTf Damage Bonus Treasure Factor
+		if(t.exp[level].damageBonus.indexOf('+') > -1){
+			dbTf = Number(t.exp[level].damageBonus.substring(t.exp[level].damageBonus.indexOf('+')+1,t.exp[level].damageBonus.indexOf('d')));
+		}
+		tf = Math.ceil(t.exp[level].hp/5) + atkTf + apTf+ mTf + dbTf;
+//		window.alert("Test jsEquip.getTreasureFactors() "+tf + " = HP:"+ Math.ceil(t.hp/5)+" + Best Attack:"+atkTf+" + Minimum Protection:"+apTf);
 		return(tf)
 	}catch(err){
 		window.alert("Error: jsEquip.getTreasureFactors() "+err);

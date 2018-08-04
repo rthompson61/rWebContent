@@ -82,6 +82,7 @@ function genStats(templateName){
 			template.exp[explvls[el]].sr.siz = calcStrikeRank(template.characteristics.siz.value[explvls[el]], "siz");
 			template.exp[explvls[el]].sr.dex = calcStrikeRank(template.characteristics.dex.value[explvls[el]], "dex");
 			template.exp[explvls[el]].move = template.move.base;
+			template.exp[explvls[el]].tf = getTreasureFactors(template, explvls[el]);
 			if(template.sr.hasOwnProperty("delta")){
 				template.exp[explvls[el]].sr.dex = template.exp[explvls[el]].sr.dex + template.exp[explvls[el]].sr.delta; 
 				if(template.exp[explvls[el]].sr.dex < 0){template.exp[explvls[el]].sr.dex=0;}
@@ -132,7 +133,7 @@ function genStats(templateName){
 			 * @param template
 			 * @returns {___anonymous9378_9385}
 			 */
-			template.tf = getTreasureFactors(template);
+//			template.tf = getTreasureFactors(template);
 //Test			window.alert("jsRQCreatureGen.genBasicStats TF(1) "+template.tf);
 			//Skills
 			if(template.skills.set.length <1){
@@ -259,7 +260,7 @@ function updateCreature(paramAry, template, doc, level){
 		template = updateEnc(template, level);
 		template = updateSkillsList(template, level);
 		//Treasure factor
-		template.exp[level].tf = getTreasureFactors(template);
+		template.exp[level].tf = getTreasureFactors(template, level);
 //		window.alert("jsRQCreatureGen.genBasicStats TF(2) "+template.tf);
 		return template
 	}catch(err){
