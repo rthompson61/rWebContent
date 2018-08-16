@@ -253,10 +253,8 @@ function updateCreature(paramAry, template, doc, level){
 		var e = doc.activeElement;
 		if(e != undefined){e.options[e.selectedIndex].value}
 		template = updateEnc(template, level);
-		template = updateSkillsList(template, level);
-		//Treasure factor
+
 		template.exp[level].tf = getTreasureFactors(template, level);
-//		window.alert("jsRQCreatureGen.genBasicStats TF(2) "+template.tf);
 		return template
 	}catch(err){
 		template.error =template.error +"<br/>Error jsRQCreatureGen.updateCreature: " + err;

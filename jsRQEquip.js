@@ -376,7 +376,7 @@ function getTreasureFactors(t, level){
 			}
 		}
 		//dbTf Damage Bonus Treasure Factor
-		if(t.exp[level].damageBonus.indexOf('+') > -1){
+		if(t.exp[level].hasOwnProperty("damageBonus") && t.exp[level].damageBonus.indexOf('+') > -1){
 			dbTf = Number(t.exp[level].damageBonus.substring(t.exp[level].damageBonus.indexOf('+')+1,t.exp[level].damageBonus.indexOf('d')));
 		}
 		//Template Treasure factors

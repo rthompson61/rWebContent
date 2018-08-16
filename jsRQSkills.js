@@ -597,8 +597,6 @@ function updateSkillsList(t, el){
 			}
 		}
 		
-		//Treasure factor
-		t.tf = getTreasureFactors(t);
 		
 		//window.alert(alert);
 		return t;
