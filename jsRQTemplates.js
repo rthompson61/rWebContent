@@ -95,6 +95,7 @@ function getTemplates(){
 	            	  equipmentList:"",
 	            	  skills:{lists:["all", "sentient", "animal"], set:[], required:[], prohibited:[]},
 	            	  magic:{uses:1, basicMagic:[]},
+		              treasureFactors:{multiAttack:0, special:0},
 		              error:""
 		             },
 		             {name: "Baboon",
@@ -114,6 +115,7 @@ function getTemplates(){
 		              equipmentList:"",
 		              skills:{lists:["all", "sentient", "civil"], set:[], required:[{name:"Tracking", type:"p", base:30}, {name:"Spot Hidden", type:"p", base:25}, {name:"Spot Trap", type:"p", base:25}, {name:"Move Quietly", type:"s", base:25}], prohibited:["Boating"]},
 		              magic:{uses:1, basicMagic:[]},
+		              treasureFactors:{multiAttack:1, special:0},
 			          error:""
 			         },
 			         {name: "Mostali",
@@ -133,6 +135,7 @@ function getTemplates(){
 					  equipment:{keys:["shield","melee1","melee2","melee3","melee4","melee5","missile1","missile2","missile3"]},
 			          skills:{lists:["all", "sentient", "animal","dwarf"], set:[], required:[{name:"Armor Making", type:"m", base:40}, {name:"Evaluate Treasure", type:"k", base:50} ,{name:"Spot Hidden Items", type:"p", base:25},{name:"Spot Trap", type:"p", base:50},{name:"Disarm Trap", type:"m", base:50}], prohibited:[]},
 			          magic:{uses:1, basicMagic:[]},
+		              treasureFactors:{multiAttack:0, special:0},
 				      error:""
 				     },
 				     {name: "Duck",
@@ -152,6 +155,7 @@ function getTemplates(){
    		              equipmentList:"",
    		              skills:{lists:["all", "sentient", "animal", "duck"], set:[], required:[{name:"Hide in Cover", type:"s", base:35},{name:"Swimming", type:"m", base:85}], prohibited:[]},
    		              magic:{uses:1, basicMagic:[]},
+		              treasureFactors:{multiAttack:0, special:0},
    			          error:""
 					 },
 					 {name: "Troll, Dark",
@@ -171,6 +175,7 @@ function getTemplates(){
 			          equipmentList:"",
 			          skills:{lists:["all", "sentient", "animal"], set:[], required:[], prohibited:[]},
 			          magic:{uses:1, basicMagic:[]},
+		              treasureFactors:{multiAttack:0, special:0},
 				      error:""
 					 },
 					 {name: "Gorp",
@@ -190,6 +195,8 @@ function getTemplates(){
 			          equipmentList:"",
 			          skills:{lists:[], set:[], required:[], prohibited:[]},
 			          magic:{uses:0, basicMagic:[]},
+		              treasureFactors:{multiAttack:0, special:1},
+		              special:"Gorp attack by moving next to a victim during movement phase.  If the victim fails a DEX roll the Gorp has enveloped it.  if the victim can still move on the second round, the victim can try another DEX roll.",
 	            	  chaos:1,
 				      error:""
 				     },
@@ -210,7 +217,8 @@ function getTemplates(){
 				      equipmentList:"",
 				      skills:{lists:["all", "sentient", "animal"], set:[], required:[], prohibited:[]},
 				      magic:{uses:0, basicMagic:[]},
-				      special:"If two tentacles hit the same target, <br/>they will constrict for 4d6 damage.  <br/>3m Posion Gas Cloud, potency = CON. ",
+		              treasureFactors:{multiAttack:3, special:1, poison:"CON"},
+				      special:" Can use four at once. If two have struck the same target, they will constrict every round. Armor will protect only until its absorption rate is overcome, then it is broken.   Gas cloud of systemic poison in 3 meter circle. Potency equal to CON.",
 					  error:""
 					 },
 					 {name: "Basilisk",
@@ -230,6 +238,8 @@ function getTemplates(){
 					  equipmentList:"",
 					  skills:{lists:["all"], set:[], required:[], prohibited:[]},
 					  magic:{uses:0, basicMagic:[]},
+		              treasureFactors:{multiAttack:1, special:1},
+		              special:"If the gaze of the basilisk overcomes the target's POW, the target dies.  The gaze acts as a 3 point Rune magic spell for COuntermagic.",
 					  error:""
 				     },
 			         {name: "Bearwalker",
@@ -249,6 +259,8 @@ function getTemplates(){
 		              equipmentList:"",
 		              skills:{lists:["all", "sentient"], set:[], required:[{name:"Track by Smell", type:"p", base:55},{name:"Spot Hidden", type:"p", base:55}, {name:"Spot Trap", type:"p", base:55}, {name:"Move Quietly", type:"s", base:55}, {name:"Hide in Cover", type:"s", base:45}], prohibited:[]},
 		           	  magic:{uses:1, basicMagic:[]},
+		              treasureFactors:{multiAttack:0, special:0},
+		              special:"The bearwalker can't use offensive magic in animal form.", 
 			          error:""
 			         },
 					 {name: "Bison",
@@ -268,6 +280,8 @@ function getTemplates(){
 					  equipmentList:"",
 					  skills:{lists:["all", "animal"], set:[], required:[], prohibited:[]},
 					  magic:{uses:0, basicMagic:[]},
+		              treasureFactors:{multiAttack:0, special:0},
+		              special:"Bison cannot butt and trample in the same melee round",
 					  error:""
 					 },
 				     {name: "Bolo Lizard",
@@ -287,6 +301,8 @@ function getTemplates(){
 					  equipmentList:"",
 					  skills:{lists:["all", "animal"], set:[], required:[], prohibited:[]},
 					  magic:{uses:0, basicMagic:[]},
+		              treasureFactors:{multiAttack:1, special:0},
+		              special:"A bolo lizard attacks with both bite and kick in the same melee round.",
 					  error:""
 					 },
 					 {name: "Broo",
@@ -306,6 +322,8 @@ function getTemplates(){
 		              equipmentList:"",
 		              skills:{lists:["all", "sentient", "animal", "baboon"], set:[], required:[ {name:"Tracking", type:"p", base:40}], prohibited:[]},
 		              magic:{uses:1, basicMagic:[]},
+		              treasureFactors:{multiAttack:0, special:0},
+		              special:"",
 		              chaos:3,
 		              disease:50,
 			          error:""
@@ -327,6 +345,8 @@ function getTemplates(){
 						  equipmentList:"",
 						  skills:{lists:["all", "sentient", "animal", "centaur"], set:[], required:[{name:"Play Lyre", type:"m", base:70},{name:"Tracking", type:"p", base:50}], prohibited:[]},
 						  magic:{uses:1, basicMagic:[]},
+			              treasureFactors:{multiAttack:1, special:0},
+			              special:"A centaur can kick with a hoof at the same time as striking with a melee weapon.",
 						  error:""
 				     },
 					 {name: "Cliff Toad",
@@ -346,6 +366,8 @@ function getTemplates(){
 						  equipmentList:"",
 						  skills:{lists:["all",  "animal"], set:[], required:[], prohibited:[]},
 						  magic:{uses:0, basicMagic:[]},
+			              treasureFactors:{multiAttack:0, special:2},
+			              special:"On the turn after the tongue hits, it will zip the target into its mouth 80% of the time. As the tongue sticks to the victim, a miss in swallowing means the victim takes 1D6+damage bonus in constriction damage, with an 80% chance of being swallowed next time. Digestive acid has 2 levels of potency per D6 of SIZ.",
 						  error:""
 						 },
 						 {name: "Cockatrice",
@@ -365,6 +387,8 @@ function getTemplates(){
 						  equipmentList:"",
 						  skills:{lists:["all",  "animal"], set:[], required:[], prohibited:[]},
 						  magic:{uses:0, basicMagic:[]},
+						  treasureFactors:{multiAttack:0, special:1},
+			              special:"The peck injects a poison into the body of the victim. This poison is just a conductor for the “attack” of the cockatrice’s POW versus the victim’s. If the cockatrice is successful, the victim turns to stone",
 						  error:""
 					     },
 					 {name: "Demi-bird",
@@ -384,6 +408,8 @@ function getTemplates(){
 						  equipmentList:"",
 						  skills:{lists:["all",  "animal"], set:[], required:[], prohibited:[]},
 						  magic:{uses:0, basicMagic:[]},
+						  treasureFactors:{multiAttack:1, special:0},
+			              special:"A demi-bird will peck and kick one or two foes at the same time.",
 						  error:""
 					     },
 				 {name: "Dream Dragon",
@@ -403,6 +429,8 @@ function getTemplates(){
 					  equipmentList:"",
 					  skills:{lists:["all",  "animal"], set:[], required:[], prohibited:[]},
 					  magic:{uses:0, basicMagic:[]},
+					  treasureFactors:{multiAttack:1, special:1},
+		              special:"",
 					  error:""
 				     },
 			    {name: "Dragonewt",
@@ -422,6 +450,8 @@ function getTemplates(){
 	            	  equipmentList:"",
 	            	  skills:{lists:["all", "sentient", "animal", "dragonewt"], set:[], required:[{name:"Hide in Cover", type:"s", base:20}, {name:"Move Quietly", type:"s", base:20}, {name:"Camoflage", type:"s", base:20}], prohibited:[]},
 	            	  magic:{uses:1, basicMagic:[]},
+					  treasureFactors:{multiAttack:0, special:0},
+		              special:"",
 		              error:""
 		             },
 				 {name: "Dragonsnail",
@@ -441,6 +471,8 @@ function getTemplates(){
 		              equipmentList:"",
 		              skills:{lists:["all",  "animal"], set:[], required:[], prohibited:[]},
 		              magic:{uses:0, basicMagic:[]},
+					  treasureFactors:{multiAttack:0, special:0},
+		              special:"",
 		              chaos:300,
 		              error:""
 			         },
@@ -461,6 +493,8 @@ function getTemplates(){
 	            	  equipmentList:"",
 	            	  skills:{lists:["all", "sentient", "animal", "dragonewt","dryad"], set:[], required:[{name:"Move Quietly", type:"s", base:30}, {name:"Camouflage", type:"s", base:30},{name:"Hide in Cover", type:"s", base:30},{name:"Listen", type:"p", base:35},{name:"Spot Plant", type:"p", base:75}], prohibited:[]},
 	            	  magic:{uses:1, basicMagic:[]},
+					  treasureFactors:{multiAttack:0, special:0},
+		              special:"",
 		              error:""
 		             },
 	         {name: "Elf",
@@ -480,6 +514,8 @@ function getTemplates(){
             	  equipmentList:"",
             	  skills:{lists:["all", "sentient", "animal", "dragonewt","dryad", "elf"], set:[], required:[{name:"Hide in Cover", type:"s", base:25}, {name:"Camouflage", type:"s", base:25},{name:"Move Quietly", type:"s", base:25},{name:"Listen", type:"p", base:30},{name:"Spot Hidden Items", type:"p", base:25}], prohibited:[]},
             	  magic:{uses:1, basicMagic:[]},
+				  treasureFactors:{multiAttack:0, special:0},
+	              special:"",
 	              error:""
 	             },
          {name: "Gargoyle",
@@ -499,6 +535,8 @@ function getTemplates(){
         	  equipmentList:"",
         	  skills:{lists:["all", "sentient", "animal"], set:[], required:[], prohibited:[]},
         	  magic:{uses:1, basicMagic:[]},
+			  treasureFactors:{multiAttack:0, special:0},
+              special:"",
               error:""
              },
 	         {name: "Ghost",
@@ -518,6 +556,8 @@ function getTemplates(){
 	              equipmentList:"",
 	              skills:{lists:[], set:[], required:[], prohibited:[]},
 	           	  magic:{uses:1, basicMagic:[]},
+				  treasureFactors:{multiAttack:0, special:1},
+	              special:"",
 	           	  chaos:0,
 		          error:""
 		         },
@@ -538,6 +578,8 @@ function getTemplates(){
            	  equipmentList:"",
            	  skills:{lists:["all",  "animal"], set:[], required:[], prohibited:[]},
            	  magic:{uses:1, basicMagic:[]},
+			  treasureFactors:{multiAttack:1, special:2},
+              special:"* Bite injects a paralyzing poison of potency equal to the CON of the ghoul. If successful versus CON of victim, he will be paralyzed until counteracted by an antidote. Spider antidote will counteract the poison of the ghoul. Victim will live as many days as he has points of CON, losing 1 each day. † The howl of the ghoul actually matches the POW of the ghoul versus the INT of his victim. It has the same effect as a Demoralize spell, but is not strictly magic and is not affected by Shield, Countermagic or Dispel Magic spells. When a party of ghouls attacks a party of Adventurers, compare the POW of the most powerful ghoul against the INTs of each member of the party every round. If a party member resists the howl for five consecutive rounds, he will be immune to a ghoul’s howl until a week has passed without hearing it",
 	              error:""
 	             },
 	             {name: "Giant",
@@ -557,6 +599,8 @@ function getTemplates(){
 	            	  equipmentList:"",
 	            	  skills:{lists:["all", "sentient", "animal"], set:[], required:[], prohibited:[]},
 	            	  magic:{uses:1, basicMagic:[]},
+					  treasureFactors:{multiAttack:0, special:0},
+		              special:"",
 	            	  chaos:1,
 		              error:""
 		             },
@@ -577,6 +621,8 @@ function getTemplates(){
 					  equipmentList:"",
 					  skills:{lists:["all", "sentient", "animal"], set:[], required:[], prohibited:[]},
 					  magic:{uses:1, basicMagic:[]},
+					  treasureFactors:{multiAttack:2, special:0},
+		              special:" A griffin can claw and peck at three or fewer foes at the same time.",
 					  error:""
 				     },
 				 {name: "High Llama",
@@ -596,6 +642,8 @@ function getTemplates(){
 					  equipmentList:"",
 					  skills:{lists:["all",  "animal"], set:[], required:[], prohibited:[]},
 					  magic:{uses:0, basicMagic:[]},
+					  treasureFactors:{multiAttack:1, special:0},
+		              special:" A high llama will bite and kick one or two foes at the same time",
 					  error:""
 					 },
 				 {name: "Horse",
@@ -615,6 +663,8 @@ function getTemplates(){
 					  equipmentList:"",
 					  skills:{lists:["all",  "animal"], set:[], required:[], prohibited:[]},
 					  magic:{uses:0, basicMagic:[]},
+					  treasureFactors:{multiAttack:2, special:0},
+		              special:"",
 					  error:""
 					 },
 				 {name: "Horse, War",
@@ -634,6 +684,8 @@ function getTemplates(){
 					  equipmentList:"",
 					  skills:{lists:["all",  "animal"], set:[], required:[], prohibited:[]},
 					  magic:{uses:0, basicMagic:[]},
+					  treasureFactors:{multiAttack:2, special:0},
+		              special:"Warhorses without riders have a natural attack of 25% with Bite, Kick, and Trample. However, they only have a 5% chance with these skills when working in coordination with a rider. They must be trained to use these skills with a rider.",
 					  error:""
 					 },
 				 {name: "Impala",
@@ -653,6 +705,8 @@ function getTemplates(){
 					  equipmentList:"",
 					  skills:{lists:["all",  "animal"], set:[], required:[], prohibited:[]},
 					  magic:{uses:0, basicMagic:[]},
+					  treasureFactors:{multiAttack:0, special:0},
+		              special:"",
 					  error:""
 					 },
 		         {name: "Jack O'Bear",
@@ -672,6 +726,8 @@ function getTemplates(){
 		              equipmentList:"",
 		              skills:{lists:["all", "animal", "jackobear"], set:[], required:[{name:"Hide in Cover", type:"s", base:65},{name:"Move Quietly", type:"s", base:65}], prohibited:[]},
 		           	  magic:{uses:0, basicMagic:[]},
+					  treasureFactors:{multiAttack:1, special:1},
+		              special:"These creatures can attack with two claw attacks in the same SR.  The Jack O'Bear can ensnare another's mind in a version of the Harmonize spell, grabbing one victim a melee round up to a limit of one for every 2 points of POW it has. These victims whose magic resistance are overcome are frozen in place and helpless unless the Jack O'Bear dies or a 2 point Dispel Magic is used against the Harmonize. The Jack O'Bear's Harmonize acts as a 1 point Rune magic spell, acting without draining the jack's POW. ",
 		           	  chaos:0.35,
 			          error:""
 			         },
@@ -692,6 +748,8 @@ function getTemplates(){
 					  equipmentList:"",
 					  skills:{lists:["all", "sentient",  "animal", "jackobear"], set:[], required:[], prohibited:[]},
 					  magic:{uses:0, basicMagic:[]},
+					  treasureFactors:{multiAttack:1, special:0, poison:"CON"},
+		              special:"A manticore will use both attacks at once, at one or two opponents. The sting has a systemic poison of potency equal to its CON, usually 13.",
 					  error:""
 				     },
 		         {name: "Minotaur",
@@ -711,6 +769,8 @@ function getTemplates(){
 		              equipmentList:"",
 		              skills:{lists:["all", "sentient", "animal", "jackobear"], set:[], required:[], prohibited:[]},
 		           	  magic:{uses:0, basicMagic:[]},
+					  treasureFactors:{multiAttack:0, special:0},
+		              special:"",
 			          error:""
 			         },
 		         {name: "Morokanth",
@@ -730,6 +790,8 @@ function getTemplates(){
 		              equipmentList:"",
 		              skills:{lists:["all", "animal", "sentient", "jackobear"], set:[], required:[{name:"Tracking", type:"p", base:75}, {name:"Hide in Cover", type:"s", base:55}], prohibited:[]},
 		           	  magic:{uses:1, basicMagic:[]},
+					  treasureFactors:{multiAttack:0, special:0},
+		              special:"",
 			          error:""
 			         },
 		         {name: "Newtling",
@@ -749,6 +811,8 @@ function getTemplates(){
 		              equipmentList:"",
 		              skills:{lists:["all", "animal", "sentient", "newtling"], set:[], required:[{name:"Swimming", type:"m", base:75},{name:"Tracking", type:"p", base:50},{name:"Spot Traps", type:"p", base:40},{name:"Hide in Cover", type:"s", base:40}], prohibited:[]},
 		           	  magic:{uses:1, basicMagic:[]},
+					  treasureFactors:{multiAttack:0, special:0},
+		              special:"",
 			          error:""
 			         },
 		         {name: "Ogre",
@@ -768,6 +832,8 @@ function getTemplates(){
 		              equipmentList:"",
 		              skills:{lists:["all", "animal", "sentient", "ogre"], set:[], required:[{name:"Disguise", type:"k", base:50},{name:"Move Quietly", type:"s", base:35}], prohibited:[]},
 		           	  magic:{uses:1, basicMagic:[]},
+					  treasureFactors:{multiAttack:0, special:0},
+		              special:"",
 		           	  chaos:0.385,
 			          error:""
 			         },
@@ -788,6 +854,8 @@ function getTemplates(){
 		              equipmentList:"",
 		              skills:{lists:["all", "animal", "sentient", "pixie", "elf"], set:[], required:[{name:"Move Quietly", type:"s", base:35},{name:"Spot Hidden Items", type:"p", base:40},{name:"Set Trap", type:"m", base:35},{name:"Disarm Trap", type:"m", base:35}], prohibited:[]},
 		           	  magic:{uses:1, basicMagic:[]},
+					  treasureFactors:{multiAttack:0, special:0},
+		              special:"",
 			          error:""
 			         },
 				 {name: "Rhino",
@@ -807,6 +875,8 @@ function getTemplates(){
 					  equipmentList:"",
 					  skills:{lists:["all",  "animal"], set:[],  required:[], prohibited:[]},
 					  magic:{uses:0, basicMagic:[]},
+					  treasureFactors:{multiAttack:0, special:0},
+		              special:"",
 					  error:""
 					 },
 				 {name: "Rock Lizard",
@@ -826,6 +896,8 @@ function getTemplates(){
 					  equipmentList:"",
 					  skills:{lists:["all",  "animal"], set:[],  required:[], prohibited:[]},
 					  magic:{uses:0, basicMagic:[]},
+					  treasureFactors:{multiAttack:1, special:0},
+		              special:" Will strike with both claws at once until one hits, then hold with that one, strike with the other, and bite.",
 					  error:""
 					 },
 				 {name: "Rubble Runner",
@@ -845,6 +917,8 @@ function getTemplates(){
 					  equipmentList:"",
 					  skills:{lists:["all",  "animal"], set:[],  required:[], prohibited:[]},
 					  magic:{uses:0, basicMagic:[]},
+					  treasureFactors:{multiAttack:0, special:0},
+		              special:"When they hit with a bite, the rubble runner will hold on and continue to bite. Roll each round to see if the 'hit' is critical and will get through armor.",
 					  error:""
 					 },
 	         {name: "Runner",
@@ -864,6 +938,8 @@ function getTemplates(){
             	  equipmentList:"",
             	  skills:{lists:["all", "sentient", "animal", "dragonewt","dryad", "elf"], set:[],  required:[{name:"Move Quietly", type:"s", base:20},{name:"Spot Hidden Items", type:"p", base:30},{name:"Camouflage", type:"s", base:20},{name:"Listen", type:"p", base:30},{name:"Hide in Cover", type:"s", base:20}], prohibited:[]},
             	  magic:{uses:1, basicMagic:[]},
+				  treasureFactors:{multiAttack:0, special:0},
+	              special:"",
 	              error:""
 	             },
 			 {name: "Sable",
@@ -883,6 +959,8 @@ function getTemplates(){
 				  equipmentList:"",
 				  skills:{lists:["all",  "animal"], set:[],  required:[], prohibited:[]},
 				  magic:{uses:0, basicMagic:[]},
+				  treasureFactors:{multiAttack:0, special:0},
+	              special:"A sable will either: butt; or bite and kick in a melee round.",
 				  error:""
 				 },
 			 {name: "Scorpion Man",
@@ -902,6 +980,8 @@ function getTemplates(){
 				  equipmentList:"",
 				  skills:{lists:["all", "sentient", "animal", "scorpionman"], set:[],  required:[{name:"Climbing", type:"m", base:45},{name:"Set Trap", type:"m", base:35}], prohibited:["Boating", "Riding", "Sailing"]},
 				  magic:{uses:0, basicMagic:[]},
+				  treasureFactors:{multiAttack:1, special:0, poison:"CON"},
+	              special:"A scorpion man can attack with club and sting at the same time. The sting injects a systemic poison equal to the CON of the scorpion man in potency.",
 				  error:""
 				 },
 			 {name: "Shadow Cat",
@@ -921,6 +1001,8 @@ function getTemplates(){
 				  equipmentList:"",
 				  skills:{lists:["all",  "animal"], set:[],  required:[{name:"Move Quietly", type:"s", base:45},{name:"Hide in Cover", type:"s", base:35}], prohibited:[]}, //
 				  magic:{uses:0, basicMagic:[]},
+				  treasureFactors:{multiAttack:1, special:0},
+	              special:"",
 				  error:""
 				 },
 	         {name: "Skeleton",
@@ -940,6 +1022,8 @@ function getTemplates(){
             	  equipmentList:"",
             	  skills:{lists:[""], set:[],  required:[], prohibited:[]},
             	  magic:{uses:0, basicMagic:[]},
+				  treasureFactors:{multiAttack:0, special:0},
+	              special:"A skeleton is so brittle that when a location is hit, it shatters. Thus, hit points and CON are irrelevant. A blow to the head will deprogram a skeleton and cause it to fall apart immediately",
             	  chaos:0,
 	              error:""
 	             },
@@ -960,6 +1044,8 @@ function getTemplates(){
 				  equipmentList:"",
 				  skills:{lists:["all", "animal"], set:[],  required:[], prohibited:["Climbing", "Feign Death", "Jumping"]},
 				  magic:{uses:0, basicMagic:[]},
+				  treasureFactors:{multiAttack:0, special:0},
+	              special:"Sky bulls will swoop down on a foe from above and stomp them into the ground. They only butt in air combat or if caught on the ground.",
 				  error:""
 			     },
 			 {name: "Snake",
@@ -974,11 +1060,13 @@ function getTemplates(){
 				       	  cha:{value:{}, nDice:0, szDice:6, mod: 0}
 				  },
 				  move:{base: 4, current:4},
-				  body:{type:"Snake",hitLocations:[], attacks:"Basilisk", naturalArmor:3},
+				  body:{type:"Snake",hitLocations:[], attacks:"Basilisk", naturalArmor:0},
 				  equipment:{keys:["naturalBite4"]},
 				  equipmentList:"",
 				  skills:{lists:["all"], set:[],  required:[], prohibited:["Jumping"]},
 				  magic:{uses:0, basicMagic:[]},
+				  treasureFactors:{multiAttack:0, special:0},
+	              special:"",
 				  error:""
 			     },
 	         {name: "Tiger Son",
@@ -998,6 +1086,8 @@ function getTemplates(){
 	              equipmentList:"",
 	              skills:{lists:["all", "sentient", "animal", "bearwalker"], set:[],  required:[{name:"Move Quietly", type:"s", base:45},{name:"Hide in Cover", type:"s", base:45}, {name:"Spot Trap", type:"p", base:40},{name:"Track by Smell", type:"p", base:40}, {name:"Spot Hidden Items", type:"p", base:40}], prohibited:[]},
 	           	  magic:{uses:1, basicMagic:[]},
+				  treasureFactors:{multiAttack:1, special:0},
+	              special:"Will bite if a claw hits in the previous round. If bite connects with flesh, will hang on, continuing to bite while hind legs claw victim.",
 		          error:""
 		         },
 			 {name: "Troll, Cave",
@@ -1017,8 +1107,9 @@ function getTemplates(){
 		          equipmentList:"",
 		          skills:{lists:["all", "sentient", "animal"], set:[],  required:[], prohibited:[]},
 		          magic:{uses:1, basicMagic:[]},
-			      error:"",
-			      special: "The cave troll heals 1HP per Hit Location per Round." 
+				  treasureFactors:{multiAttack:1, special:0},
+	              special:"Usual tactic is to hit with the club then strike with the claw, but they cannot parry if they do so.  The cave troll heals 1HP per Hit Location per Round.",
+			      error:"" 
 				 },
 			 {name: "Troll, Great",
 			      source:"RuneQuest 2",
@@ -1037,8 +1128,9 @@ function getTemplates(){
 		          equipmentList:"",
 		          skills:{lists:["all", "sentient", "animal"], set:[],  required:[], prohibited:[]},
 		          magic:{uses:1, basicMagic:[]},
-			      error:"",
-			      special: ""
+				  treasureFactors:{multiAttack:0, special:0},
+	              special:"",
+			      error:""
 				 },
 			 {name: "Troll, Mistress Race",
 			      source:"RuneQuest 2",
@@ -1057,8 +1149,9 @@ function getTemplates(){
 		          equipmentList:"",
 		          skills:{lists:["all", "sentient", "animal"], set:[],  required:[{name:"Oratory", type:"o", base:70}, {name:"Set Traps", type:"m", base:45}, {name:"Camouflage", type:"s", base:80}, {name:"Spot Hidden Items", type:"p", base:55}, {name:"Spot Trap", type:"p", base:55}], prohibited:[]},
 		          magic:{uses:1, basicMagic:[]},
-			      error:"",
-			      special: ""
+				  treasureFactors:{multiAttack:0, special:0},
+	              special:"",
+			      error:""
 				 },
 			 {name: "Trollkin",
 			      source:"RuneQuest 2",
@@ -1077,8 +1170,9 @@ function getTemplates(){
 		          equipmentList:"",
 		          skills:{lists:["all", "sentient", "animal"], set:[],  required:[ {name:"Spot Hidden Items", type:"p", base:45}], prohibited:[]},
 		          magic:{uses:1, basicMagic:[]},
-			      error:"",
-			      special: ""
+				  treasureFactors:{multiAttack:0, special:0},
+	              special:"",
+			      error:""
 				 },
 	         {name: "Tusk Brother",
 				  source:"RuneQuest 2",
@@ -1097,6 +1191,8 @@ function getTemplates(){
 	              equipmentList:"",
 	              skills:{lists:["all", "sentient", "animal", "bearwalker"], set:[],  required:[ {name:"Sniffing Out Food", type:"p", base:90},  {name:"Move Quietly", type:"s", base:35},  {name:"Hide in Cover", type:"s", base:55}], prohibited:[]},
 	           	  magic:{uses:1, basicMagic:[]},
+				  treasureFactors:{multiAttack:0, special:0},
+	              special:"If a foe is knocked down, a tusk brother will stomp him with its very hard hooves in the next round.",
 		          error:""
 		         },
 			 {name: "Tusk Rider",
@@ -1116,8 +1212,9 @@ function getTemplates(){
 		          equipmentList:"",
 		          skills:{lists:["all", "sentient", "animal", "tuskrider"], set:[],  required:[ {name:"Riding", type:"m", base:90},  {name:"Tracking", type:"p", base:50},  {name:"Camouflage", type:"s", base:45},  {name:"Spot Traps", type:"p", base:50}], prohibited:[]},
 		          magic:{uses:1, basicMagic:[]},
-			      error:"",
-			      special: ""
+				  treasureFactors:{multiAttack:0, special:0},
+	              special:"",
+			      error:""
 				 },
 			 {name: "Tusker",
 			      source:"RuneQuest 2",
@@ -1136,6 +1233,8 @@ function getTemplates(){
 				  equipmentList:"",
 				  skills:{lists:["all",  "animal"], set:[],  required:[], prohibited:[]},
 				  magic:{uses:0, basicMagic:[]},
+				  treasureFactors:{multiAttack:0, special:0},
+	              special:"A Tusker cannot gore and trample one opponent in the same melee round.",
 				  error:""
 				 },
 			 {name: "Unicorn",
@@ -1155,6 +1254,8 @@ function getTemplates(){
 				  equipmentList:"",
 				  skills:{lists:["all", "animal"], set:[],  required:[], prohibited:[]},
 				  magic:{uses:0, basicMagic:[]},
+				  treasureFactors:{multiAttack:2, special:0},
+	              special:"Unicorns without riders have a natural attack of 25% with Bite, Kick, and Trample. However, they only have a 5% chance with these skills when working in coordination with a rider. They must be trained to use these skills with a rider.  They can cure wounds with their horns, and will gore a foe at the same time the amazon is lancing it. When using their horn to cure, they must touch the wound with the horn. Each point cured takes 1 point from the POW of the unicorn as in a Healing spell.",
 				  chaos:0,
 				  error:""
 				 },
@@ -1175,8 +1276,9 @@ function getTemplates(){
 		          equipmentList:"",
 		          skills:{lists:["all", "sentient", "animal"], set:[],  required:[], prohibited:[]},
 		          magic:{uses:1, basicMagic:[]},
+				  treasureFactors:{multiAttack:1, special:2},
+	              special:" The touch of a vampire will reach through armor and attack a character's POW, just as a ghost does. If the vampire wins, the character loses POW. If the bite of a vampire penetrates armor, it drains 1D6 in STR (blood) from the victim per melee round. It will stay attached until the victim is dead or vampire destroyed.If the vampire can catch the glance of a character, it can attempt to Harmonize him with no loss of POW. A roll of the target's character's POWx5 or less must be made on D100 to see if he was lucky enough to avoid the glance at the vampire.", 
 			      error:"",
-			      special: ""
 				 },
 	         {name: "Wind Child",
 	              source:"RuneQuest 2",
@@ -1195,6 +1297,8 @@ function getTemplates(){
 	        	  equipmentList:"",
 	        	  skills:{lists:["all", "sentient", "animal", "windchild"], set:[],  required:[], prohibited:["Boating", "Riding", "Sailing", "Climbing", "Tumbling"]},
 	        	  magic:{uses:1, basicMagic:[]},
+				  treasureFactors:{multiAttack:0, special:0},
+	              special:"",
 	              error:""
 	             },
 			 {name: "Wyrm",
@@ -1214,6 +1318,8 @@ function getTemplates(){
 				  equipmentList:"",
 				  skills:{lists:["all",  "animal"], set:[],  required:[], prohibited:[]},
 				  magic:{uses:0, basicMagic:[]},
+				  treasureFactors:{multiAttack:0, special:0},
+	              special:"",
 				  error:""
 				 },
 			 {name: "Wyvern",
@@ -1233,6 +1339,8 @@ function getTemplates(){
 				  equipmentList:"",
 				  skills:{lists:["all",  "animal"], set:[],  required:[], prohibited:[]},
 				  magic:{uses:0, basicMagic:[]},
+				  treasureFactors:{multiAttack:1, special:0, poison:"CON"},
+	              special:"A wyvern will bite and sting one or two foes at one time. The sting injects systemic poison equal to the CON of the wyvern in potency.",
 				  error:""
 				 },
 			 {name: "Zombie",
@@ -1252,6 +1360,8 @@ function getTemplates(){
             	  equipmentList:"",
             	  skills:{lists:[], set:[],  required:[], prohibited:[]},
             	  magic:{uses:0, basicMagic:[]},
+				  treasureFactors:{multiAttack:0, special:0},
+	              special:"A zombie must be destroyed by destroying every limb or its chest or it will continue to fight. Destroying the head, of course, destroys its ability to see an opponent and it will cease action.",
 	              error:""
 	             }
 		          ];
@@ -1460,6 +1570,14 @@ function getHLTemplates(shape){
 				selHLTemplate = hlTemplates[h].hitLocations;
 			}
 		}
+		if(shape == "Snake"){
+			var testAC = "";
+			for(var hl =0; hl<selHLTemplate.length; hl++){
+				  testAC = testAC + "</p>"+selHLTemplate[hl].location+" Natural: "+selHLTemplate[hl].armor.natural+" Current: "+selHLTemplate[hl].armor.current;
+			  }
+//			window.alert("Test jsRQTemplate.getHLTempates Snake: "+testAC);
+
+		}
 		return selHLTemplate;
 	}catch(err){
 		return "Error: RQTemplates.getHLTemplates: "+err;
@@ -1504,9 +1622,9 @@ function getSpecialRulesForTemplates(t){
 			}else{
 				t.equipment.naturalTongue.damage = "4d4";
 			}
-			t.special = "80% of swallowing each turn after a tongue hit, else 1d6 + Damage Bonus in constriction damage.  If swallowed, digestive acid has Potency "+(t.characteristics.siz.nDice*2)+".  Movement hopping rate is "+t.characteristics.siz.nDice+".";
+// Moved to base template definition			t.special = "80% of swallowing each turn after a tongue hit, else 1d6 + Damage Bonus in constriction damage.  If swallowed, digestive acid has Potency "+(t.characteristics.siz.nDice*2)+".  Movement hopping rate is "+t.characteristics.siz.nDice+".";
 		}else if(t.name == "Cockatrice"){
-			t.special = "A successful attack by the cocktrice petrifies the opponent if it fails a POW vs POW resistance test.";
+			// Moved to base template definition				t.special = "A successful attack by the cocktrice petrifies the opponent if it fails a POW vs POW resistance test.";
 		}else if(t.name == "Dream Dragon"){
 			t.characteristics.str.nDice = Math.floor(Math.random()*8)+Math.floor(Math.random()*8)+4;
 			t.characteristics.siz.nDice = Math.floor(Math.random()*8)+Math.floor(Math.random()*8)+4;
@@ -1519,13 +1637,13 @@ function getSpecialRulesForTemplates(t){
 			if(rndVal < 14){
 				rndTxt = "The dragon breathes a jet of acid.";
 			}else if(rndVal < 28){
-				rndTxt = "The dragon breathes a jet of sleep gas.  Opponents failing to resist will fall asleep for 1d4 turns at no POW cost to the dragon.";
+				rndTxt = "The dragon breathes a jet of sleep gas.  Opponents failing to resist will fall asleep for 1d4 turns at no POW cost to the dragon.  Gas is a systemic poison which is matched versus CON of the victim.";
 			}else if(rndVal < 42){
-				rndTxt = "The dragon breathes a jet of repulsion gas.  Opponents are affected as if by a Demoralize spell, although at no POW cost to the dragon.";
+				rndTxt = "The dragon breathes a jet of repulsion gas.  Opponents are affected as if by a Demoralize spell, although at no POW cost to the dragon.  Gas is a systemic poison which is matched versus CON of the victim.";
 			}else if(rndVal < 56){
-				rndTxt = "The dragon breathes a jet of slow gas.  Opponents are affected as if by a Binding spell, although at no POW cost to the dragon.";
+				rndTxt = "The dragon breathes a jet of slow gas.  Opponents are affected as if by a Binding spell, although at no POW cost to the dragon.  Gas is a systemic poison which is matched versus CON of the victim.";
 			}else if(rndVal < 70){
-				rndTxt = "The dragon breathes a jet of poison gas.";
+				rndTxt = "The dragon breathes a jet of poison gas.  Gas is a systemic poison which is matched versus CON of the victim.";
 			}else if(rndVal < 86){
 				rndTxt = "The dragon breathes a jet of flame.";
 			}else{
@@ -1573,9 +1691,6 @@ function getSpecialRulesForTemplates(t){
 				t.characteristics.pow = {value:{}, nDice:10, szDice:6, mod: 6};
 			}
 
-		}else if(t.name=="Ghoul"){
-			t.special = "The bite of a ghoul injects a paralyzing poison with potency equal to the Ghoul's CON.  " +
-					"The ghoul's Howl matches the POW of the ghoul against the INT of the victim. Failing to resist means the victim has been Demoralized as per the spell.  This is not a magical effect and is not countered by Shield, Countermagic or Dispel Magic.";
 		}else if(t.name == "Giant"){
 			rndVal = Math.ceil(Math.random()*6)+ Math.ceil(Math.random()*6)+Math.ceil(Math.random()*6);
 			rndVal = rndVal - 3;
@@ -1593,9 +1708,9 @@ function getSpecialRulesForTemplates(t){
 			t.equipment.naturalRearAndPlunge.attack.base = 25;
 			t.equipment.naturalRearAndPlunge.attack.current = 25;
 		}else if(t.name == "Jack O'Bear"){
-			t.special = "The Jack O'Bear can Harmonize one victim per round with a maximum number of victims equaling POW/2."
+			//Moved to base template t.special = "The Jack O'Bear can Harmonize one victim per round with a maximum number of victims equaling POW/2."
 		}else if(t.name=="Manticore"){
-			t.special = "The manticore may use both attacks at once.  The sting injects a poison of potency equal to the manticore's CON.";
+			//Moved to base template t.special = "The manticore may use both attacks at once.  The sting injects a poison of potency equal to the manticore's CON.";
 		}else if(t.name=="Snake"){
 			rndVal = Math.ceil(Math.random()*12);
 			if(rndVal < 3){
@@ -1612,7 +1727,8 @@ function getSpecialRulesForTemplates(t){
 			}else if(rndVal < 5){
 				rndVal = Math.ceil(Math.random()*6);
 				t.name = "Snake, Fang";
-				t.special = "A bite that penetrates armor injects Blase Venom of potency "+rndVal+".";				
+				t.treasureFactors.poison =  Math.ceil(rndVal/5);
+				t.special = "A bite that penetrates armor injects Blade Venom of potency "+rndVal+".";				
 			}else if(rndVal < 6){
 				rndVal = Math.ceil(Math.random()*100);
 				t.equipment ={keys:["naturalSpit","naturalBite4"]};
@@ -1620,6 +1736,7 @@ function getSpecialRulesForTemplates(t){
 				if(rndVal < 51){
 					t.name = "Snake, Spit (Male)";
 					rndVal = Math.ceil(Math.random()*6);
+					t.treasureFactors.poison = Math.ceil(rndVal/5);
 					t.special = "The snake spits a wad of Acid of potency "+rndVal+"."
 				}else{
 					t.name = "Snake, Spit (Female)";

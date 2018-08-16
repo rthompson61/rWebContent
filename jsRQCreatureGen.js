@@ -12,6 +12,7 @@ function genStats(templateName){
 		var test = "jsRQCreatureGen.genStats: ";
 		var rslt1 = 0;
 		var naturalWpns = 0;
+
 		//for each characteristic key
 		for(var char in template.characteristics){
 			template.characteristics[char].value.base = RQdieRoller(template.characteristics[char]);
@@ -58,6 +59,11 @@ function genStats(templateName){
 //				test = test+ char+" "+template.characteristics[char].value[explvls[el]]+", ";
 				//end generating characteristics
 			}
+		}
+
+		//Basic Magic
+		if(template.magic.uses > 0){
+			template = getBasicMagic(template);		
 		}
 		//for each base skill
 		//for each exp level
@@ -128,20 +134,9 @@ function genStats(templateName){
 				template = updateNaturalWeapons(template, explvls[3]);
 			}
 
-			//Treasure factor
-			/**
-			 * @param template
-			 * @returns {___anonymous9378_9385}
-			 */
-//			template.tf = getTreasureFactors(template);
-//Test			window.alert("jsRQCreatureGen.genBasicStats TF(1) "+template.tf);
 			//Skills
 			if(template.skills.set.length <1){
-				template.skills = setSkillsList2(template.skills, template.name, template.exp, template.characteristics.int.value.current);
-			}
-			//Basic Magic
-			if(template.magic.uses > 0){
-				template = getBasicMagic(template);		
+				template.skills = setSkillsList2(template.skills, template.name, template.exp, template.characteristics.int.value.base);
 			}
 //			return template;
 		}else{

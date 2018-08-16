@@ -117,6 +117,7 @@ function formatPreResults2(template, level){
 		 }
 	 	 r = r+"<br/>Skills: "+formatLongString(skillAry, 8, ", ", 40);//template.skills.set
 		 var basicmagic = [];
+//		 window.alert("Test jsRQDisplay.formatPreResults2 Basic Magic Array Size"+template.magic.basicMagic.length);
 		 for(var bms = 0; bms < template.magic.basicMagic.length; bms++){
 			 if(template.magic.basicMagic[bms].pow > 1){
 				 basicmagic.push(template.magic.basicMagic[bms].name+" " + template.magic.basicMagic[bms].pow)
@@ -125,8 +126,9 @@ function formatPreResults2(template, level){
 			 }
 		 }
 		 basicmagic.sort();
-		 r = r+"<br/>Basic Magic: "+formatLongString(basicmagic, 8, ", ", 40);
-		 
+		 if(template.magic.basicMagic.length>0){
+			 r = r+"<br/>Basic Magic: "+formatLongString(basicmagic, 8, ", ", 40);
+		 }
 		 if(template.hasOwnProperty("special")){
 			 var strAry = template.special.split(" ");
 			 r = r+"<br/>Special: "+formatLongString(strAry, 9, " ", 40);

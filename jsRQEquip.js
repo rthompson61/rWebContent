@@ -341,13 +341,17 @@ function getEquip(){
 
 function getTreasureFactors(t, level){
 	//t = template
+	//TO DO - TF for mutiple natural attacks, special abilities, poison
 	try{
 		var tf = 0;
 		var eKeys = Object.keys(t.equipment);
-		var atkTf = 0;
-		var apTf = 99;
-		var mTf = 0;
-		var dbTf =0;
+		var atkTf = 0; //Treasure Factor for attack %
+		var apTf =99; //Treasure Factor for armor protection  Checks for lower value
+		var mTf = 0; //Treasure Factor for combat spells
+		var dbTf =0;  //Treasure Factor for damage bonus
+		var naTf = 0; //Treasure Factor for multiple natural attacks
+		var sTf = 0;  // Treasure Factor for Special abilities
+		var pTf = 0;  //Treasure factor for Poison
 		
 		for(var k = 0; k < eKeys.length; k++){
 			if(t.equipment[eKeys[k]].hasOwnProperty("attack") ){
@@ -365,9 +369,9 @@ function getTreasureFactors(t, level){
 				  apTf =t.body.hitLocations[hl].armor.current;
 			  }
 		  }
-//Test		window.alert("jsEquip.getTreasureFactors() Armor "+apTf);
+//	window.alert("Test jsEquip.getTreasureFactors() Spell List Length "+t.magic.basicMagic.length);
 		for(var m = 0; m < t.magic.basicMagic.length; m++){
-			if(t.magic.basicMagic[m].type !== "nonCombat"){
+			if(t.magic.basicMagic[m].type == "combat"){
 				mTf++;
 			}
 		}
@@ -375,8 +379,24 @@ function getTreasureFactors(t, level){
 		if(t.exp[level].damageBonus.indexOf('+') > -1){
 			dbTf = Number(t.exp[level].damageBonus.substring(t.exp[level].damageBonus.indexOf('+')+1,t.exp[level].damageBonus.indexOf('d')));
 		}
-		tf = Math.ceil(t.exp[level].hp/5) + atkTf + apTf+ mTf + dbTf;
-//		window.alert("Test jsEquip.getTreasureFactors() "+tf + " = HP:"+ Math.ceil(t.hp/5)+" + Best Attack:"+atkTf+" + Minimum Protection:"+apTf);
+		//Template Treasure factors
+		//treasureFactors:{multiAttack
+		if(t.hasOwnProperty("treasureFactors")){
+			naTf = t.treasureFactors.multiAttack;
+			sTf = t.treasureFactors.special;
+			if(t.treasureFactors.hasOwnProperty("poison")){
+				if(t.treasureFactors.poison == "CON"){
+//					window.alert("Test jsEquip.getTreasureFactors() CON by Level t.char.con.value "+t.characteristics.con.value[level]+" "+level);
+					pTf =  Math.ceil((t.characteristics.con.value[level])/5)
+				}else{
+					pTf = t.treasureFactors.poison;
+				}
+			}
+		}
+		tf = Math.ceil((t.exp[level].hp)/5) + atkTf + apTf + mTf + dbTf + naTf + sTf + pTf;
+		if(level == "Novice" || level == "Yearling"){
+//			window.alert("Test jsEquip.getTreasureFactors() "+level+"  "+tf + " = HP:"+ Math.ceil((t.exp[level].hp)/5)+" + Best Attack:"+atkTf+" + Minimum Protection:"+apTf+" Damage Bonus: "+dbTf+" Magic: "+mTf+" MultiAttack: "+naTf+" Special: "+sTf+" Poison: "+pTf);
+		}
 		return(tf)
 	}catch(err){
 		window.alert("Error: jsEquip.getTreasureFactors() "+err);
