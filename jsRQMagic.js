@@ -4,6 +4,7 @@
 function getBasicMagic(template){
 	try{
 		template.magic.basicMagic = [];
+		var level = "Novice"; //Placeholder
 		var rnd = Math.floor(Math.random()*100);
 		var tempList = getBasicMagicList("healing");
 		var pow = 1;
@@ -14,7 +15,7 @@ function getBasicMagic(template){
 		var listSpell = {name:"", pow:0, type:""};
 		var tempLS = Object.create(listSpell);
 		if(rnd <96 && tempList.length > 0){
-			pow = variablePower(tempList[0].minPoints,tempList[0].maxPoints, template.characteristics.int.value.current, tPow);
+			pow = variablePower(tempList[0].minPoints,tempList[0].maxPoints, template.characteristics.int.value.base, tPow);
 			tPow = tPow +pow;
 			tempLS.name = tempList[0].name;
 			tempLS.pow = pow;
@@ -22,11 +23,13 @@ function getBasicMagic(template){
 			template.magic.basicMagic.push(tempLS);
 			pow = 1;
 		}
+//		window.alert("Test jsRQMagic.getBasicMagic Healing"+template.magic.basicMagic[0].name+" "+template.magic.basicMagic[0].pow);
 		for(var s = 0; s<spellTypes.length;s++){
-			if(template.characteristics.int.value.current - tPow > 0){
+//			window.alert("Test jsRQMagic.getBasicMagic Random Generation of non-healing spells"+template.characteristics.int.value.base+" - "+tPow)
+			if(template.characteristics.int.value.base - tPow > 0){
 				var tempLS = Object.create(listSpell);
 				tSpell = getSpell(spellTypes[s]);
-				pow = variablePower(tSpell.minPoints,tSpell.maxPoints, template.characteristics.int.value.current, tPow);
+				pow = variablePower(tSpell.minPoints,tSpell.maxPoints, template.characteristics.int.value.base, tPow);
 				tPow = tPow +pow;
 				tempLS.name = tSpell.name;
 				tempLS.pow = pow;
