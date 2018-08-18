@@ -27,22 +27,37 @@ function getChaoticFeature(template){
 			}else if(rnd < 7 ){
 				chaos= " Acidic Skin: The creature exudes Acid from it's skin. Creatures it touches or which succeed in touching it take 1d4 acid damage";
 			}else if(rnd < 9 ){
-				chaos= "Albino: The creature's skin is dull white and it has red eyes. ";
-				template.characteristics.con.value = setCharacteristicValue(template.characteristics.con.value, -2, getAlt(template.characteristics.con), template.name);
+				if(template.mutations.eBP.indexOf("skin color")<0){
+					chaos= "Albino: The creature's skin is dull white and it has red eyes. ";
+					template.characteristics.con.value = setCharacteristicValue(template.characteristics.con.value, -2, getAlt(template.characteristics.con), template.name);
+					template.mutations.eBP.push("skin color");
+				}
 			}else if(rnd < 14 ){
 				template.body.hitLocations = setNaturalArmor(template.body.hitLocations, -2);
 			}else if(rnd < 19 ){
-				chaos = "The creatures hide is thickly studded with metal nodules";
-				template.body.hitLocations = setNaturalArmor(template.body.hitLocations, 12);
+				if(template.mutations.eBP.indexOf("hide")<0){
+					chaos = "The creatures hide is thickly studded with metal nodules";
+					template.body.hitLocations = setNaturalArmor(template.body.hitLocations, 12);
+					template.mutations.eBP.push("hide");
+				}
 			}else if(rnd < 24 ){
-				chaos = "The creatures hide is studded with boney nodules";
-				template.body.hitLocations = setNaturalArmor(template.body.hitLocations, 2);
+				if(template.mutations.eBP.indexOf("hide")<0){
+					chaos = "The creatures hide is studded with boney nodules";
+					template.body.hitLocations = setNaturalArmor(template.body.hitLocations, 2);
+					template.mutations.eBP.push("hide");
+				}
 			}else if(rnd < 29 ){
-				chaos = "The creatures hide is studded with boney nodules";
-				template.body.hitLocations = setNaturalArmor(template.body.hitLocations, 4);
+				if(template.mutations.eBP.indexOf("hide")<0){
+					chaos = "The creatures hide is studded with boney nodules";
+					template.body.hitLocations = setNaturalArmor(template.body.hitLocations, 4);
+					template.mutations.eBP.push("hide");
+				}
 			}else if(rnd < 34 ){
-				chaos = "The creatures hide is thickly studded with boney nodules";
-				template.body.hitLocations = setNaturalArmor(template.body.hitLocations, 8);
+				if(template.mutations.eBP.indexOf("hide")<0){
+					chaos = "The creatures hide is thickly studded with boney nodules";
+					template.body.hitLocations = setNaturalArmor(template.body.hitLocations, 8);
+					template.mutations.eBP.push("hide");
+				}
 			}else if(rnd < 54 ){
 				tempBPO = Object.create(bodyPartObj);
 				tempBPO = getBodyPart("arm", template.body.type);
@@ -54,20 +69,26 @@ function getChaoticFeature(template){
 				template = updateTemplateBodyParts(template, tempBPO);
 				chaos =  tempBPO.desc;
 			}else if(rnd < 72 ){
-				tempBPO = Object.create(bodyPartObj);
-				tempBPO = getBodyPart("BatWings", template.body.type);
-				template = updateTemplateBodyParts(template, tempBPO);
-				chaos =  tempBPO.desc;
+				if(template.mutations.eBP.indexOf("wings")<0){
+					tempBPO = Object.create(bodyPartObj);
+					tempBPO = getBodyPart("BatWings", template.body.type);
+					template = updateTemplateBodyParts(template, tempBPO);
+					chaos =  tempBPO.desc;
+					template.mutations.eBP.push("wings");
+				}
 			}else if(rnd < 74 ){
-				rnd = Math.floor(Math.random()*6);
-				if(rnd < 3){
-					chaos = "The creature has a duck beak in place of it's mouth and nose." 
-				}else if(rnd < 5){
-					chaos = "The creature has a chicken beak in place of it's mouth and nose."
-				}else if(rnd < 6){
-					chaos = "The creature has a eagle beak in place of it's mouth and nose."
-				}else{
-					chaos = "The creature has a pelican beak in place of it's mouth and nose."
+				if(template.mutations.eBP.indexOf("mouth")<0 && template.mutations.eBP.indexOf("nose")<0){
+					rnd = Math.floor(Math.random()*6);
+					if(rnd < 3){
+						chaos = "The creature has a duck beak in place of it's mouth and nose." 
+					}else if(rnd < 5){
+						chaos = "The creature has a chicken beak in place of it's mouth and nose."
+					}else if(rnd < 6){
+						chaos = "The creature has a eagle beak in place of it's mouth and nose."
+					}else{
+						chaos = "The creature has a pelican beak in place of it's mouth and nose."
+					}
+					template.mutations.eBP.push("mouth", "nose");
 				}
 			}else if(rnd < 78 ){
 				chaos = "Berserker: The creature is capable of combat rages where it gains 2 HP per hit location and increases it's attack bonus by the value of it's parry and defense bonuses.  The creature cannot parry or use defense when enraged."
@@ -78,86 +99,125 @@ function getChaoticFeature(template){
 				chaos =  tempBPO.desc;
 				template = updateNaturalWeapons(template, "Novice");
 			}else if(rnd < 91 ){
-				tempBPO = Object.create(bodyPartObj);
-				tempBPO = getBodyPart("ears", template.body.type);
-				template = updateTemplateBodyParts(template, tempBPO);
-				chaos =  tempBPO.desc;				
+				if(template.mutations.eBP.indexOf("ears")<0){
+					tempBPO = Object.create(bodyPartObj);
+					tempBPO = getBodyPart("ears", template.body.type);
+					template = updateTemplateBodyParts(template, tempBPO);
+					chaos =  tempBPO.desc;
+					template.mutations.eBP.push("ears");
+				}				
 			}else if(rnd < 98 ){
-				tempBPO = Object.create(bodyPartObj);
-				tempBPO = getBodyPart("BirdLegs", template.body.type);
-				template = updateTemplateBodyParts(template, tempBPO);
-				chaos =  tempBPO.desc;				
+				if(template.mutations.eBP.indexOf("legs")<0){
+					tempBPO = Object.create(bodyPartObj);
+					tempBPO = getBodyPart("BirdLegs", template.body.type);
+					template = updateTemplateBodyParts(template, tempBPO);
+					chaos =  tempBPO.desc;
+					template.mutations.eBP.push("legs");
+				}								
 			}else if(rnd < 103 ){
-				tempBPO = Object.create(bodyPartObj);
-				tempBPO = getBodyPart("BirdTail", template.body.type);
-				template = updateTemplateBodyParts(template, tempBPO);
-				chaos =  tempBPO.desc;
+				if(template.mutations.eBP.indexOf("tail")<0){
+					tempBPO = Object.create(bodyPartObj);
+					tempBPO = getBodyPart("BirdTail", template.body.type);
+					template = updateTemplateBodyParts(template, tempBPO);
+					chaos =  tempBPO.desc;
+					template.mutations.eBP.push("tail");
+				}							
 			}else if(rnd < 105){
 				tempBPO = Object.create(bodyPartObj);
 				tempBPO = getBodyPart("BisonHorns", template.body.type);
 				template = updateTemplateBodyParts(template, tempBPO);
 				chaos =  tempBPO.desc;
 			}else if(rnd < 109){
-				tempBPO = Object.create(bodyPartObj);
-				tempBPO = getBodyPart("Blood", template.body.type);
-				template = updateTemplateBodyParts(template, tempBPO);
-				chaos =  tempBPO.desc;
+				if(template.mutations.eBP.indexOf("blood")<0){
+					tempBPO = Object.create(bodyPartObj);
+					tempBPO = getBodyPart("Blood", template.body.type);
+					template = updateTemplateBodyParts(template, tempBPO);
+					chaos =  tempBPO.desc;
+					template.mutations.eBP.push("blood");
+				}							
 			}else if(rnd < 112){
 				rnd = Math.ceil(Math.random()*6)+Math.ceil(Math.random()*6)+Math.ceil(Math.random()*6);
 				rnd = rnd *100;
 				chaos =  "Cutting open the creature's body reveals a "+rnd+"L gem inside.";
 			}else if(rnd < 113){
-				rnd = Math.ceil(Math.random()*4)+Math.ceil(Math.random()*4)+Math.ceil(Math.random()*4)+Math.ceil(Math.random()*4)+Math.ceil(Math.random()*4)+Math.ceil(Math.random()*4);
-				chaos =  "The creature's body is studded with "+rnd+" gems with an average value of "+Math.ceil(Math.random()*4)+"L apiece.";
-				template.body.hitLocations = setNaturalArmor(template.body.hitLocations, 2);
+				if(template.mutations.eBP.indexOf("hide")<0){
+					rnd = Math.ceil(Math.random()*4)+Math.ceil(Math.random()*4)+Math.ceil(Math.random()*4)+Math.ceil(Math.random()*4)+Math.ceil(Math.random()*4)+Math.ceil(Math.random()*4);
+					chaos =  "The creature's body is studded with "+rnd+" gems with an average value of "+Math.ceil(Math.random()*4)+"L apiece.";
+					template.body.hitLocations = setNaturalArmor(template.body.hitLocations, 2);
+					template.mutations.eBP.push("hide");
+				}							
 			}else if(rnd < 113){
-				template.characteristics.dex.value = setCharacteristicValue(template.characteristics.dex.value, 2, getAlt(template.characteristics.dex), template.name);
-				chaos = "The creature's bones have been replaced by catrilage, making it quite limber and dexterous."
+				if(template.mutations.eBP.indexOf("bones")<0){
+					template.characteristics.dex.value = setCharacteristicValue(template.characteristics.dex.value, 2, getAlt(template.characteristics.dex), template.name);
+					chaos = "The creature's bones have been replaced by catrilage, making it quite limber and dexterous."
+					template.mutations.eBP.push("bones");
+				}							
 			}else if(rnd < 122){
-				template.body.hitLocations = setNaturalArmor(template.body.hitLocations, 2);
-				chaos = "The creature's (exo-)skeleton is made of brass.  It is immune to Electrical attacks."
+				if(template.mutations.eBP.indexOf("bones")<0){
+					template.body.hitLocations = setNaturalArmor(template.body.hitLocations, 2);
+					chaos = "The creature's (exo-)skeleton is made of brass.  It is immune to Electrical attacks."
+					template.mutations.eBP.push("bones");
+				}							
 			}else if(rnd < 125){
-				template.body.hitLocations = setNaturalArmor(template.body.hitLocations, 4);
-				chaos = "The creature's (exo-)skeleton is made of iron.  Bludgeoning weapons do half damage."
+				if(template.mutations.eBP.indexOf("bones")<0){
+					template.body.hitLocations = setNaturalArmor(template.body.hitLocations, 4);
+					chaos = "The creature's (exo-)skeleton is made of iron.  Bludgeoning weapons do half damage."
+					template.mutations.eBP.push("bones");
+			}							
 			}else if(rnd < 130){
-				template.body.hitLocations = setNaturalArmor(template.body.hitLocations, 2);
-				chaos = "The creature's (exo-)skeleton is made of stone."
+				if(template.mutations.eBP.indexOf("bones")<0){
+					template.body.hitLocations = setNaturalArmor(template.body.hitLocations, 2);
+					chaos = "The creature's (exo-)skeleton is made of stone."
+					template.mutations.eBP.push("bones");
+			}							
 			}else if(rnd < 132){
-				chaos = "Bowling Ball Head.  The creature's head is a perfect sphere with two round eyes, a round mouth and no nose or ears.";
+				if(template.mutations.eBP.indexOf("head")<0){
+					chaos = "Bowling Ball Head.  The creature's head is a perfect sphere with two round eyes, a round mouth and no nose or ears.";
+					template.mutations.eBP.push("head");
+				}							
 			}else if(rnd < 136){
 				tempBPO = Object.create(bodyPartObj);
 				tempBPO = getBodyPart("BreatheFire", template.body.type);
 				template = updateTemplateBodyParts(template, tempBPO);
 				chaos =  tempBPO.desc;
 			}else if(rnd < 138){
-				chaos ="The creature has bulging eyes, like a frog.  It can see in the dark, but must subtract 10% from all attacks, parries and skill rolls in broad daylight.";
+				if(template.mutations.eBP.indexOf("eyes")<0){
+					chaos ="The creature has bulging eyes, like a frog.  It can see in the dark, but must subtract 10% from all attacks, parries and skill rolls in broad daylight.";
+					template.mutations.eBP.push("eyes");
+			}							
 			}else if(rnd < 143){
 				chaos = "The creature bursts into flames when killed.  Everyone within 1m takes 1d6 Fire damage to one hit location."
 			}else if(rnd < 145){
-				rnd = Math.ceil(Math.random()*6);
-				if(rnd < 4){
-					rnd = 2;
-				}else if(rnd < 6){
-					rnd = 3;
-				}else{
-					rnd = 4;
-				}
-				palette = selectChaosColors(rnd);
-				var skinColors = "";
-				for(var p = 0; p < palette.length; p++){
-					skinColors = skinColors + palette[p].name;
-					if(p< palette.length -2){
-						skinColors = skinColors +", ";
-					}else if(p == palette.length -2){
-						skinColors = skinColors +" and ";
+				if(template.mutations.eBP.indexOf("skin color")<0){
+					rnd = Math.ceil(Math.random()*6);
+					if(rnd < 4){
+						rnd = 2;
+					}else if(rnd < 6){
+						rnd = 3;
+					}else{
+						rnd = 4;
 					}
-				}
-				template.body.skinColors = palette;
-				chaos = "The creature's skin is camouflage patterned in "+skinColors+".  Creature must be nearly nude in order to benefit from camouflage.";
+					palette = selectChaosColors(rnd);
+					var skinColors = "";
+					for(var p = 0; p < palette.length; p++){
+						skinColors = skinColors + palette[p].name;
+						if(p< palette.length -2){
+							skinColors = skinColors +", ";
+						}else if(p == palette.length -2){
+							skinColors = skinColors +" and ";
+						}
+					}
+					template.body.skinColors = palette;
+					chaos = "The creature's skin is camouflage patterned in "+skinColors+".  Creature must be nearly nude in order to benefit from camouflage.";
+					template.mutations.eBP.push("skin color");
+				}							
 			}else if(rnd < 147){
-				chaos = "The creature is covered with a hard carapace like a beetle";
-				template.move.base = Math.ceil(template.move.base/4);
-				template = updateMoveByLevel(template, template.move.base);
+				if(template.mutations.eBP.indexOf("hide")<0){
+					chaos = "The creature is covered with a hard carapace like a beetle";
+					template.move.base = Math.ceil(template.move.base/4);
+					template = updateMoveByLevel(template, template.move.base);
+					template.mutations.eBP.push("hide");
+				}							
 			}else if(rnd < 149){
 				template.characteristics.cha.value = setCharacteristicValue(template.characteristics.cha.value, -2, getAlt(template.characteristics.cha), template.name);
 			}else if(rnd < 151){
@@ -167,10 +227,13 @@ function getChaoticFeature(template){
 			}else if(rnd < 161){
 				chaos = "Charisn'tma. 	(Hat tip: Terry Pratchett) This creature s cursed with the opposite of charisma. Any other creature when encountering it for the first time must make use their INT to resist the creature's POW or attack it immediately. ";
 			}else if(rnd < 168){
-				tempBPO = Object.create(bodyPartObj);
-				tempBPO = getBodyPart("ChickenWings", template.body.type);
-				template = updateTemplateBodyParts(template, tempBPO);
-				chaos =  tempBPO.desc;
+				if(template.mutations.eBP.indexOf("wings")<0){
+					tempBPO = Object.create(bodyPartObj);
+					tempBPO = getBodyPart("ChickenWings", template.body.type);
+					template = updateTemplateBodyParts(template, tempBPO);
+					chaos =  tempBPO.desc;
+					template.mutations.eBP.push("wings");
+				}							
 			}else if(rnd<175){
 				if(hasBodyPart(["leg"], template.body.hitLocations)){
 					tempBPO = Object.create(bodyPartObj);
@@ -179,14 +242,19 @@ function getChaoticFeature(template){
 					chaos =  tempBPO.desc;
 				}
 			}else if(rnd < 177){
-
-				palette = selectChaosColors(1);
-				template.body.skinColors = palette;
-				chaos = "The creature's skin is colored "+getPalette(palette)+".";				
+				if(template.mutations.eBP.indexOf("skin color")<0){
+					palette = selectChaosColors(1);
+					template.body.skinColors = palette;
+					chaos = "The creature's skin is colored "+getPalette(palette)+".";
+					template.mutations.eBP.push("skin color");
+				}											
 			}else if(rnd < 179){
-				palette = selectChaosColors(0);
-				template.body.skinColors = palette;
-				chaos = "The creature's skin is is a confusing pattern in "+getPalette(palette)+". The pattern acts like a Befuddlement spell against all viewers. Creature must be nearly nude in order to benefit from the confusion effect.";
+				if(template.mutations.eBP.indexOf("skin color")<0){
+					palette = selectChaosColors(0);
+					template.body.skinColors = palette;
+					chaos = "The creature's skin is is a confusing pattern in "+getPalette(palette)+". The pattern acts like a Befuddlement spell against all viewers. Creature must be nearly nude in order to benefit from the confusion effect.";
+					template.mutations.eBP.push("skin color");
+				}											
 			}else if(rnd < 181){
 				template.characteristics.con.value = setCharacteristicValue(template.characteristics.con.value, -2, getAlt(template.characteristics.con), template.name);
 			}else if(rnd < 184){
@@ -194,62 +262,86 @@ function getChaoticFeature(template){
 			}else if(rnd < 187){
 				template.characteristics.con.value = setCharacteristicValue(template.characteristics.con.value, 6, getAlt(template.characteristics.con), template.name);
 			}else if(rnd < 189){
-				template.characteristics.con.value = setCharacteristicValue(template.characteristics.con.value, 2, getAlt(template.characteristics.con), template.name);
-				template.body.hitLocations = setNaturalArmor(template.body.hitLocations, 1);
-				chaos = "The creature's body is made of copper.  It is immune to electrical, acid and fire based attacks.";
+				if(template.mutations.eBP.indexOf("hide")<0){
+					template.characteristics.con.value = setCharacteristicValue(template.characteristics.con.value, 2, getAlt(template.characteristics.con), template.name);
+					template.body.hitLocations = setNaturalArmor(template.body.hitLocations, 1);
+					chaos = "The creature's body is made of copper.  It is immune to electrical, acid and fire based attacks.";
+					template.mutations.eBP.push("hide");
+				}											
 			}else if(rnd < 191){
 				rnd = Math.ceil(Math.random()*6);
 				if(rnd < 5){
-					chaos = "The creature has a crest like a rooster's comb on it's head.";
+					chaos = "The creature has a crest like a rooster's comb on it's head or where it's head should be.";
 				}else{
-					chaos = "The creature has a wattles like a turkey dangling from it's face.";
+					chaos = "The creature has a wattles like a turkey dangling from it's face or where it's face should be.";
 				}
 			}else if(rnd < 192){
-				rnd = Math.ceil(Math.random()*4)+Math.ceil(Math.random()*4);
-				tempBPO = Object.create(bodyPartObj);
-				tempBPO.bonusSkills=[{Listen:20}];
-				template = updateTemplateBodyParts(template, tempBPO);
-				chaos =  "Crown of Ears.  The creature's head has "+rnd+" extra ears.";				
+				if(template.mutations.eBP.indexOf("ears")<0){
+					rnd = Math.ceil(Math.random()*4)+Math.ceil(Math.random()*4);
+					tempBPO = Object.create(bodyPartObj);
+					tempBPO.bonusSkills=[{Listen:20}];
+					template = updateTemplateBodyParts(template, tempBPO);
+					chaos =  "Crown of Ears.  The creature's head (or where it's head should be) has "+rnd+" extra ears.";
+					template.mutations.eBP.push("ears");
+				}								
 			}else if(rnd < 194){
-				rnd = Math.ceil(Math.random()*4)+Math.ceil(Math.random()*4);
-				tempBPO = Object.create(bodyPartObj);
-				tempBPO.bonusSkills=[{"Spot Hidden":20}];
-				template = updateTemplateBodyParts(template, tempBPO);
-				chaos =  "Crown of Eyestalks.  The creature's head has "+rnd+" eyestalks.";
+				if(template.mutations.eBP.indexOf("eyes")<0){
+					rnd = Math.ceil(Math.random()*4)+Math.ceil(Math.random()*4);
+					tempBPO = Object.create(bodyPartObj);
+					tempBPO.bonusSkills=[{"Spot Hidden":20}];
+					template = updateTemplateBodyParts(template, tempBPO);
+					chaos =  "Crown of Eyestalks.  The creature's head (or where it's head should be) has "+rnd+" eyestalks.";
+					template.mutations.eBP.push("eyes");
+				}				
 			}else if(rnd < 195){
-				rnd = Math.ceil(Math.random()*4)+Math.ceil(Math.random()*4);
-				tempBPO = Object.create(bodyPartObj);
-				tempBPO.bonusSkills=[{"Singing":20}];
-				template = updateTemplateBodyParts(template, tempBPO);
-				chaos =  "Crown of Mouths.  The creature's head has "+rnd+" extra mouths.  It doesn't need backup singers.";
+				if(template.mutations.eBP.indexOf("mouth")<0){
+					rnd = Math.ceil(Math.random()*4)+Math.ceil(Math.random()*4);
+					tempBPO = Object.create(bodyPartObj);
+					tempBPO.bonusSkills=[{"Singing":20}];
+					template = updateTemplateBodyParts(template, tempBPO);
+					chaos =  "Crown of Mouths.  The creature's head (or where it's head should be) has "+rnd+" extra mouths.  It doesn't need backup singers.";
+					template.mutations.eBP.push("mouth");
+				}				
 			}else if(rnd < 196){
-				rnd = Math.ceil(Math.random()*4)+Math.ceil(Math.random()*4);
-				tempBPO = Object.create(bodyPartObj);
-				tempBPO.bonusSkills=[{"Track by Smell":20}];
-				template = updateTemplateBodyParts(template, tempBPO);
-				chaos =  "Crown of Noses.  The creature's head has "+rnd+" extra noses.";
+				if(template.mutations.eBP.indexOf("nose")<0){
+					rnd = Math.ceil(Math.random()*4)+Math.ceil(Math.random()*4);
+					tempBPO = Object.create(bodyPartObj);
+					tempBPO.bonusSkills=[{"Track by Smell":20}];
+					template = updateTemplateBodyParts(template, tempBPO);
+					chaos =  "Crown of Noses.  The creature's head (or where it's head should be) has "+rnd+" extra noses.";
+					template.mutations.eBP.push("nose");
+				}				
 			}else if(rnd < 198){
 				template.characteristics.dex.value = setCharacteristicValue(template.characteristics.dex.value, 2, getAlt(template.characteristics.dex), template.name);
 				rnd = Math.ceil(Math.random()*4)+Math.ceil(Math.random()*4);
-				chaos =  "Crown of Tentacles.  The creature's head has "+rnd+" tentacles growing from it.";			
+				chaos =  "Crown of Tentacles.  The creature's head (or where it's head should be) has "+rnd+" tentacles growing from it.";			
 			}else if(rnd < 200){
 				chaos = "Cryokinesis.  The creature can cause extreme cold up to 25 feet away.  Treat as a Disruption spell, 1d3 damage + 1 point for every point of metal armor worn on the Hit Location.";
 			}else if(rnd < 202){
-				template.characteristics.con.value = setCharacteristicValue(template.characteristics.con.value, 3, getAlt(template.characteristics.con), template.name);
-				template.characteristics.cha.value = setCharacteristicValue(template.characteristics.cha.value, 2, getAlt(template.characteristics.cha), template.name);
-				template.body.hitLocations = setNaturalArmor(template.body.hitLocations, 2);
-				chaos = "Crystal Body.  The creature's body is made of translucent crystal. Takes double damage from sonic based attacks.";
+				if(template.mutations.eBP.indexOf("hide")<0){
+					template.characteristics.con.value = setCharacteristicValue(template.characteristics.con.value, 3, getAlt(template.characteristics.con), template.name);
+					template.characteristics.cha.value = setCharacteristicValue(template.characteristics.cha.value, 2, getAlt(template.characteristics.cha), template.name);
+					template.body.hitLocations = setNaturalArmor(template.body.hitLocations, 2);
+					chaos = "Crystal Body.  The creature's body is made of translucent crystal. Takes double damage from sonic based attacks.";
+					template.mutations.eBP.push("hide");
+				}				
 			}else if(rnd <204){
-				tempBPO = Object.create(bodyPartObj);
-				tempBPO.bonusSkills=[{"Spot Hidden":-40}, {"Spot Trap":-40}];
-				template = updateTemplateBodyParts(template, tempBPO);
-				chaos = "Cyclopoid. The creature has a single eye. Subtract 10% from all ranged attacks.";
+				if(template.mutations.eBP.indexOf("eyes")<0){
+					tempBPO = Object.create(bodyPartObj);
+					tempBPO.bonusSkills=[{"Spot Hidden":-40}, {"Spot Trap":-40}];
+					template = updateTemplateBodyParts(template, tempBPO);
+					chaos = "Cyclopoid. The creature has a single eye. Subtract 10% from all ranged attacks.";
+					template.mutations.eBP.push("eyes");
+				}				
 			}else if(rnd < 206){
 				chaos = "De-evolution.The creature causes mutants, demi-humans and humanoids to devolve towards the base creature. When first met treat as a POW vs POW attack, those failing to resist lose one mutation or racial ability until they are pure human.";
 			}else if(rnd < 208){
-				palette = [{color:"#141414", name:"Matte Black", text:"#FFFFFF"}];
-				template.body.skinColors = palette;
-				chaos = "The creature's skin is dead black, with black eyeballs.";
+				if(template.mutations.eBP.indexOf("skin color")<0){
+					palette = [{color:"#141414", name:"Matte Black", text:"#FFFFFF"}];
+					template.body.skinColors = palette;
+					chaos = "The creature's skin is dead black, with black eyeballs.";
+					template.mutations.eBP.push("skin color");
+				}				
 			}else if(rnd < 210){
 				tempBPO = Object.create(bodyPartObj);
 				tempBPO.attacks=[{naturalGaze:{name:"Death Gaze", ap:0, enc:0, attack:{base:100, current:0, prof:0}, parry:{base:-1, current:0, prof:0}, damage:"Death", ammo:0, sr:{base:1, current:1}}}];
@@ -275,10 +367,13 @@ function getChaoticFeature(template){
 				tempBPO = getBodyPart("DualMinds", template.body.type);
 				chaos =  tempBPO.desc;
 			}else if(rnd < 248){
-				tempBPO = Object.create(bodyPartObj);
-				tempBPO = getBodyPart("EagleWings", template.body.type);
-				template = updateTemplateBodyParts(template, tempBPO);
-				chaos =  tempBPO.desc;
+				if(template.mutations.eBP.indexOf("wings")<0){
+					tempBPO = Object.create(bodyPartObj);
+					tempBPO = getBodyPart("EagleWings", template.body.type);
+					template = updateTemplateBodyParts(template, tempBPO);
+					chaos =  tempBPO.desc;
+					template.mutations.eBP.push("wings");
+				}				
 			}else if(rnd < 253){
 				if(hasBodyPart(["arm"], template.body.hitLocations)){
 					chaos = "Elastic Arms. The creature can double or halve the length of it's arms at will.";
@@ -311,20 +406,32 @@ function getChaoticFeature(template){
 					chaos = "The creature has extra joints in it's legs.";
 				}
 			}else if(rnd < 283){
-				tempBPO = Object.create(bodyPartObj);
-				tempBPO.bonusSkills=[{"Spot Hidden":20}];
-				template = updateTemplateBodyParts(template, tempBPO);
-				chaos = "The creature has bulging faceted eyes like an insect.";
+				if(template.mutations.eBP.indexOf("eyes")<0){
+					tempBPO = Object.create(bodyPartObj);
+					tempBPO.bonusSkills=[{"Spot Hidden":20}];
+					template = updateTemplateBodyParts(template, tempBPO);
+					chaos = "The creature has bulging faceted eyes like an insect.";
+					template.mutations.eBP.push("eyes");
+				}				
 			}else if(rnd < 288){
-				tempBPO = Object.create(bodyPartObj);
-				tempBPO = getBodyPart("FalconWings", template.body.type);
-				template = updateTemplateBodyParts(template, tempBPO);
-				chaos =  tempBPO.desc;
+				if(template.mutations.eBP.indexOf("wings")<0){
+					tempBPO = Object.create(bodyPartObj);
+					tempBPO = getBodyPart("FalconWings", template.body.type);
+					template = updateTemplateBodyParts(template, tempBPO);
+					chaos =  tempBPO.desc;
+					template.mutations.eBP.push("wings");
+				}				
 			}else if (rnd < 290){
-				chaos = "The creature is covered in feathers.";
-				template.body.hitLocations = setNaturalArmor(template.body.hitLocations, 1);
+				if(template.mutations.eBP.indexOf("hide")<0){
+					chaos = "The creature is covered in feathers.";
+					template.body.hitLocations = setNaturalArmor(template.body.hitLocations, 1);
+					template.mutations.eBP.push("hide");
+				}				
 			}else if (rnd < 292){
-				chaos = "The creature's face is covered by blank skin. Despite this the creature perceives everything normally.";
+				if(template.mutations.eBP.indexOf("mouth")<0 && template.mutations.eBP.indexOf("nose")<0 && template.mutations.eBP.indexOf("eyes")<0){
+					chaos = "The creature's face is covered by blank skin. Despite this the creature perceives everything normally.";
+					template.mutations.eBP.push("mouth", "nose", "eyes");
+				}				
 			}else if (rnd < 296){
 				chaos = "The creature is subject to epileptic fits. When first wounded or first attempting to cast a spell in combat roll the creature must make a resistance test of the POW of the spell or damage received against it's current POW, if the creature fails it is incapacitated by a seizure.";
 			}else if (rnd < 299){
@@ -343,8 +450,11 @@ function getChaoticFeature(template){
 			}else if(rnd < 308){
 				chaos = "Force Field Generation. The creature generates a field which prevents physical intrusion within 5 feet of it.";
 			}else if(rnd < 310){
-				chaos = "The creature is covered in a furry hide.";
-				template.body.hitLocations = setNaturalArmor(template.body.hitLocations, 2);
+				if(template.mutations.eBP.indexOf("hide")<0){
+					chaos = "The creature is covered in a furry hide.";
+					template.body.hitLocations = setNaturalArmor(template.body.hitLocations, 2);
+					template.mutations.eBP.push("hide");
+				}
 			}else if(rnd < 314){
 				chaos = "The creature ";
 				var gas = "";
@@ -381,17 +491,22 @@ function getChaoticFeature(template){
 //				window.alert("jsRQChaosDisease.getChaoticFeature: >"+template.characteristics.siz.value.base+"< "+template.characteristics.siz.nDice+" * "+ template.characteristics.siz.szDice+" "+template.characteristics.siz.mod);
 				template.characteristics.siz.value = setCharacteristicValue(template.characteristics.siz.value, ((template.characteristics.siz.nDice * template.characteristics.siz.szDice)+template.characteristics.siz.mod), getAlt(template.characteristics.siz), template.name);
 			}else if(rnd < 323){
-				chaos = "The creature has gills on it's neck. It may breathe underwater, but must keep it's gills moist at all times.";
+				if(template.mutations.eBP.indexOf("neck")<0){
+					chaos = "The creature has gills on it's neck. It may breathe underwater, but must keep it's gills moist at all times.";
+				}//This is not an exclusive mutation - bu there is a no neck mutation that will preclude this
 			}else if(rnd < 325){
 				tempBPO = Object.create(bodyPartObj);
 				tempBPO.attacks=[{naturalButt:{name:"Butt", ap:5, enc:0, attack:{base:30, current:0, prof:0}, parry:{base:10, current:0, prof:0}, damage:"1d6", ammo:0, sr:{base:1, current:1}}}];
 				template = updateTemplateBodyParts(template, tempBPO);
 				chaos = "The creature has goat horns.";
 			}else if(rnd < 327){
-				template.characteristics.con.value = setCharacteristicValue(template.characteristics.con.value, 2, getAlt(template.characteristics.con), template.name);
-				template.characteristics.cha.value = setCharacteristicValue(template.characteristics.cha.value, 6, getAlt(template.characteristics.cha), template.name);
-				template.body.hitLocations = setNaturalArmor(template.body.hitLocations, 1);
-				chaos = "The creature's body is made of gold.  It is immune to electrical, acid and fire based attacks.";
+				if(template.mutations.eBP.indexOf("hide")<0){
+					template.characteristics.con.value = setCharacteristicValue(template.characteristics.con.value, 2, getAlt(template.characteristics.con), template.name);
+					template.characteristics.cha.value = setCharacteristicValue(template.characteristics.cha.value, 6, getAlt(template.characteristics.cha), template.name);
+					template.body.hitLocations = setNaturalArmor(template.body.hitLocations, 1);
+					chaos = "The creature's body is made of gold.  It is immune to electrical, acid and fire based attacks.";
+					template.mutations.eBP.push("hide");
+				}
 			}else if(rnd < 331){
 				template.body.hitLocations = setNaturalArmor(template.body.hitLocations, 2);
 				template.characteristics.siz.value = setCharacteristicValue(template.characteristics.siz.value, 2 , getAlt(template.characteristics.siz), template.name);
@@ -399,19 +514,28 @@ function getChaoticFeature(template){
 				template = updateMoveByLevel(template, template.move.base);
 				chaos = "The creature is grotesquely obese and, if it has wings, cannot fly under it's own power.";
 			}else if(rnd < 331){
-				chaos = "The creature is covered in a hairy hide.";
+				if(template.mutations.eBP.indexOf("hide")<0){
+					chaos = "The creature is covered in a hairy hide.";
+					template.mutations.eBP.push("hide");
+				}
 			}else if(rnd < 346){
+				if(template.mutations.eBP.indexOf("head")<0){
 //				window.alert("jsRQChaosDisease.getChaoticfeature = head");
-				tempBPO = Object.create(bodyPartObj);
-				tempBPO = getBodyPart("head", template.body.type);
-				template = updateTemplateBodyParts(template, tempBPO);
-				chaos =  tempBPO.desc;
+					tempBPO = Object.create(bodyPartObj);
+					tempBPO = getBodyPart("head", template.body.type);
+					template = updateTemplateBodyParts(template, tempBPO);
+					chaos =  tempBPO.desc;
+					template.mutations.eBP.push("head");
+				}
 			}else if(rnd < 348){
-				template.body.hitLocations = setNaturalArmor(template.body.hitLocations, -2);
-				tempBPO = Object.create(bodyPartObj);
-				tempBPO = getBodyPart("Headless", template.body.type);
-				template = updateTemplateBodyParts(template, tempBPO);
-				chaos =  tempBPO.desc;	
+				if(template.mutations.eBP.indexOf("head")<0){
+					template.body.hitLocations = setNaturalArmor(template.body.hitLocations, -2);
+					tempBPO = Object.create(bodyPartObj);
+					tempBPO = getBodyPart("Headless", template.body.type);
+					template = updateTemplateBodyParts(template, tempBPO);
+					chaos =  tempBPO.desc;
+					template.mutations.eBP.push("head");
+				}	
 			}else if(rnd < 350){
 				template.characteristics.cha.value = setCharacteristicValue(template.characteristics.cha.value, -8, getAlt(template.characteristics.cha), template.name);
 				chaos = "The creature is hideous, people are paralyzed by it's appearance. On the first round it appears, deduct 4 from it's initial strike rank.";
@@ -432,110 +556,293 @@ function getChaoticFeature(template){
 				}
 			}else if(rnd < 365){
 				rnd = Math.floor(Math.random()*100);
-				template = getNewBodyPart(template, "arm", rnd);
-				template = getNewBodyPart(template, "leg", rnd);
-				template = getNewBodyPart(template, "torso", rnd);
+				if(template.mutations.eBP.indexOf("arms")<0){
+					template = getNewBodyPart(template, "arm", rnd);
+					template.mutations.eBP.push("arms");
+				}	
+				if(template.mutations.eBP.indexOf("legs")<0){
+					template = getNewBodyPart(template, "leg", rnd);
+					template.mutations.eBP.push("legs");
+				}	
+				if(template.mutations.eBP.indexOf("torso")<0){	
+					template = getNewBodyPart(template, "torso", rnd);
+					template.mutations.eBP.push("torso");
+				}	
 			}else if(rnd < 373){
 				rnd = Math.floor(Math.random()*100);
-				template = getNewBodyPart(template, "arm", rnd);
-				template = getNewBodyPart(template, "leg", rnd);
-				template = getNewBodyPart(template, "tail", rnd);				
+				if(template.mutations.eBP.indexOf("arms")<0){
+					template = getNewBodyPart(template, "arm", rnd);
+					template.mutations.eBP.push("arms");
+				}	
+				if(template.mutations.eBP.indexOf("legs")<0){
+					template = getNewBodyPart(template, "leg", rnd);
+					template.mutations.eBP.push("legs");
+				}	
+				if(template.mutations.eBP.indexOf("tail")<0){
+					template = getNewBodyPart(template, "tail", rnd);
+					template.mutations.eBP.push("tail");
+				}					
 			}else if(rnd < 381){
 				rnd = Math.floor(Math.random()*100);
-				template = getNewBodyPart(template, "arm", rnd);
-				template = getNewBodyPart(template, "leg", rnd);
-				template = getNewBodyPart(template, "wing", rnd);				
+				if(template.mutations.eBP.indexOf("arms")<0){
+					template = getNewBodyPart(template, "arm", rnd);
+					template.mutations.eBP.push("arms");
+				}	
+				if(template.mutations.eBP.indexOf("legs")<0){
+					template = getNewBodyPart(template, "leg", rnd);
+					template.mutations.eBP.push("legs");
+				}	
+				if(template.mutations.eBP.indexOf("wings")<0){
+					template = getNewBodyPart(template, "wing", rnd);
+					template.mutations.eBP.push("wings");
+				}					
 			}else if(rnd < 389){
 				rnd = Math.floor(Math.random()*100);
-				template = getNewBodyPart(template, "arm", rnd);
-				template = getNewBodyPart(template, "tail", rnd);
-				template = getNewBodyPart(template, "torso", rnd);				
+				if(template.mutations.eBP.indexOf("arms")<0){
+					template = getNewBodyPart(template, "arm", rnd);
+					template.mutations.eBP.push("arms");
+				}	
+				if(template.mutations.eBP.indexOf("tail")<0){
+					template = getNewBodyPart(template, "tail", rnd);
+					template.mutations.eBP.push("tail");
+				}	
+				if(template.mutations.eBP.indexOf("torso")<0){	
+					template = getNewBodyPart(template, "torso", rnd);
+					template.mutations.eBP.push("torso");
+				}					
 			}else if(rnd < 397){
 				rnd = Math.floor(Math.random()*100);
-				template = getNewBodyPart(template, "arm", rnd);
-				template = getNewBodyPart(template, "tail", rnd);
-				template = getNewBodyPart(template, "wing", rnd);				
+				if(template.mutations.eBP.indexOf("arms")<0){
+					template = getNewBodyPart(template, "arm", rnd);
+					template.mutations.eBP.push("arms");
+				}	
+				if(template.mutations.eBP.indexOf("tail")<0){
+					template = getNewBodyPart(template, "tail", rnd);
+					template.mutations.eBP.push("tail");
+				}	
+				if(template.mutations.eBP.indexOf("wings")<0){
+					template = getNewBodyPart(template, "wing", rnd);
+					template.mutations.eBP.push("wings");
+				}					
 			}else if(rnd < 405){
 				rnd = Math.floor(Math.random()*100);
-				template = getNewBodyPart(template, "arm", rnd);
-				template = getNewBodyPart(template, "torso", rnd);
-				template = getNewBodyPart(template, "wing", rnd);				
+				if(template.mutations.eBP.indexOf("arms")<0){
+					template = getNewBodyPart(template, "arm", rnd);
+					template.mutations.eBP.push("arms");
+				}	
+				if(template.mutations.eBP.indexOf("torso")<0){	
+					template = getNewBodyPart(template, "torso", rnd);
+					template.mutations.eBP.push("torso");
+				}	
+				if(template.mutations.eBP.indexOf("wings")<0){
+					template = getNewBodyPart(template, "wing", rnd);
+					template.mutations.eBP.push("wings");
+				}					
 			}else if(rnd < 413){
 				rnd = Math.floor(Math.random()*100);
-				template = getNewBodyPart(template, "head", rnd);
-				template = getNewBodyPart(template, "arm", rnd);
-				template = getNewBodyPart(template, "leg", rnd);				
+				if(template.mutations.eBP.indexOf("head")<0){
+					template = getNewBodyPart(template, "head", rnd);
+					template.mutations.eBP.push("head");
+				}
+				if(template.mutations.eBP.indexOf("arms")<0){
+					template = getNewBodyPart(template, "arm", rnd);
+					template.mutations.eBP.push("arms");
+				}		
+				if(template.mutations.eBP.indexOf("legs")<0){
+					template = getNewBodyPart(template, "leg", rnd);
+					template.mutations.eBP.push("legs");
+				}				
 			}else if(rnd < 421){
 				rnd = Math.floor(Math.random()*100);
-				template = getNewBodyPart(template, "head", rnd);
-				template = getNewBodyPart(template, "arm", rnd);
-				template = getNewBodyPart(template, "tail", rnd);				
+				if(template.mutations.eBP.indexOf("head")<0){
+					template = getNewBodyPart(template, "head", rnd);
+					template.mutations.eBP.push("head");
+				}
+				if(template.mutations.eBP.indexOf("arms")<0){
+					template = getNewBodyPart(template, "arm", rnd);
+					template.mutations.eBP.push("arms");
+				}
+				if(template.mutations.eBP.indexOf("tail")<0){
+					template = getNewBodyPart(template, "tail", rnd);
+					template.mutations.eBP.push("tail");
+				}							
 			}else if(rnd < 430){
 				rnd = Math.floor(Math.random()*100);
-				template = getNewBodyPart(template, "head", rnd);
-				template = getNewBodyPart(template, "arm", rnd);
-				template = getNewBodyPart(template, "torso", rnd);				
+				if(template.mutations.eBP.indexOf("head")<0){
+					template = getNewBodyPart(template, "head", rnd);
+					template.mutations.eBP.push("head");
+				}
+				if(template.mutations.eBP.indexOf("arms")<0){
+					template = getNewBodyPart(template, "arm", rnd);
+					template.mutations.eBP.push("arms");
+				}	
+				if(template.mutations.eBP.indexOf("torso")<0){	
+					template = getNewBodyPart(template, "torso", rnd);
+					template.mutations.eBP.push("torso");
+				}					
 			}else if(rnd < 438){
 				rnd = Math.floor(Math.random()*100);
-				template = getNewBodyPart(template, "head", rnd);
-				template = getNewBodyPart(template, "arm ", rnd);
-				template = getNewBodyPart(template, "wing", rnd);				
+				if(template.mutations.eBP.indexOf("head")<0){
+					template = getNewBodyPart(template, "head", rnd);
+					template.mutations.eBP.push("head");
+				}
+				if(template.mutations.eBP.indexOf("arms")<0){
+					template = getNewBodyPart(template, "arm", rnd);
+					template.mutations.eBP.push("arms");
+				}	
+				if(template.mutations.eBP.indexOf("wings")<0){
+					template = getNewBodyPart(template, "wing", rnd);
+					template.mutations.eBP.push("wings");
+				}				
 			}else if(rnd < 446){
 				rnd = Math.floor(Math.random()*100);
-				template = getNewBodyPart(template, "head", rnd);
-				template = getNewBodyPart(template, "leg", rnd);
-				template = getNewBodyPart(template, "tail", rnd);				
+				if(template.mutations.eBP.indexOf("head")<0){
+					template = getNewBodyPart(template, "head", rnd);
+					template.mutations.eBP.push("head");
+				}
+				if(template.mutations.eBP.indexOf("legs")<0){
+					template = getNewBodyPart(template, "leg", rnd);
+					template.mutations.eBP.push("legs");
+				}
+				if(template.mutations.eBP.indexOf("tail")<0){
+					template = getNewBodyPart(template, "tail", rnd);
+					template.mutations.eBP.push("tail");
+				}							
 			}else if(rnd < 455){
 				rnd = Math.floor(Math.random()*100);
-				template = getNewBodyPart(template, "head", rnd);
-				template = getNewBodyPart(template, "leg", rnd);
-				template = getNewBodyPart(template, "torso", rnd);				
+				if(template.mutations.eBP.indexOf("head")<0){
+					template = getNewBodyPart(template, "head", rnd);
+					template.mutations.eBP.push("head");
+				}
+				if(template.mutations.eBP.indexOf("legs")<0){
+					template = getNewBodyPart(template, "leg", rnd);
+					template.mutations.eBP.push("legs");
+				}
+				if(template.mutations.eBP.indexOf("torso")<0){	
+					template = getNewBodyPart(template, "torso", rnd);
+					template.mutations.eBP.push("torso");
+				}					
 			}else if(rnd < 463){
 				rnd = Math.floor(Math.random()*100);
-				template = getNewBodyPart(template, "head", rnd);
-				template = getNewBodyPart(template, "leg", rnd);
-				template = getNewBodyPart(template, "wing", rnd);				
+				if(template.mutations.eBP.indexOf("head")<0){
+					template = getNewBodyPart(template, "head", rnd);
+					template.mutations.eBP.push("head");
+				}
+				if(template.mutations.eBP.indexOf("legs")<0){
+					template = getNewBodyPart(template, "leg", rnd);
+					template.mutations.eBP.push("legs");
+				}	
+				if(template.mutations.eBP.indexOf("wings")<0){
+					template = getNewBodyPart(template, "wing", rnd);
+					template.mutations.eBP.push("wings");
+				}				
 			}else if(rnd < 471){
 				rnd = Math.floor(Math.random()*100);
-				template = getNewBodyPart(template, "head", rnd);
-				template = getNewBodyPart(template, "tail", rnd);
-				template = getNewBodyPart(template, "torso", rnd);				
+				if(template.mutations.eBP.indexOf("head")<0){
+					template = getNewBodyPart(template, "head", rnd);
+					template.mutations.eBP.push("head");
+				}
+				if(template.mutations.eBP.indexOf("tail")<0){
+					template = getNewBodyPart(template, "tail", rnd);
+					template.mutations.eBP.push("tail");
+				}			
+				if(template.mutations.eBP.indexOf("torso")<0){	
+					template = getNewBodyPart(template, "torso", rnd);
+					template.mutations.eBP.push("torso");
+				}					
 			}else if(rnd < 480){
 				rnd = Math.floor(Math.random()*100);
-				template = getNewBodyPart(template, "head", rnd);
-				template = getNewBodyPart(template, "tail", rnd);
-				template = getNewBodyPart(template, "wing", rnd);				
+				if(template.mutations.eBP.indexOf("head")<0){
+					template = getNewBodyPart(template, "head", rnd);
+					template.mutations.eBP.push("head");
+				}
+				if(template.mutations.eBP.indexOf("tail")<0){
+					template = getNewBodyPart(template, "tail", rnd);
+					template.mutations.eBP.push("tail");
+				}	
+				if(template.mutations.eBP.indexOf("wings")<0){
+					template = getNewBodyPart(template, "wing", rnd);
+					template.mutations.eBP.push("wings");
+				}				
 			}else if(rnd < 488){
 				rnd = Math.floor(Math.random()*100);
-				template = getNewBodyPart(template, "head", rnd);
-				template = getNewBodyPart(template, "torso", rnd);
-				template = getNewBodyPart(template, "wing", rnd);				
+				if(template.mutations.eBP.indexOf("head")<0){
+					template = getNewBodyPart(template, "head", rnd);
+					template.mutations.eBP.push("head");
+				}
+				if(template.mutations.eBP.indexOf("torso")<0){	
+					template = getNewBodyPart(template, "torso", rnd);
+					template.mutations.eBP.push("torso");
+				}		
+				if(template.mutations.eBP.indexOf("wings")<0){
+					template = getNewBodyPart(template, "wing", rnd);
+					template.mutations.eBP.push("wings");
+				}				
 			}else if(rnd < 496){
-				rnd = Math.floor(Math.random()*100);
-				template = getNewBodyPart(template, "leg", rnd);
-				template = getNewBodyPart(template, "tail", rnd);
-				template = getNewBodyPart(template, "torso", rnd);				
+				rnd = Math.floor(Math.random()*100);	
+				if(template.mutations.eBP.indexOf("legs")<0){
+					template = getNewBodyPart(template, "leg", rnd);
+					template.mutations.eBP.push("legs");
+				}
+				if(template.mutations.eBP.indexOf("tail")<0){
+					template = getNewBodyPart(template, "tail", rnd);
+					template.mutations.eBP.push("tail");
+				}			
+				if(template.mutations.eBP.indexOf("torso")<0){	
+					template = getNewBodyPart(template, "torso", rnd);
+					template.mutations.eBP.push("torso");
+				}					
 			}else if(rnd < 504){
-				rnd = Math.floor(Math.random()*100);
-				template = getNewBodyPart(template, "leg", rnd);
-				template = getNewBodyPart(template, "tail", rnd);
-				template = getNewBodyPart(template, "wing", rnd);				
+				rnd = Math.floor(Math.random()*100);	
+				if(template.mutations.eBP.indexOf("legs")<0){
+					template = getNewBodyPart(template, "leg", rnd);
+					template.mutations.eBP.push("legs");
+				}
+				if(template.mutations.eBP.indexOf("tail")<0){
+					template = getNewBodyPart(template, "tail", rnd);
+					template.mutations.eBP.push("tail");
+				}				
+				if(template.mutations.eBP.indexOf("wings")<0){
+					template = getNewBodyPart(template, "wing", rnd);
+					template.mutations.eBP.push("wings");
+				}				
 			}else if(rnd < 512){
-				rnd = Math.floor(Math.random()*100);
-				template = getNewBodyPart(template, "leg", rnd);
-				template = getNewBodyPart(template, "tail", rnd);
-				template = getNewBodyPart(template, "torso", rnd);				
+				rnd = Math.floor(Math.random()*100);	
+				if(template.mutations.eBP.indexOf("legs")<0){
+					template = getNewBodyPart(template, "leg", rnd);
+					template.mutations.eBP.push("legs");
+				}
+				if(template.mutations.eBP.indexOf("tail")<0){
+					template = getNewBodyPart(template, "tail", rnd);
+					template.mutations.eBP.push("tail");
+				}			
+				if(template.mutations.eBP.indexOf("torso")<0){	
+					template = getNewBodyPart(template, "torso", rnd);
+					template.mutations.eBP.push("torso");
+				}					
 			}else if(rnd < 520){
-				rnd = Math.floor(Math.random()*100);
-				template = getNewBodyPart(template, "wing", rnd);
-				template = getNewBodyPart(template, "tail", rnd);
-				template = getNewBodyPart(template, "torso", rnd);				
+				rnd = Math.floor(Math.random()*100);	
+				if(template.mutations.eBP.indexOf("wings")<0){
+					template = getNewBodyPart(template, "wing", rnd);
+					template.mutations.eBP.push("wings");
+				}
+				if(template.mutations.eBP.indexOf("tail")<0){
+					template = getNewBodyPart(template, "tail", rnd);
+					template.mutations.eBP.push("tail");
+				}			
+				if(template.mutations.eBP.indexOf("torso")<0){	
+					template = getNewBodyPart(template, "torso", rnd);
+					template.mutations.eBP.push("torso");
+				}					
 			}else if(rnd < 522){
 				chaos = "Hypnotic Gaze.	The creature can cast a a 1pt Harmonize spell without draining POW.";
 			}else if(rnd < 524){
-				palette = selectChaosColors(0);
-				template.body.skinColors = palette;
-				chaos = "The creature's skin is  a hypnotic pattern in "+getPalette(palette)+". The pattern acts like a Harmonize spell against all viewers. Creature must be nearly nude in order to benefit from the hypnotic effect.";
+				if(template.mutations.eBP.indexOf("skin color")<0){	
+					palette = selectChaosColors(0);
+					template.body.skinColors = palette;
+					chaos = "The creature's skin is  a hypnotic pattern in "+getPalette(palette)+". The pattern acts like a Harmonize spell against all viewers. Creature must be nearly nude in order to benefit from the hypnotic effect.";
+					template.mutations.eBP.push("skin color");
+				}					
 			}else if(rnd < 526){
 				chaos = "Illusion Generation.	The creature can generate a full sensory Illusion for 10 rounds without draining POW, maintaining the illiusion longer drains 1pt per round.";
 			}else if(rnd < 528){
@@ -553,10 +860,13 @@ function getChaoticFeature(template){
 			}else if(rnd < 552){
 				chaos = "The creature is naturally invisible, as per the spell.";
 			}else if(rnd < 554){
-				template.characteristics.str.value = setCharacteristicValue(template.characteristics.str.value, 2, getAlt(template.characteristics.str), template.name);
-				template.characteristics.dex.value = setCharacteristicValue(template.characteristics.dex.value, -2, getAlt(template.characteristics.dex), template.name);
-				template.body.hitLocations = setNaturalArmor(template.body.hitLocations, 6);
-				chaos = "The creature's body is made of iron. Immune to electrical and fire attacks."
+				if(template.mutations.eBP.indexOf("hide")<0){
+					template.characteristics.str.value = setCharacteristicValue(template.characteristics.str.value, 2, getAlt(template.characteristics.str), template.name);
+					template.characteristics.dex.value = setCharacteristicValue(template.characteristics.dex.value, -2, getAlt(template.characteristics.dex), template.name);
+					template.body.hitLocations = setNaturalArmor(template.body.hitLocations, 6);
+					chaos = "The creature's body is made of iron. Immune to electrical and fire attacks."
+					template.mutations.eBP.push("hide");
+			}					
 			}else if(rnd < 559){
 				chaos = "The creature has an irrational fear of "+getIrrationalObject()+".";
 			}else if(rnd < 564){
@@ -566,19 +876,28 @@ function getChaoticFeature(template){
 					chaos = "The creature has the ability to leap up to 10m.";
 				}
 			}else if(rnd < 589){
-				rnd = Math.floor(Math.random()*100);
-				template = getNewBodyPart(template, "leg", rnd);				
+				rnd = Math.floor(Math.random()*100);	
+				if(template.mutations.eBP.indexOf("legs")<0){
+					template = getNewBodyPart(template, "leg", rnd);
+					template.mutations.eBP.push("legs");
+				}				
 			}else if(rnd < 592){
 				chaos = "The creature can levitate itself and any additional items, including other creatures, up to it's maximum encumbrance.";
 			}else if(rnd < 598){
-				chaos = "The creature's eyes emit beams of light illuminating the area up to 18m in the direction it is looking.  Note that other creatures can see the light sources from twice that distance.";
+				if(template.mutations.eBP.indexOf("eyes")<0){
+					chaos = "The creature's eyes emit beams of light illuminating the area up to 18m in the direction it is looking.  Note that other creatures can see the light sources from twice that distance.";
+					template.mutations.eBP.push("eyes");
+				}				
 			}else if(rnd < 600){
 				chaos = "The creature has a mane like a lion.";
 			}else if(rnd < 610){
-				tempBPO = Object.create(bodyPartObj);
-				tempBPO = getBodyPart("LizardTail", template.body.type);
-				template = updateTemplateBodyParts(template, tempBPO);
-				chaos =  tempBPO.desc;
+				if(template.mutations.eBP.indexOf("tail")<0){
+					tempBPO = Object.create(bodyPartObj);
+					tempBPO = getBodyPart("LizardTail", template.body.type);
+					template = updateTemplateBodyParts(template, tempBPO);
+					chaos =  tempBPO.desc;
+					template.mutations.eBP.push("tail");
+				}				
 			}else if(rnd < 615){
 				template.sr.delta = -2;
 				tempBPO = Object.create(bodyPartObj);
@@ -594,13 +913,18 @@ function getChaoticFeature(template){
 					chaos = "The creature has improbably long legs.";
 				}
 			}else if(rnd < 620){
-				template.sr.delta = -1;
-				chaos = "The creature has an improbably long neck, enabling it to make Butt, Bite and Gore attacks against opponents up to 2m away.";
+				if(template.mutations.eBP.indexOf("neck")<0){
+					template.sr.delta = -1;
+					chaos = "The creature has an improbably long neck, enabling it to make Butt, Bite and Gore attacks against opponents up to 2m away.";
+				}//Does not preclude other neck mutations
 			}else if(rnd < 624){
-				tempBPO = Object.create(bodyPartObj);
-				tempBPO.bonusSkills=[{"Track by Smell":20}];
-				template = updateTemplateBodyParts(template, tempBPO);
-				chaos = "The creature has an comically big nose.";
+				if(template.mutations.eBP.indexOf("nose")<0){
+					tempBPO = Object.create(bodyPartObj);
+					tempBPO.bonusSkills=[{"Track by Smell":20}];
+					template = updateTemplateBodyParts(template, tempBPO);
+					chaos = "The creature has an comically big nose.";
+					template.mutations.eBP.push("nose");
+				}				
 			}else if(rnd < 626){
 				if(hasBodyPart(["head"], template.body.hitLocations)){
 					template.characteristics.int.value = setCharacteristicValue(template.characteristics.int.value, 4, getAlt(template.characteristics.int), template.name);
@@ -614,22 +938,31 @@ function getChaoticFeature(template){
 				template = updateTemplateBodyParts(template, tempBPO);
 				chaos =  tempBPO.desc;
 			}else if(rnd < 634){
-				tempBPO = Object.create(bodyPartObj);
-				tempBPO = getBodyPart("MechanicalWings", template.body.type);
-				template = updateTemplateBodyParts(template, tempBPO);
-				chaos =  tempBPO.desc;
+				if(template.mutations.eBP.indexOf("wings")<0){
+					tempBPO = Object.create(bodyPartObj);
+					tempBPO = getBodyPart("MechanicalWings", template.body.type);
+					template = updateTemplateBodyParts(template, tempBPO);
+					chaos =  tempBPO.desc;
+					template.mutations.eBP.push("wings");
+				}				
 			}else if(rnd < 636){
-				tempBPO = Object.create(bodyPartObj);
-				tempBPO = getBodyPart("JetWings", template.body.type);
-				template = updateTemplateBodyParts(template, tempBPO);
-				chaos =  tempBPO.desc;
+				if(template.mutations.eBP.indexOf("wings")<0){
+					tempBPO = Object.create(bodyPartObj);
+					tempBPO = getBodyPart("JetWings", template.body.type);
+					template = updateTemplateBodyParts(template, tempBPO);
+					chaos =  tempBPO.desc;
+					template.mutations.eBP.push("wings");
+				}				
 			}else if(rnd < 638){
-				tempBPO = Object.create(bodyPartObj);
-				tempBPO = getBodyPart("B17Wings", template.body.type);
-				template = updateTemplateBodyParts(template, tempBPO);
-				palette = [{color:"#6B8E23",name:"Olive Drab", text : "#FFFFFF"}];
-				template.body.skinColors = palette;
-				chaos =  tempBPO.desc;
+				if(template.mutations.eBP.indexOf("wings")<0 && template.mutations.eBP.indexOf("skin color")<0){
+					tempBPO = Object.create(bodyPartObj);
+					tempBPO = getBodyPart("B17Wings", template.body.type);
+					template = updateTemplateBodyParts(template, tempBPO);
+					palette = [{color:"#6B8E23",name:"Olive Drab", text : "#FFFFFF"}];
+					template.body.skinColors = palette;
+					chaos =  tempBPO.desc;
+					template.mutations.eBP.push("wings", "skin color");
+				}				
 			}else if(rnd < 643){
 				chaos = "Mental Block. The creature incapable of perceiving "+getIrrationalObject()+" and will be completely baffled by being attacked (fights as if blind) or by anyone else interacting with them.";
 			}else if(rnd < 645){
@@ -669,26 +1002,32 @@ function getChaoticFeature(template){
 					chaos = "Near sighted.	The creature is near sighted and suffers a -20% penalty on ranged attacks.  Any ranged attacks past the second range increment are at random targets.";
 				}
 			}else if(rnd < 688){
-				if(hasBodyPart(["head"], template.body.hitLocations)){
+				if(hasBodyPart(["head"], template.body.hitLocations) && template.mutations.eBP.indexOf("ears")<0){
 					tempBPO = Object.create(bodyPartObj);
 					tempBPO.bonusSkills=[{Listen:-20}];
 					template = updateTemplateBodyParts(template, tempBPO);
 					chaos = "The creature has no ears.";
+					template.mutations.eBP.push("ears");
 				}
 			}else if(rnd < 689){
-				if(hasBodyPart(["head"], template.body.hitLocations)){
+				if(hasBodyPart(["head"], template.body.hitLocations) && template.mutations.eBP.indexOf("neck")<0){
 					tempBPO = Object.create(bodyPartObj);
 					tempBPO.bonusSkills=[{Listen:-10}, {"Spot Hidden":-20}, {"Spot Traps":-10}];
 					template = updateTemplateBodyParts(template, tempBPO);
 					chaos = "The creature has no neck and cannot turn it's head.";
+					template.mutations.eBP.push("neck");
 				}
 			}else if(rnd < 692){
-				if(hasBodyPart(["head"], template.body.hitLocations)){
+				if(hasBodyPart(["head"], template.body.hitLocations) && template.mutations.eBP.indexOf("nose")<0){
 					chaos = "The creature has no nose.";
+					template.mutations.eBP.push("nose");
 				}
 			}else if(rnd < 694){
-				template.characteristics.cha.value = setCharacteristicValue(template.characteristics.cha.value, -4, getAlt(template.characteristics.cha), template.name);
-				chaos = "The creature has no skin. The veins, organs and muscles are clearly visible and it constantly leaves a trail of slime and gore. Attacks penetrating armor do 1 additional point of damage to the creature.";
+				if(template.mutations.eBP.indexOf("hide")<0 && template.mutations.eBP.indexOf("skin color")<0){
+					template.characteristics.cha.value = setCharacteristicValue(template.characteristics.cha.value, -4, getAlt(template.characteristics.cha), template.name);
+					chaos = "The creature has no skin. The veins, organs and muscles are clearly visible and it constantly leaves a trail of slime and gore. Attacks penetrating armor do 1 additional point of damage to the creature.";
+					template.mutations.eBP.push("hide", "skin color");
+				}
 			}else if(rnd < 696){
 				chaos = "The creature exudes a greasy, flammable oil from it's skin.  it receives a +10% bonus to skill checks involving navigating tight places or escaping bonds.";
 			}else if(rnd < 701){
@@ -710,23 +1049,29 @@ function getChaoticFeature(template){
 					chaos = "The creature has one leg that is massively overgrown.";
 				}
 			}else if(rnd < 708){
-				palette = selectChaosColors(0);
-				template.body.skinColors = palette;
-				chaos = "The creature's skin is";
-				rnd = Math.floor(Math.random()*6);
-				if(rnd < 4){
-					chaos = chaos + " striped ";
-				}else if(rnd < 6){
-					chaos = chaos + " spotted ";
-				}else{
-					chaos = chaos + " pinto patterned ";
+				if(template.mutations.eBP.indexOf("skin color")<0){
+					palette = selectChaosColors(0);
+					template.body.skinColors = palette;
+					chaos = "The creature's skin is";
+					rnd = Math.floor(Math.random()*6);
+					if(rnd < 4){
+						chaos = chaos + " striped ";
+					}else if(rnd < 6){
+						chaos = chaos + " spotted ";
+					}else{
+						chaos = chaos + " pinto patterned ";
+					}
+					chaos = chaos + "in "+getPalette(palette)+".";
+					template.mutations.eBP.push("skin color");
 				}
-				chaos = chaos + "in "+getPalette(palette)+".";
 			}else if(rnd < 714){
-				tempBPO = Object.create(bodyPartObj);
-				tempBPO = getBodyPart("PeacockTail", template.body.type);
-				template = updateTemplateBodyParts(template, tempBPO);
-				chaos =  tempBPO.desc;
+				if(template.mutations.eBP.indexOf("tail")<0){
+					tempBPO = Object.create(bodyPartObj);
+					tempBPO = getBodyPart("PeacockTail", template.body.type);
+					template = updateTemplateBodyParts(template, tempBPO);
+					chaos =  tempBPO.desc;
+					template.mutations.eBP.push("tail");
+				}
 			}else if(rnd < 718){
 				chaos = "Plague Bearer. Anyone approaching withn 5m of the creature has been exposed to "+getDisease()+".";
 			}else if(rnd < 720){
@@ -755,10 +1100,13 @@ function getChaoticFeature(template){
 				template.defense.delta = 10;
 				chaos = "The creature knows the future before it happens. All characters must declare (but not resolve) their actions before the mutant.";
 			}else if(rnd < 749){
-				tempBPO = Object.create(bodyPartObj);
-				tempBPO = getBodyPart("PrehensileTail", template.body.type);
-				template = updateTemplateBodyParts(template, tempBPO);
-				chaos =  tempBPO.desc;
+				if(template.mutations.eBP.indexOf("tail")<0){
+					tempBPO = Object.create(bodyPartObj);
+					tempBPO = getBodyPart("PrehensileTail", template.body.type);
+					template = updateTemplateBodyParts(template, tempBPO);
+					chaos =  tempBPO.desc;
+					template.mutations.eBP.push("tail");
+				}
 			}else if(rnd < 749){
 				template.characteristics.siz.value.base = Math.ceil(Math.random()*2)+Math.ceil(Math.random()*2)+1;
 				template.characteristics.siz.value.current = template.characteristics.siz.value.base;
@@ -766,8 +1114,11 @@ function getChaoticFeature(template){
 			}else if(rnd < 751){
 				chaos = "Pyrokinesis.  The creature can cause fires up to 25 feet away.  Treat as attacking with a torch, 1d4 Damage.";
 			}else if(rnd < 753){
-				template.body.hitLocations = setNaturalArmor(template.body.hitLocations, 2);
-				chaos = "The creature is covered with quills.  Attackers using weapons less than 0.5m in length will automatically suffer a free counter attack against the hit location holding their weapon as they attempt to penetrate the creature's spikey coat.  Quills 15% Atk 1d2 Damage.";
+				if(template.mutations.eBP.indexOf("hide")<0){
+					template.body.hitLocations = setNaturalArmor(template.body.hitLocations, 2);
+					chaos = "The creature is covered with quills.  Attackers using weapons less than 0.5m in length will automatically suffer a free counter attack against the hit location holding their weapon as they attempt to penetrate the creature's spikey coat.  Quills 15% Atk 1d2 Damage.";
+					template.mutations.eBP.push("hide");
+				}			
 			}else if(rnd < 755){
 				chaos = "The creature radiates cold.  Attackers in melee suffer 1pt damage per hit location during each round of combat, unless protected by warm clothing."
 			}else if(rnd < 758){
@@ -776,10 +1127,14 @@ function getChaoticFeature(template){
 				template = updateTemplateBodyParts(template, tempBPO);
 				chaos =  tempBPO.desc;
 			}else if(rnd < 768){
-				template = getNewBodyPart(template, "tail", 99);
+				if(template.mutations.eBP.indexOf("tail")<0){
+					template = getNewBodyPart(template, "tail", 99);
+					template.mutations.eBP.push("tail");
+				}			
 			}else if(rnd < 768){
-				if(hasBodyPart(["head"], template.body.hitLocations)){
+				if(hasBodyPart(["head"], template.body.hitLocations) && template.mutations.eBP.indexOf("mouth")<0 && template.mutations.eBP.indexOf("nose")<0 && template.mutations.eBP.indexOf("eyes")<0){
 					chaos = "Rearranged Facial Features. The creature's facial features are swapped into different positions on it's skull, leading to a bizarre appearance, but no other effect.";
+					template.mutations.eBP.push("mouth", "nose", "eyes");
 				}
 			}else if(rnd < 773){
 				chaos = "The creature regenerates "+Math.floor(template.characteristics.con.value.base/6)+" hitpoint(s) per hit location per round.";
@@ -789,18 +1144,27 @@ function getChaoticFeature(template){
 				template.characteristics.cha.value.base = setCharacteristicValue(template.characteristics.cha.value, -2, getAlt(template.characteristics.cha), template.name);
 				chaos = "The creature's flesh is rotting away like a zombie's.";
 			}else if(rnd < 779){
-				template.body.hitLocations = setNaturalArmor(template.body.hitLocations, 2);
-				chaos = "The creature is covered reticulated scales.";
+				if(template.mutations.eBP.indexOf("hide")<0){
+					template.body.hitLocations = setNaturalArmor(template.body.hitLocations, 2);
+					chaos = "The creature is covered reticulated scales.";
+					template.mutations.eBP.push("hide");
+				}			
 			}else if(rnd < 794){
-				tempBPO = Object.create(bodyPartObj);
-				tempBPO = getBodyPart("ScorpionTail", template.body.type);
-				template = updateTemplateBodyParts(template, tempBPO);
-				chaos =  tempBPO.desc;
+				if(template.mutations.eBP.indexOf("tail")<0){
+					tempBPO = Object.create(bodyPartObj);
+					tempBPO = getBodyPart("ScorpionTail", template.body.type);
+					template = updateTemplateBodyParts(template, tempBPO);
+					chaos =  tempBPO.desc;
+					template.mutations.eBP.push("tail");
+				}			
 			}else if(rnd < 804){
-				tempBPO = Object.create(bodyPartObj);
-				tempBPO = getBodyPart("SeagullWings", template.body.type);
-				template = updateTemplateBodyParts(template, tempBPO);
-				chaos =  tempBPO.desc;
+				if(template.mutations.eBP.indexOf("wings")<0){
+					tempBPO = Object.create(bodyPartObj);
+					tempBPO = getBodyPart("SeagullWings", template.body.type);
+					template = updateTemplateBodyParts(template, tempBPO);
+					chaos =  tempBPO.desc;
+					template.mutations.eBP.push("wings");
+				}			
 			}else if(rnd < 809){
 				template.sr.delta = 2;
 				if(hasBodyPart(["arm"], template.body.hitLocations)){
@@ -836,11 +1200,14 @@ function getChaoticFeature(template){
 				}
 				template.body.hitLocations = setNaturalArmor(template.body.hitLocations, -2);			
 			}else if(rnd < 826){
-				tempBPO = Object.create(bodyPartObj);
-				tempBPO = getBodyPart("SiameseTwins", template.body.type);
-				template = updateTemplateBodyParts(template, tempBPO);
-				template.characteristics.con.value = setCharacteristicValue(template.characteristics.con.value, 2, getAlt(template.characteristics.con), template.name);
-				chaos =  tempBPO.desc;
+				if(template.mutations.eBP.indexOf("head")<0){
+					tempBPO = Object.create(bodyPartObj);
+					tempBPO = getBodyPart("SiameseTwins", template.body.type);
+					template = updateTemplateBodyParts(template, tempBPO);
+					template.characteristics.con.value = setCharacteristicValue(template.characteristics.con.value, 2, getAlt(template.characteristics.con), template.name);
+					chaos =  tempBPO.desc;
+					template.mutations.eBP.push("head");
+				}			
 			}else if(rnd < 830){
 				template.characteristics.cha.value = setCharacteristicValue(template.characteristics.cha.value, -4, getAlt(template.characteristics.cha), template.name);
 				chaos = "The creature speaks in an extremely silly voice.";
@@ -848,8 +1215,9 @@ function getChaoticFeature(template){
 				template.sr.delta = -2;
 				chaos = "The creature walks or otherwise perambulates in an extremely silly manner.  Attackers are too bemused by it's erratic movements to react quickly.";
 			}else if(rnd < 836){
-				if(hasBodyPart(["head"], template.body.hitLocations)){
+				if(hasBodyPart(["head"], template.body.hitLocations) && template.mutations.eBP.indexOf("head")<0){
 					chaos = "The creature's head is a naked skull.";
+					template.mutations.eBP.push("head");
 				}
 			}else if(rnd < 840){
 				tempBPO = Object.create(bodyPartObj);
@@ -889,11 +1257,14 @@ function getChaoticFeature(template){
 				template = updateTemplateBodyParts(template, tempBPO);
 				chaos = "The creature produces a hideous stench equivalent to Poison Gas.";
 			}else if(rnd < 900){
-				template.characteristics.con.value = setCharacteristicValue(template.characteristics.con.value, 2, getAlt(template.characteristics.con), template.name);
-				template.characteristics.str.value = setCharacteristicValue(template.characteristics.str.value, 2, getAlt(template.characteristics.str), template.name);
-				template.characteristics.dex.value = setCharacteristicValue(template.characteristics.dex.value, -2, getAlt(template.characteristics.dex), template.name);
-				template.body.hitLocations = setNaturalArmor(template.body.hitLocations, 4);
-				chaos = "The creature's body is made of stone.";
+				if(template.mutations.eBP.indexOf("head")<0){
+					template.characteristics.con.value = setCharacteristicValue(template.characteristics.con.value, 2, getAlt(template.characteristics.con), template.name);
+					template.characteristics.str.value = setCharacteristicValue(template.characteristics.str.value, 2, getAlt(template.characteristics.str), template.name);
+					template.characteristics.dex.value = setCharacteristicValue(template.characteristics.dex.value, -2, getAlt(template.characteristics.dex), template.name);
+					template.body.hitLocations = setNaturalArmor(template.body.hitLocations, 4);
+					chaos = "The creature's body is made of stone.";
+					template.mutations.eBP.push("head");	
+				}
 			}else if(rnd < 902){
 				template.characteristics.str.value = setCharacteristicValue(template.characteristics.str.value, -2, getAlt(template.characteristics.str), template.name);
 			}else if(rnd < 905){
@@ -904,12 +1275,15 @@ function getChaoticFeature(template){
 				template.defense.delta = 10;
 				chaos = "The creature is surrounded by a swirling cloud of flies.";
 			}else if(rnd < 931){
-				template = getNewBodyPart(template, "tail", rnd);
+				rnd = Math.floor(Math.random()*100);	
 			}else if(rnd < 936){
-				tempBPO = Object.create(bodyPartObj);
-				tempBPO = getBodyPart("TailSnake", template.body.type);
-				template = updateTemplateBodyParts(template, tempBPO);
-				chaos =  tempBPO.desc;
+				if(template.mutations.eBP.indexOf("tail")<0){
+					tempBPO = Object.create(bodyPartObj);
+					tempBPO = getBodyPart("TailSnake", template.body.type);
+					template = updateTemplateBodyParts(template, tempBPO);
+					chaos =  tempBPO.desc;
+					template.mutations.eBP.push("tail");	
+				}
 			}else if(rnd < 938){
 				chaos = "The creature is capable of Telekinesis similar to the Orlanthi Rune spell.  Unlike the Rune spell, the creatue must use a point of POW for each point of SIZ it wishes to move.";
 			}else if(rnd < 940){
@@ -927,62 +1301,81 @@ function getChaoticFeature(template){
 			}else if(rnd < 946){
 				chaos = "The creature intermittently fades from the time stream.  Each round roll a d6. On a 1, the creature fades out and returns 5 rounds later in the same location; on a 2 the creature fades out and returns 4 rounds later.  No time passes for the creature while it is absent from the time stream.";
 			}else if(rnd < 959){
-				if(hasBodyPart(["arm"], template.body.hitLocations)){
+				if(hasBodyPart(["arm"], template.body.hitLocations) && template.mutations.eBP.indexOf("arms")<0){
 					template.characteristics.str.value = setCharacteristicValue(template.characteristics.str.value, -2, getAlt(template.characteristics.str), template.name);
 					template.characteristics.dex.value = setCharacteristicValue(template.characteristics.dex.value, 2, getAlt(template.characteristics.dex), template.name);
 					tempBPO = Object.create(bodyPartObj);
 					tempBPO = getBodyPart("Tentacles4Arms", template.body.type);
 					template = updateTemplateBodyParts(template, tempBPO);
 					chaos =  tempBPO.desc;
+					template.mutations.eBP.push("arms");	
 				}
 			}else if(rnd < 961){
 				chaos = "The creature has a Third Eye. The Third Eye provides a continuous effect of Detect Life, Detect Enemies and Detect Spirit for the creature.";
 			}else if(rnd < 963){
-				var te = {};
-				for(var wpns in template.equipment){
-					if(wpns.substring(0,7)=="natural"){
-						te[wpns] = template.equipment[wpns];
+				if(template.mutations.eBP.indexOf("head")<0){
+					var te = {};
+					for(var wpns in template.equipment){
+						if(wpns.substring(0,7)=="natural"){
+							te[wpns] = template.equipment[wpns];
+						}
 					}
+					tempBPO = Object.create(bodyPartObj);
+					tempBPO = getBodyPart("ThreeHeads", template.body.type);
+					template = updateTemplateBodyParts(template, tempBPO);
+					for(var wpns in te){
+							 template.equipment[wpns] = te[wpns];
+							 template.equipment.keys.push(wpns);
+					}
+					chaos =  tempBPO.desc;
+					template.mutations.eBP.push("head");	
 				}
-				tempBPO = Object.create(bodyPartObj);
-				tempBPO = getBodyPart("ThreeHeads", template.body.type);
-				template = updateTemplateBodyParts(template, tempBPO);
-				for(var wpns in te){
-						 template.equipment[wpns] = te[wpns];
-						 template.equipment.keys.push(wpns);
-				}
-				chaos =  tempBPO.desc;
 			}else if(rnd < 973){
-				template = getNewBodyPart(template, "torso", rnd);
+				if(template.mutations.eBP.indexOf("torso")<0){	
+					template = getNewBodyPart(template, "torso", rnd);
+					template.mutations.eBP.push("torso");
+				}	
 			}else if(rnd < 975){
-				template.characteristics.cha.value = setCharacteristicValue(template.characteristics.cha.value, -4, getAlt(template.characteristics.cha), template.name);
-				chaos = "The creature has a transparent skin, the veins, organs and muscles are clearly visible.";
+				if(template.mutations.eBP.indexOf("hide")<0){
+					template.characteristics.cha.value = setCharacteristicValue(template.characteristics.cha.value, -4, getAlt(template.characteristics.cha), template.name);
+					chaos = "The creature has a transparent skin, the veins, organs and muscles are clearly visible.";
+					template.mutations.eBP.push("hide");	
+				}
 			}else if(rnd < 977){
-				var te = {};
-				for(var wpns in template.equipment){
-					if(wpns.substring(0,7)=="natural"){
-						te[wpns] = template.equipment[wpns];
+				if(template.mutations.eBP.indexOf("head")<0){
+					var te = {};
+					for(var wpns in template.equipment){
+						if(wpns.substring(0,7)=="natural"){
+							te[wpns] = template.equipment[wpns];
+						}
 					}
+					tempBPO = Object.create(bodyPartObj);
+					tempBPO = getBodyPart("TwoHeads", template.body.type);
+					template = updateTemplateBodyParts(template, tempBPO);
+					for(var wpns in te){
+							 template.equipment[wpns] = te[wpns];
+							 template.equipment.keys.push(wpns);
+					}
+					chaos =  tempBPO.desc;
+					template.mutations.eBP.push("head");	
 				}
-				tempBPO = Object.create(bodyPartObj);
-				tempBPO = getBodyPart("TwoHeads", template.body.type);
-				template = updateTemplateBodyParts(template, tempBPO);
-				for(var wpns in te){
-						 template.equipment[wpns] = te[wpns];
-						 template.equipment.keys.push(wpns);
-				}
-				chaos =  tempBPO.desc;
 			}else if(rnd < 979){
 				chaos = "The creature has a continuous Detection Blank effect.";
 			}else if(rnd < 989){
-				tempBPO = Object.create(bodyPartObj);
-				tempBPO = getBodyPart("VultureWings", template.body.type);
-				template = updateTemplateBodyParts(template, tempBPO);
-				chaos =  tempBPO.desc;
+				if(template.mutations.eBP.indexOf("wings")<0){
+					tempBPO = Object.create(bodyPartObj);
+					tempBPO = getBodyPart("VultureWings", template.body.type);
+					template = updateTemplateBodyParts(template, tempBPO);
+					chaos =  tempBPO.desc;
+					template.mutations.eBP.push("wings");	
+				}
 			}else if(rnd < 991){
-				template.characteristics.cha.value = setCharacteristicValue(template.characteristics.cha.value, -2, getAlt(template.characteristics.cha), template.name);
-				template.body.hitLocations = setNaturalArmor(template.body.hitLocations, 1);
-				chaos = "The creature is covered by a tough, warty skin.";
+				if(template.mutations.eBP.indexOf("hide")<0){
+					template.characteristics.cha.value = setCharacteristicValue(template.characteristics.cha.value, -2, getAlt(template.characteristics.cha), template.name);
+					template.body.hitLocations = setNaturalArmor(template.body.hitLocations, 1);
+					chaos = "The creature is covered by a tough, warty skin.";
+					template.mutations.eBP.push("hide");	
+				}
 			}else if(rnd < 993){
 				template.characteristics.pow.value = setCharacteristicValue(template.characteristics.pow.value, -2, getAlt(template.characteristics.pow), template.name);
 			}else if(rnd < 996){

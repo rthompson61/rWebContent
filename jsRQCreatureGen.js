@@ -154,57 +154,6 @@ function genStats(templateName){
 
 
 
-// looks like I deprecated the entire method
-function generalStatCalc(template){
-	try{
-
-		if(template.characteristics.int.value.current > 0){
-			template.baseSkills.attack = generalBonusCalc(template.characteristics.str.value.current, -1, 5, 1)+generalBonusCalc(template.characteristics.int.value.current, -2, 5, 1) + generalBonusCalc(template.characteristics.pow.value.current, -1, 5, 1) + generalBonusCalc(template.characteristics.dex.value.current, -2, 5, 1);
-			template.defense.base = generalBonusCalc(template.characteristics.siz.value.current, -1, 5, -1)+generalBonusCalc(template.characteristics.int.value.current, -2, 5, 1) + generalBonusCalc(template.characteristics.pow.value.current, -1, 5, 1) + generalBonusCalc(template.characteristics.dex.value.current, -2, 5, 1);			
-		}else{
-			template.baseSkills.attack = generalBonusCalc(template.characteristics.str.value.base, -1, 5, 1)+generalBonusCalc(10, -2, 5, 1) + generalBonusCalc(template.characteristics.pow.value.base, -1, 5, 1) + generalBonusCalc(template.characteristics.dex.value.base, -2, 5, 1);
-			template.defense.base = generalBonusCalc(template.characteristics.siz.value.base, -1, 5, -1)+generalBonusCalc(10, -2, 5, 1) + generalBonusCalc(template.characteristics.pow.value.base, -1, 5, 1) + generalBonusCalc(template.characteristics.dex.value.base, -2, 5, 1);			
-		}
-		template.baseSkills.parry = generalBonusCalc(template.characteristics.str.value.current, -1, 5, 1)+generalBonusCalc(template.characteristics.siz.value.current, -1, 5, -1) + generalBonusCalc(template.characteristics.pow.value.current, -1, 5, 1) + generalBonusCalc(template.characteristics.dex.value.current, -2, 5, 1);
-		if(template.defense.hasOwnProperty("delta")){
-			window.alert("jsRQCreatureGen.genStatCalc: 1 "+template.sr.delta);
-			template.defense.base = template.defense.base+template.defense.delta;
-			if(template.defense.base<template.defense.delta){
-				template.defense.base=template.defense.delta;
-			}
-		}
-		template.defense.current = template.defense.base;
-		template.baseSkills.manipulation = generalBonusCalc(template.characteristics.str.value.current, -1, 5, 1)+generalBonusCalc(template.characteristics.int.value.current, -2, 5, 1) + generalBonusCalc(template.characteristics.pow.value.current, -1, 5, 1) + generalBonusCalc(template.characteristics.dex.value.current, -2, 5, 1);
-		template.baseSkills.stealth = generalBonusCalc(template.characteristics.siz.value.current, -2, 5, -1)+generalBonusCalc(template.characteristics.int.value.current, -2, 5, 1) + generalBonusCalc(template.characteristics.pow.value.current, -1, 5, 1) + generalBonusCalc(template.characteristics.dex.value.current, -2, 5, 1);
-		template.baseSkills.perception = generalBonusCalc(template.characteristics.int.value.current, -2, 5, 1) + generalBonusCalc(template.characteristics.pow.value.current, -1, 5, 1);
-		template.baseSkills.oratory = generalBonusCalc(template.characteristics.int.value.current, -1, 5, 1)+generalBonusCalc(template.characteristics.pow.value.current, -1, 5, 1) + generalBonusCalc(template.characteristics.cha.value.current, -2, 5, 1);
-		template.baseSkills.knowledge = template.baseSkills.perception;
-		template.hp = template.characteristics.con.value.current+generalBonusCalc(template.characteristics.siz.value.current, -2, 1, 1)+generalBonusCalc(template.characteristics.pow.value.current, -1, 1, 1);
-		template.damageBonus = damageBonusCalc(template.characteristics.str.value.current, template.characteristics.siz.value.current);
-		template.enc.max = calcMaxEnc(template.characteristics.str.value.current,template.characteristics.con.value.current);
-		template.sr.siz = calcStrikeRank(template.characteristics.siz.value.current, "siz");
-		template.sr.dex = calcStrikeRank(template.characteristics.dex.value.current, "dex");
-		if(template.sr.hasOwnProperty("delta")){
-//			window.alert("jsRQCreatureGen.genStatCalc: 1 "+template.sr.delta);
-			template.sr.dex = template.sr.dex + template.sr.delta; 
-			if(template.sr.dex < 0){template.sr.dex=0;}
-			else if (template.sr.dex >5){template.sr.dex=5;}
-		}
-		template = locationHitPointCalc(template);
-		if(template.alt.alt >0){template = setAltValues(template);}
-		if(template.skills.set.length <1){
-			template.skills = setSkillsList2(template.skills, template.name, template.exp, template.characteristics.int.value.current);
-		}
-		if(template.magic.uses > 0){
-			template = getBasicMagic(template);		
-		}
-		
-		return template;
-	}catch(err){
-		template.error = template.error +"<br/>Error jsRQCreatureGen.genStatCalc: " + err;
-		return template;
-	}
-}
 
 function setAltValues(t){
 	try{
