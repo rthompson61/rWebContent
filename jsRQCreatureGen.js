@@ -481,6 +481,7 @@ function updateArmor(template, params){
 				}
 				template.body.hitLocations[i].armor.current = Number(template.body.hitLocations[i].armor.natural)+Number(template.body.hitLocations[i].armor.inner.ap)+Number(template.body.hitLocations[i].armor.outer.ap);
 				i = template.body.hitLocations.length;
+//				window.alert("jsRQCreatureGen.updateArmor  Armor: "+params[3]+" AP: " + params[4]+" Hit Location: "+params[1]);
 			}
 		}
 		return template;
@@ -846,6 +847,10 @@ function getDressed(t, d, p){
 			t = takePantsOff(t,d,p);	
 		}else if(p[1].indexOf("chest")> -1 || p[1].indexOf("abdom2")> -1 || ( p[1].indexOf("abdom")> -1 && getArmorByLocation(t.body.hitLocations, "abdom", p[2]) == "Hauberk")){
 			t = takeShirtOff(t,d,p);	
+//			window.alert("Test jsRQCreatureGen.getDressed: (1) "+p[1].indexOf("chest")+" | "+p[1].indexOf("rleg"));
+			if(p[3] == "Byrnie"  || p[3] == "Cuirass"){
+				t = updateArmor(t, p);
+			}
 		}else if(p[1].indexOf("lhleg")> -1 || p[1].indexOf("rhleg")> -1 ||  p[1].indexOf("hndqtr")> -1 ||p[1].indexOf("lfleg")> -1 || p[1].indexOf("rfleg")> -1 ||  p[1].indexOf("foreqtr")> -1 ){
 			if(p[3] == "Barding"){
 				t = equipBarding(t, d, p, 0);
@@ -855,6 +860,7 @@ function getDressed(t, d, p){
 //				window.alert("jsRQCreatureGen.getDressed: take off barding "+parms);
 			}
 		}else{
+//			window.alert("Test jsRQCreatureGen.getDressed: "+p[1].indexOf("chest")+" | "+p[1].indexOf("rleg"));
 			t = updateArmor(t, p);
 		}		
 		return t;
