@@ -419,7 +419,7 @@ function getSkillList(listName){
 		   dragonewt:[{name:"Camouflage",type:"s", base:25, pClass:10, current:0,  adj:0},
 		              {name:"Move Quietly", type:"s", base:25, pClass:10, current:0,  adj:0},
     			      {name:"Hide in Cover", type:"s", base:25, pClass:10, current:0,  adj:0}],
-		   dryad:[{name:"Spot Plant", type:"p", base:50, pClass:10, current:0,  adj:0},
+    	   dryad:[{name:"Spot Plant", type:"p", base:50, pClass:10, current:0,  adj:0},
 		          {name:"Listen", type:"p", base:25, pClass:20, current:0,  adj:0}],
            elf:[{name:"Spot Hidden", type:"p", base:30, pClass:10, current:0,  adj:0}],
            jackobear:[{name:"Move Quietly", type:"s", base:25, pClass:10, current:0,  adj:0},

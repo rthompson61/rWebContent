@@ -20,8 +20,7 @@ function getChaoticFeature(template){
 		}
 //Test		window.alert("jsRQChaosDisease.getChaoticfeature 1 "+powM+" : "+template.characteristics.pow.value.current);
 		if(rnd <= Number(template.characteristics.pow.value.current)*powM  ){
-			rnd = Math.floor(Math.random()*1000);
-			
+			rnd = Math.floor(Math.random()*1000); 
 			if(rnd < 5){
 				chaos = "Acid Touch: Anything that the creature touches or touches the creature takes 1d2 damage";
 			}else if(rnd < 7 ){
@@ -78,12 +77,12 @@ function getChaoticFeature(template){
 				}
 			}else if(rnd < 74 ){
 				if(template.mutations.eBP.indexOf("mouth")<0 && template.mutations.eBP.indexOf("nose")<0){
-					rnd = Math.floor(Math.random()*6);
-					if(rnd < 3){
+					var rndA = Math.floor(Math.random()*6);
+					if(rndA < 3){
 						chaos = "The creature has a duck beak in place of it's mouth and nose." 
-					}else if(rnd < 5){
+					}else if(rndA < 5){
 						chaos = "The creature has a chicken beak in place of it's mouth and nose."
-					}else if(rnd < 6){
+					}else if(rndA < 6){
 						chaos = "The creature has a eagle beak in place of it's mouth and nose."
 					}else{
 						chaos = "The creature has a pelican beak in place of it's mouth and nose."
@@ -107,7 +106,7 @@ function getChaoticFeature(template){
 					template.mutations.eBP.push("ears");
 				}				
 			}else if(rnd < 98 ){
-				if(template.mutations.eBP.indexOf("legs")<0){
+				if(hasBodyPart(["leg"], template.body.hitLocations) && template.mutations.eBP.indexOf("legs")<0){
 					tempBPO = Object.create(bodyPartObj);
 					tempBPO = getBodyPart("BirdLegs", template.body.type);
 					template = updateTemplateBodyParts(template, tempBPO);
@@ -136,13 +135,13 @@ function getChaoticFeature(template){
 					template.mutations.eBP.push("blood");
 				}							
 			}else if(rnd < 112){
-				rnd = Math.ceil(Math.random()*6)+Math.ceil(Math.random()*6)+Math.ceil(Math.random()*6);
-				rnd = rnd *100;
-				chaos =  "Cutting open the creature's body reveals a "+rnd+"L gem inside.";
+				var rndB = Math.ceil(Math.random()*6)+Math.ceil(Math.random()*6)+Math.ceil(Math.random()*6);
+				rndB = rndB *100;
+				chaos =  "Cutting open the creature's body reveals a "+rndB+"L gem inside.";
 			}else if(rnd < 113){
 				if(template.mutations.eBP.indexOf("hide")<0){
-					rnd = Math.ceil(Math.random()*4)+Math.ceil(Math.random()*4)+Math.ceil(Math.random()*4)+Math.ceil(Math.random()*4)+Math.ceil(Math.random()*4)+Math.ceil(Math.random()*4);
-					chaos =  "The creature's body is studded with "+rnd+" gems with an average value of "+Math.ceil(Math.random()*4)+"L apiece.";
+					var rndC = Math.ceil(Math.random()*4)+Math.ceil(Math.random()*4)+Math.ceil(Math.random()*4)+Math.ceil(Math.random()*4)+Math.ceil(Math.random()*4)+Math.ceil(Math.random()*4);
+					chaos =  "The creature's body is studded with "+rndC+" gems with an average value of "+Math.ceil(Math.random()*4)+"L apiece.";
 					template.body.hitLocations = setNaturalArmor(template.body.hitLocations, 2);
 					template.mutations.eBP.push("hide");
 				}							
@@ -189,13 +188,13 @@ function getChaoticFeature(template){
 				chaos = "The creature bursts into flames when killed.  Everyone within 1m takes 1d6 Fire damage to one hit location."
 			}else if(rnd < 145){
 				if(template.mutations.eBP.indexOf("skin color")<0){
-					rnd = Math.ceil(Math.random()*6);
-					if(rnd < 4){
-						rnd = 2;
-					}else if(rnd < 6){
-						rnd = 3;
+					var rndD = Math.ceil(Math.random()*6);
+					if(rndD < 4){
+						rndD = 2;
+					}else if(rndD < 6){
+						rndD = 3;
 					}else{
-						rnd = 4;
+						rndD = 4;
 					}
 					palette = selectChaosColors(rnd);
 					var skinColors = "";
@@ -269,52 +268,52 @@ function getChaoticFeature(template){
 					template.mutations.eBP.push("hide");
 				}											
 			}else if(rnd < 191){
-				rnd = Math.ceil(Math.random()*6);
-				if(rnd < 5){
+				var rndE = Math.ceil(Math.random()*6);
+				if(rndE < 5){
 					chaos = "The creature has a crest like a rooster's comb on it's head or where it's head should be.";
 				}else{
 					chaos = "The creature has a wattles like a turkey dangling from it's face or where it's face should be.";
 				}
 			}else if(rnd < 192){
 				if(template.mutations.eBP.indexOf("ears")<0){
-					rnd = Math.ceil(Math.random()*4)+Math.ceil(Math.random()*4);
+					var rndF = Math.ceil(Math.random()*4)+Math.ceil(Math.random()*4);
 					tempBPO = Object.create(bodyPartObj);
 					tempBPO.bonusSkills=[{Listen:20}];
 					template = updateTemplateBodyParts(template, tempBPO);
-					chaos =  "Crown of Ears.  The creature's head (or where it's head should be) has "+rnd+" extra ears.";
+					chaos =  "Crown of Ears.  The creature's head (or where it's head should be) has "+rndF+" extra ears.";
 					template.mutations.eBP.push("ears");
 				}								
 			}else if(rnd < 194){
 				if(template.mutations.eBP.indexOf("eyes")<0){
-					rnd = Math.ceil(Math.random()*4)+Math.ceil(Math.random()*4);
+					var rndG = Math.ceil(Math.random()*4)+Math.ceil(Math.random()*4);
 					tempBPO = Object.create(bodyPartObj);
 					tempBPO.bonusSkills=[{"Spot Hidden":20}];
 					template = updateTemplateBodyParts(template, tempBPO);
-					chaos =  "Crown of Eyestalks.  The creature's head (or where it's head should be) has "+rnd+" eyestalks.";
+					chaos =  "Crown of Eyestalks.  The creature's head (or where it's head should be) has "+rndG +" eyestalks.";
 					template.mutations.eBP.push("eyes");
 				}				
 			}else if(rnd < 195){
 				if(template.mutations.eBP.indexOf("mouth")<0){
-					rnd = Math.ceil(Math.random()*4)+Math.ceil(Math.random()*4);
+					var rndH = Math.ceil(Math.random()*4)+Math.ceil(Math.random()*4);
 					tempBPO = Object.create(bodyPartObj);
 					tempBPO.bonusSkills=[{"Singing":20}];
 					template = updateTemplateBodyParts(template, tempBPO);
-					chaos =  "Crown of Mouths.  The creature's head (or where it's head should be) has "+rnd+" extra mouths.  It doesn't need backup singers.";
+					chaos =  "Crown of Mouths.  The creature's head (or where it's head should be) has "+rndH+" extra mouths.  It doesn't need backup singers.";
 					template.mutations.eBP.push("mouth");
 				}				
 			}else if(rnd < 196){
 				if(template.mutations.eBP.indexOf("nose")<0){
-					rnd = Math.ceil(Math.random()*4)+Math.ceil(Math.random()*4);
+					var rndI = Math.ceil(Math.random()*4)+Math.ceil(Math.random()*4);
 					tempBPO = Object.create(bodyPartObj);
 					tempBPO.bonusSkills=[{"Track by Smell":20}];
 					template = updateTemplateBodyParts(template, tempBPO);
-					chaos =  "Crown of Noses.  The creature's head (or where it's head should be) has "+rnd+" extra noses.";
+					chaos =  "Crown of Noses.  The creature's head (or where it's head should be) has "+rndI+" extra noses.";
 					template.mutations.eBP.push("nose");
 				}				
 			}else if(rnd < 198){
 				template.characteristics.dex.value = setCharacteristicValue(template.characteristics.dex.value, 2, getAlt(template.characteristics.dex), template.name);
-				rnd = Math.ceil(Math.random()*4)+Math.ceil(Math.random()*4);
-				chaos =  "Crown of Tentacles.  The creature's head (or where it's head should be) has "+rnd+" tentacles growing from it.";			
+				var rndJ = Math.ceil(Math.random()*4)+Math.ceil(Math.random()*4);
+				chaos =  "Crown of Tentacles.  The creature's head (or where it's head should be) has "+rndJ+" tentacles growing from it.";			
 			}else if(rnd < 200){
 				chaos = "Cryokinesis.  The creature can cause extreme cold up to 25 feet away.  Treat as a Disruption spell, 1d3 damage + 1 point for every point of metal armor worn on the Hit Location.";
 			}else if(rnd < 202){
@@ -363,9 +362,11 @@ function getChaoticFeature(template){
 				template = updateTemplateBodyParts(template, tempBPO);
 				chaos = "Double Vision. The creature sees double. Subtract 40% from all ranged attacks and 10% from all melee attacks.";
 			}else if(rnd < 228){
-				tempBPO = Object.create(bodyPartObj);
-				tempBPO = getBodyPart("DualMinds", template.body.type);
-				chaos =  tempBPO.desc;
+				if(template.characteristics.int.value[0] >3){
+					tempBPO = Object.create(bodyPartObj);
+					tempBPO = getBodyPart("DualMinds", template.body.type);
+					chaos =  tempBPO.desc;
+				}
 			}else if(rnd < 248){
 				if(template.mutations.eBP.indexOf("wings")<0){
 					tempBPO = Object.create(bodyPartObj);
@@ -459,27 +460,27 @@ function getChaoticFeature(template){
 				chaos = "The creature ";
 				var gas = "";
 				var gas2 = "Creatures in the area of the gas must resist a Systemic Poison or ";
-				rnd = Math.ceil(Math.random()*6);
-				if(rnd < 3){
+				var rndK = Math.ceil(Math.random()*6);
+				if(rndK < 3){
 					gas = "stink gas";
 					gas2 = gas2 + "be incapacitated retching for 2d4 rounds.  No attacks or defense allowed during that period.  Parry at 1/4 ability.";
-				}else if(rnd < 5){
+				}else if(rndK < 5){
 					gas = "poison gas";
 					gas2 = gas2 + "take damage as per the rules.";
 				}else{
 					gas = "laughing gas";
 					gas2 = gas2 + "be incapacitated laughing for 2d4 rounds.  Attacks, parries, defemse and skill use is at 1/2 ability during this time.";
 				}
-				rnd = Math.ceil(Math.random()*12);
-				if(rnd < 7){
+				rndK = Math.ceil(Math.random()*12);
+				if(rndK < 7){
 					chaos = chaos +"belches a cloud of "+gas+" from it's mouth.  "+gas2;
-				}else if(rnd < 10){
+				}else if(rndK < 10){
 					chaos = chaos +"jets a stream of "+gas+" from it's nose.  "+gas2;
-				}else if(rnd < 12){
+				}else if(rndK < 12){
 					chaos = chaos +"steams a cloud of "+gas+" from it's ears.  "+gas2;
-				}else if(rnd < 12){
+				}else if(rndK < 12){
 					chaos = chaos +"emits a cloud of "+gas+" from it's armpits.  "+gas2;
-				}else if(rnd < 12){
+				}else if(rndK < 12){
 					chaos = chaos +"emits a cloud of "+gas+" from it's feet.  "+gas2;
 				}else{
 					chaos = chaos +"breaks wind with a miasma of "+gas+" from it's anus.  "+gas2;
@@ -555,283 +556,283 @@ function getChaoticFeature(template){
 					chaos = "The creature is hunchbacked.";
 				}
 			}else if(rnd < 365){
-				rnd = Math.floor(Math.random()*100);
+				var rndL = Math.floor(Math.random()*100);
 				if(template.mutations.eBP.indexOf("arms")<0){
-					template = getNewBodyPart(template, "arm", rnd);
+					template = getNewBodyPart(template, "arm", rndL);
 					template.mutations.eBP.push("arms");
 				}	
-				if(template.mutations.eBP.indexOf("legs")<0){
-					template = getNewBodyPart(template, "leg", rnd);
+				if(hasBodyPart(["leg"], template.body.hitLocations) && template.mutations.eBP.indexOf("legs")<0){
+					template = getNewBodyPart(template, "leg", rndL);
 					template.mutations.eBP.push("legs");
 				}	
 				if(template.mutations.eBP.indexOf("torso")<0){	
-					template = getNewBodyPart(template, "torso", rnd);
+					template = getNewBodyPart(template, "torso", rndL);
 					template.mutations.eBP.push("torso");
 				}	
 			}else if(rnd < 373){
-				rnd = Math.floor(Math.random()*100);
+				var rndM = Math.floor(Math.random()*100);	
+				if(hasBodyPart(["leg"], template.body.hitLocations) && template.mutations.eBP.indexOf("legs")<0){
+					template = getNewBodyPart(template, "leg", rndM);
+					template.mutations.eBP.push("legs");
+				}
 				if(template.mutations.eBP.indexOf("arms")<0){
-					template = getNewBodyPart(template, "arm", rnd);
+					template = getNewBodyPart(template, "arm", rndM);
 					template.mutations.eBP.push("arms");
 				}	
-				if(template.mutations.eBP.indexOf("legs")<0){
-					template = getNewBodyPart(template, "leg", rnd);
-					template.mutations.eBP.push("legs");
-				}	
 				if(template.mutations.eBP.indexOf("tail")<0){
-					template = getNewBodyPart(template, "tail", rnd);
+					template = getNewBodyPart(template, "tail", rndM);
 					template.mutations.eBP.push("tail");
 				}					
 			}else if(rnd < 381){
-				rnd = Math.floor(Math.random()*100);
+				var rndN = Math.floor(Math.random()*100);
 				if(template.mutations.eBP.indexOf("arms")<0){
-					template = getNewBodyPart(template, "arm", rnd);
+					template = getNewBodyPart(template, "arm", rndN);
 					template.mutations.eBP.push("arms");
 				}	
-				if(template.mutations.eBP.indexOf("legs")<0){
-					template = getNewBodyPart(template, "leg", rnd);
+				if(hasBodyPart(["leg"], template.body.hitLocations) && template.mutations.eBP.indexOf("legs")<0){
+					template = getNewBodyPart(template, "leg", rndN);
 					template.mutations.eBP.push("legs");
 				}	
 				if(template.mutations.eBP.indexOf("wings")<0){
-					template = getNewBodyPart(template, "wing", rnd);
+					template = getNewBodyPart(template, "wing", rndN);
 					template.mutations.eBP.push("wings");
 				}					
 			}else if(rnd < 389){
-				rnd = Math.floor(Math.random()*100);
+				var rndO = Math.floor(Math.random()*100);
 				if(template.mutations.eBP.indexOf("arms")<0){
-					template = getNewBodyPart(template, "arm", rnd);
+					template = getNewBodyPart(template, "arm", rndO);
 					template.mutations.eBP.push("arms");
 				}	
 				if(template.mutations.eBP.indexOf("tail")<0){
-					template = getNewBodyPart(template, "tail", rnd);
+					template = getNewBodyPart(template, "tail", rndO);
 					template.mutations.eBP.push("tail");
 				}	
 				if(template.mutations.eBP.indexOf("torso")<0){	
-					template = getNewBodyPart(template, "torso", rnd);
+					template = getNewBodyPart(template, "torso", rndO);
 					template.mutations.eBP.push("torso");
 				}					
 			}else if(rnd < 397){
-				rnd = Math.floor(Math.random()*100);
+				var rndP = Math.floor(Math.random()*100);
 				if(template.mutations.eBP.indexOf("arms")<0){
-					template = getNewBodyPart(template, "arm", rnd);
+					template = getNewBodyPart(template, "arm", rndP);
 					template.mutations.eBP.push("arms");
 				}	
 				if(template.mutations.eBP.indexOf("tail")<0){
-					template = getNewBodyPart(template, "tail", rnd);
+					template = getNewBodyPart(template, "tail", rndP);
 					template.mutations.eBP.push("tail");
 				}	
 				if(template.mutations.eBP.indexOf("wings")<0){
-					template = getNewBodyPart(template, "wing", rnd);
+					template = getNewBodyPart(template, "wing", rndP);
 					template.mutations.eBP.push("wings");
 				}					
 			}else if(rnd < 405){
-				rnd = Math.floor(Math.random()*100);
+				var rndQ = Math.floor(Math.random()*100);
 				if(template.mutations.eBP.indexOf("arms")<0){
-					template = getNewBodyPart(template, "arm", rnd);
+					template = getNewBodyPart(template, "arm", rndQ);
 					template.mutations.eBP.push("arms");
 				}	
 				if(template.mutations.eBP.indexOf("torso")<0){	
-					template = getNewBodyPart(template, "torso", rnd);
+					template = getNewBodyPart(template, "torso", rndQ);
 					template.mutations.eBP.push("torso");
 				}	
 				if(template.mutations.eBP.indexOf("wings")<0){
-					template = getNewBodyPart(template, "wing", rnd);
+					template = getNewBodyPart(template, "wing", rndQ);
 					template.mutations.eBP.push("wings");
 				}					
 			}else if(rnd < 413){
-				rnd = Math.floor(Math.random()*100);
+				var rndR = Math.floor(Math.random()*100);
 				if(template.mutations.eBP.indexOf("head")<0){
-					template = getNewBodyPart(template, "head", rnd);
+					template = getNewBodyPart(template, "head", rndR);
 					template.mutations.eBP.push("head");
 				}
 				if(template.mutations.eBP.indexOf("arms")<0){
-					template = getNewBodyPart(template, "arm", rnd);
+					template = getNewBodyPart(template, "arm", rndR);
 					template.mutations.eBP.push("arms");
 				}		
-				if(template.mutations.eBP.indexOf("legs")<0){
-					template = getNewBodyPart(template, "leg", rnd);
+				if(hasBodyPart(["leg"], template.body.hitLocations) && template.mutations.eBP.indexOf("legs")<0){
+					template = getNewBodyPart(template, "leg", rndR);
 					template.mutations.eBP.push("legs");
 				}				
 			}else if(rnd < 421){
-				rnd = Math.floor(Math.random()*100);
+				var rndS = Math.floor(Math.random()*100);
 				if(template.mutations.eBP.indexOf("head")<0){
-					template = getNewBodyPart(template, "head", rnd);
+					template = getNewBodyPart(template, "head", rndS);
 					template.mutations.eBP.push("head");
 				}
 				if(template.mutations.eBP.indexOf("arms")<0){
-					template = getNewBodyPart(template, "arm", rnd);
+					template = getNewBodyPart(template, "arm", rndS);
 					template.mutations.eBP.push("arms");
 				}
 				if(template.mutations.eBP.indexOf("tail")<0){
-					template = getNewBodyPart(template, "tail", rnd);
+					template = getNewBodyPart(template, "tail", rndS);
 					template.mutations.eBP.push("tail");
 				}							
 			}else if(rnd < 430){
-				rnd = Math.floor(Math.random()*100);
+				var rndT = Math.floor(Math.random()*100);
 				if(template.mutations.eBP.indexOf("head")<0){
-					template = getNewBodyPart(template, "head", rnd);
+					template = getNewBodyPart(template, "head", rndT);
 					template.mutations.eBP.push("head");
 				}
 				if(template.mutations.eBP.indexOf("arms")<0){
-					template = getNewBodyPart(template, "arm", rnd);
+					template = getNewBodyPart(template, "arm", rndT);
 					template.mutations.eBP.push("arms");
 				}	
 				if(template.mutations.eBP.indexOf("torso")<0){	
-					template = getNewBodyPart(template, "torso", rnd);
+					template = getNewBodyPart(template, "torso", rndT);
 					template.mutations.eBP.push("torso");
 				}					
 			}else if(rnd < 438){
-				rnd = Math.floor(Math.random()*100);
+				var rndU = Math.floor(Math.random()*100);
 				if(template.mutations.eBP.indexOf("head")<0){
-					template = getNewBodyPart(template, "head", rnd);
+					template = getNewBodyPart(template, "head", rndU);
 					template.mutations.eBP.push("head");
 				}
 				if(template.mutations.eBP.indexOf("arms")<0){
-					template = getNewBodyPart(template, "arm", rnd);
+					template = getNewBodyPart(template, "arm", rndU);
 					template.mutations.eBP.push("arms");
 				}	
 				if(template.mutations.eBP.indexOf("wings")<0){
-					template = getNewBodyPart(template, "wing", rnd);
+					template = getNewBodyPart(template, "wing", rndU);
 					template.mutations.eBP.push("wings");
 				}				
 			}else if(rnd < 446){
-				rnd = Math.floor(Math.random()*100);
+				var rndV = Math.floor(Math.random()*100);
 				if(template.mutations.eBP.indexOf("head")<0){
-					template = getNewBodyPart(template, "head", rnd);
+					template = getNewBodyPart(template, "head", rndV);
 					template.mutations.eBP.push("head");
 				}
-				if(template.mutations.eBP.indexOf("legs")<0){
-					template = getNewBodyPart(template, "leg", rnd);
+				if(hasBodyPart(["leg"], template.body.hitLocations) && template.mutations.eBP.indexOf("legs")<0){
+					template = getNewBodyPart(template, "leg", rndV);
 					template.mutations.eBP.push("legs");
 				}
 				if(template.mutations.eBP.indexOf("tail")<0){
-					template = getNewBodyPart(template, "tail", rnd);
+					template = getNewBodyPart(template, "tail", rndV);
 					template.mutations.eBP.push("tail");
 				}							
 			}else if(rnd < 455){
-				rnd = Math.floor(Math.random()*100);
+				var rndW = Math.floor(Math.random()*100);
 				if(template.mutations.eBP.indexOf("head")<0){
-					template = getNewBodyPart(template, "head", rnd);
+					template = getNewBodyPart(template, "head", rndW);
 					template.mutations.eBP.push("head");
 				}
-				if(template.mutations.eBP.indexOf("legs")<0){
-					template = getNewBodyPart(template, "leg", rnd);
+				if(hasBodyPart(["leg"], template.body.hitLocations) && template.mutations.eBP.indexOf("legs")<0){
+					template = getNewBodyPart(template, "leg", rndW);
 					template.mutations.eBP.push("legs");
 				}
 				if(template.mutations.eBP.indexOf("torso")<0){	
-					template = getNewBodyPart(template, "torso", rnd);
+					template = getNewBodyPart(template, "torso", rndW);
 					template.mutations.eBP.push("torso");
 				}					
 			}else if(rnd < 463){
-				rnd = Math.floor(Math.random()*100);
+				var rndX = Math.floor(Math.random()*100);
 				if(template.mutations.eBP.indexOf("head")<0){
-					template = getNewBodyPart(template, "head", rnd);
+					template = getNewBodyPart(template, "head", rndX);
 					template.mutations.eBP.push("head");
 				}
-				if(template.mutations.eBP.indexOf("legs")<0){
-					template = getNewBodyPart(template, "leg", rnd);
+				if(hasBodyPart(["leg"], template.body.hitLocations) && template.mutations.eBP.indexOf("legs")<0){
+					template = getNewBodyPart(template, "leg", rndX);
 					template.mutations.eBP.push("legs");
 				}	
 				if(template.mutations.eBP.indexOf("wings")<0){
-					template = getNewBodyPart(template, "wing", rnd);
+					template = getNewBodyPart(template, "wing", rndX);
 					template.mutations.eBP.push("wings");
 				}				
 			}else if(rnd < 471){
-				rnd = Math.floor(Math.random()*100);
+				var rndY = Math.floor(Math.random()*100);
 				if(template.mutations.eBP.indexOf("head")<0){
-					template = getNewBodyPart(template, "head", rnd);
+					template = getNewBodyPart(template, "head", rndY);
 					template.mutations.eBP.push("head");
 				}
 				if(template.mutations.eBP.indexOf("tail")<0){
-					template = getNewBodyPart(template, "tail", rnd);
+					template = getNewBodyPart(template, "tail", rndY);
 					template.mutations.eBP.push("tail");
 				}			
 				if(template.mutations.eBP.indexOf("torso")<0){	
-					template = getNewBodyPart(template, "torso", rnd);
+					template = getNewBodyPart(template, "torso", rndY);
 					template.mutations.eBP.push("torso");
 				}					
 			}else if(rnd < 480){
-				rnd = Math.floor(Math.random()*100);
+				var rndAA = Math.floor(Math.random()*100);
 				if(template.mutations.eBP.indexOf("head")<0){
-					template = getNewBodyPart(template, "head", rnd);
+					template = getNewBodyPart(template, "head", rndAA);
 					template.mutations.eBP.push("head");
 				}
 				if(template.mutations.eBP.indexOf("tail")<0){
-					template = getNewBodyPart(template, "tail", rnd);
+					template = getNewBodyPart(template, "tail", rndAA);
 					template.mutations.eBP.push("tail");
 				}	
 				if(template.mutations.eBP.indexOf("wings")<0){
-					template = getNewBodyPart(template, "wing", rnd);
+					template = getNewBodyPart(template, "wing", rndAA);
 					template.mutations.eBP.push("wings");
 				}				
 			}else if(rnd < 488){
-				rnd = Math.floor(Math.random()*100);
+				var rndAB = Math.floor(Math.random()*100);
 				if(template.mutations.eBP.indexOf("head")<0){
-					template = getNewBodyPart(template, "head", rnd);
+					template = getNewBodyPart(template, "head", rndAB);
 					template.mutations.eBP.push("head");
 				}
 				if(template.mutations.eBP.indexOf("torso")<0){	
-					template = getNewBodyPart(template, "torso", rnd);
+					template = getNewBodyPart(template, "torso", rndAB);
 					template.mutations.eBP.push("torso");
 				}		
 				if(template.mutations.eBP.indexOf("wings")<0){
-					template = getNewBodyPart(template, "wing", rnd);
+					template = getNewBodyPart(template, "wing", rndAB);
 					template.mutations.eBP.push("wings");
 				}				
 			}else if(rnd < 496){
-				rnd = Math.floor(Math.random()*100);	
-				if(template.mutations.eBP.indexOf("legs")<0){
-					template = getNewBodyPart(template, "leg", rnd);
+				var rndAC = Math.floor(Math.random()*100);	
+				if(hasBodyPart(["leg"], template.body.hitLocations) && template.mutations.eBP.indexOf("legs")<0){
+					template = getNewBodyPart(template, "leg", rndAC);
 					template.mutations.eBP.push("legs");
 				}
 				if(template.mutations.eBP.indexOf("tail")<0){
-					template = getNewBodyPart(template, "tail", rnd);
+					template = getNewBodyPart(template, "tail", rndAC);
 					template.mutations.eBP.push("tail");
 				}			
 				if(template.mutations.eBP.indexOf("torso")<0){	
-					template = getNewBodyPart(template, "torso", rnd);
+					template = getNewBodyPart(template, "torso", rndAC);
 					template.mutations.eBP.push("torso");
 				}					
 			}else if(rnd < 504){
-				rnd = Math.floor(Math.random()*100);	
-				if(template.mutations.eBP.indexOf("legs")<0){
-					template = getNewBodyPart(template, "leg", rnd);
+				var rndAD = Math.floor(Math.random()*100);	
+				if(hasBodyPart(["leg"], template.body.hitLocations) && template.mutations.eBP.indexOf("legs")<0){
+					template = getNewBodyPart(template, "leg", rndAD);
 					template.mutations.eBP.push("legs");
 				}
 				if(template.mutations.eBP.indexOf("tail")<0){
-					template = getNewBodyPart(template, "tail", rnd);
+					template = getNewBodyPart(template, "tail", rndAD);
 					template.mutations.eBP.push("tail");
 				}				
 				if(template.mutations.eBP.indexOf("wings")<0){
-					template = getNewBodyPart(template, "wing", rnd);
+					template = getNewBodyPart(template, "wing", rndAD);
 					template.mutations.eBP.push("wings");
 				}				
 			}else if(rnd < 512){
-				rnd = Math.floor(Math.random()*100);	
-				if(template.mutations.eBP.indexOf("legs")<0){
-					template = getNewBodyPart(template, "leg", rnd);
+				var rndAE = Math.floor(Math.random()*100);	
+				if(hasBodyPart(["leg"], template.body.hitLocations) && template.mutations.eBP.indexOf("legs")<0){
+					template = getNewBodyPart(template, "leg", rndAE);
 					template.mutations.eBP.push("legs");
-				}
-				if(template.mutations.eBP.indexOf("tail")<0){
-					template = getNewBodyPart(template, "tail", rnd);
-					template.mutations.eBP.push("tail");
 				}			
 				if(template.mutations.eBP.indexOf("torso")<0){	
-					template = getNewBodyPart(template, "torso", rnd);
+					template = getNewBodyPart(template, "torso", rndAE);
 					template.mutations.eBP.push("torso");
+				}				
+				if(template.mutations.eBP.indexOf("wings")<0){
+					template = getNewBodyPart(template, "wing", rndAE);
+					template.mutations.eBP.push("wings");
 				}					
 			}else if(rnd < 520){
-				rnd = Math.floor(Math.random()*100);	
+				var rndAF = Math.floor(Math.random()*100);	
 				if(template.mutations.eBP.indexOf("wings")<0){
-					template = getNewBodyPart(template, "wing", rnd);
+					template = getNewBodyPart(template, "wing", rndAF);
 					template.mutations.eBP.push("wings");
 				}
 				if(template.mutations.eBP.indexOf("tail")<0){
-					template = getNewBodyPart(template, "tail", rnd);
+					template = getNewBodyPart(template, "tail", rndAF);
 					template.mutations.eBP.push("tail");
 				}			
 				if(template.mutations.eBP.indexOf("torso")<0){	
-					template = getNewBodyPart(template, "torso", rnd);
+					template = getNewBodyPart(template, "torso", rndAF);
 					template.mutations.eBP.push("torso");
 				}					
 			}else if(rnd < 522){
@@ -844,7 +845,9 @@ function getChaoticFeature(template){
 					template.mutations.eBP.push("skin color");
 				}					
 			}else if(rnd < 526){
-				chaos = "Illusion Generation.	The creature can generate a full sensory Illusion for 10 rounds without draining POW, maintaining the illiusion longer drains 1pt per round.";
+				if(template.characteristics.int.value[0] >3){
+					chaos = "Illusion Generation.	The creature can generate a full sensory Illusion for 10 rounds without draining POW, maintaining the illiusion longer drains 1pt per round.";
+				}
 			}else if(rnd < 528){
 				chaos = "Illusionary Appearance.	The creature appears as a non-descript member of the same race as the observer.";
 			}else if(rnd < 535){
@@ -876,9 +879,9 @@ function getChaoticFeature(template){
 					chaos = "The creature has the ability to leap up to 10m.";
 				}
 			}else if(rnd < 589){
-				rnd = Math.floor(Math.random()*100);	
+				var rndAG = Math.floor(Math.random()*100);	
 				if(template.mutations.eBP.indexOf("legs")<0){
-					template = getNewBodyPart(template, "leg", rnd);
+					template = getNewBodyPart(template, "leg", rndAG);
 					template.mutations.eBP.push("legs");
 				}				
 			}else if(rnd < 592){
@@ -993,10 +996,12 @@ function getChaoticFeature(template){
 				template = updateTemplateBodyParts(template, tempBPO);
 				chaos =  tempBPO.desc;
 			}else if(rnd < 682){
-				tempBPO = Object.create(bodyPartObj);
-				tempBPO = getBodyPart("MultipleLegs", template.body.type);
-				template = updateTemplateBodyParts(template, tempBPO);
-				chaos =  tempBPO.desc;
+				if(hasBodyPart(["leg"], template.body.hitLocations)){
+					tempBPO = Object.create(bodyPartObj);
+					tempBPO = getBodyPart("MultipleLegs", template.body.type);
+					template = updateTemplateBodyParts(template, tempBPO);
+					chaos =  tempBPO.desc;
+				}
 			}else if(rnd < 686){
 				if(hasBodyPart(["head"], template.body.hitLocations)){
 					chaos = "Near sighted.	The creature is near sighted and suffers a -20% penalty on ranged attacks.  Any ranged attacks past the second range increment are at random targets.";
@@ -1032,8 +1037,8 @@ function getChaoticFeature(template){
 				chaos = "The creature exudes a greasy, flammable oil from it's skin.  it receives a +10% bonus to skill checks involving navigating tight places or escaping bonds.";
 			}else if(rnd < 701){
 				if(hasBodyPart(["arm"], template.body.hitLocations)){
-					rnd = Math.floor(Math.random()*6);
-					if(rnd < 5){
+					var rndAH = Math.floor(Math.random()*6);
+					if(rndAH < 5){
 						chaos = "The creature's dominant arm is massively overgrown.  The creature does +2 points damage with all melee weapons";					
 					}else{
 						chaos = "The creature's off hand arm is massively overgrown.  The creature does +2 points damage with all two handed melee weapons";
@@ -1053,10 +1058,10 @@ function getChaoticFeature(template){
 					palette = selectChaosColors(0);
 					template.body.skinColors = palette;
 					chaos = "The creature's skin is";
-					rnd = Math.floor(Math.random()*6);
-					if(rnd < 4){
+					var rndAI = Math.floor(Math.random()*6);
+					if(rndAY < 4){
 						chaos = chaos + " striped ";
-					}else if(rnd < 6){
+					}else if(rndAI < 6){
 						chaos = chaos + " spotted ";
 					}else{
 						chaos = chaos + " pinto patterned ";
@@ -1178,9 +1183,9 @@ function getChaoticFeature(template){
 				}
 			}else if(rnd < 819){
 				if(hasBodyPart(["arm"], template.body.hitLocations)){
-					rnd = Math.floor(Math.random()*8);
+					var rndAJ = Math.floor(Math.random()*8);
 					chaos = "The creature's ";
-					if(rnd <6){
+					if(rndAJ <6){
 						chaos = chaos + "right";
 					}else{
 						chaos = chaos + "left";
@@ -1189,9 +1194,9 @@ function getChaoticFeature(template){
 				}
 			}else if(rnd < 824){
 				if(hasBodyPart(["leg"], template.body.hitLocations)){
-					rnd = Math.floor(Math.random()*8);
+					var rndAK = Math.floor(Math.random()*8);
 					chaos = "The creature's ";
-					if(rnd <6){
+					if(rndAK <6){
 						chaos = chaos + "right";
 					}else{
 						chaos = chaos + "left";
@@ -1274,8 +1279,12 @@ function getChaoticFeature(template){
 			}else if(rnd < 911){
 				template.defense.delta = 10;
 				chaos = "The creature is surrounded by a swirling cloud of flies.";
-			}else if(rnd < 931){
-				rnd = Math.floor(Math.random()*100);	
+			}else if(rnd < 931){				
+				if(template.mutations.eBP.indexOf("tail")<0){
+					var rndAL = Math.floor(Math.random()*100);
+					template = getNewBodyPart(template, "tail", rndAL);
+					template.mutations.eBP.push("tail");
+				}
 			}else if(rnd < 936){
 				if(template.mutations.eBP.indexOf("tail")<0){
 					tempBPO = Object.create(bodyPartObj);
@@ -1285,17 +1294,21 @@ function getChaoticFeature(template){
 					template.mutations.eBP.push("tail");	
 				}
 			}else if(rnd < 938){
-				chaos = "The creature is capable of Telekinesis similar to the Orlanthi Rune spell.  Unlike the Rune spell, the creatue must use a point of POW for each point of SIZ it wishes to move.";
+				if(template.characteristics.int.value[0] >3){
+					chaos = "The creature is capable of Telekinesis similar to the Orlanthi Rune spell.  Unlike the Rune spell, the creatue must use a point of POW for each point of SIZ it wishes to move.";
+				}
 			}else if(rnd < 940){
-				rnd = Math.floor(Math.random()*100);
-				chaos = "The creature is a Telepath."
-				if(rnd < 50){
-					chaos = chaos + "  It can read one creature's mind per round or communicate with Mindspeech with a single creature.";
-				}else{
-					chaos = chaos + "  The creature broadcasts it's thoughts to all creatures within 10 feet, possibly giving opponents an advantage. This broadcast floods any Mindspeech links that the opponent has open.";
+				if(template.characteristics.int.value[0] >3){
+					var rndAM = Math.floor(Math.random()*100);
+					chaos = "The creature is a Telepath."
+					if(rndAM < 50){
+						chaos = chaos + "  It can read one creature's mind per round or communicate with Mindspeech with a single creature.";
+					}else{
+						chaos = chaos + "  The creature broadcasts it's thoughts to all creatures within 10 feet, possibly giving opponents an advantage. This broadcast floods any Mindspeech links that the opponent has open.";
+					}
 				}
 			}else if(rnd < 942){
-				chaos = "The creature is capable of Telepotation similar to the Orlanthi Rune spell.  Unlike the Rune spell, the creatue must use a point of POW for each 10 meters it wishes to move.";
+				chaos = "The creature is capable of Teleportation similar to the Orlanthi Rune spell.  Unlike the Rune spell, the creatue must use a point of POW for each 10 meters it wishes to move.";
 			}else if(rnd < 944){
 				chaos = "The creature can control it's existence in the time stream, fading out and returning at will.   No time passes for the creature while it is absent from the time stream.";
 			}else if(rnd < 946){
@@ -1387,16 +1400,16 @@ function getChaoticFeature(template){
 			}
 //Test			window.alert("jsRQChaosDisease.getChaoticfeature "+rnd+" : "+chaos);
 			if(template.hasOwnProperty("special")){
-				template.special = template.special + " <br/>"+chaos;
+				template.special = template.special + " <br/>"+chaos;//+"  Roll: "+rnd
 			}else{
-				template.special = chaos;
+				template.special = chaos;//+"  Roll: "+rnd 
 			}
 		}
 		
 		
 		return template;
 	}catch(err){
-		window.alert("Error: jsRQChaosDisease.getChaoticfeature "+err);
+		window.alert("Error: jsRQChaosDisease.getChaoticfeature "+err+"  Roll: "+rnd );
 	}
 }
 
@@ -1529,7 +1542,7 @@ function updateChaosChars(chars, charObj){
 		var keyAry = Object.keys(charObj);
 		//		template.characteristics.dex.value.current = template.characteristics.dex.value.base;
 		for(var c in chars){
-			if(c == keyAry[0]){
+			if(c == keyAry[0 && template !== undefined]){
 //				window.alert("jsRQChaosDisease.updateChaoChars "+c+" "+keyAry[0] +chars[c].value.base+" "+charObj[keyAry[0]]);
 				chars[c].value = setCharacteristicValue(chars[c].value,charObj[keyAry[0]], getAlt(chars[c]), template.name);
 			}

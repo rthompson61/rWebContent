@@ -449,7 +449,7 @@ function getChaosOldLocations(part, bodyType){
 				|| bodyType == "Dragon"){
 				oldLocs = [["foreqtr","hndqtr"], ["s","s"]];
 			}else if( bodyType == "Dragonsnail"){
-				oldLocs = [["forebody"], ["a"]];
+				oldLocs = [["forebody"], ["s"]];
 			}
 		}else if(part == "wing"){
 			if(bodyType == "Humanoid" || bodyType == "Walktapi" || bodyType == "BoloLizard" 

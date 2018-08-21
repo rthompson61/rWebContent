@@ -487,7 +487,7 @@ function getTemplates(){
 					  body:{type:"Dragonsnail",hitLocations:[], attacks:"Dragonsnail", naturalArmor:4},
 					  equipment:{keys:["naturalBite6"]},
 		              equipmentList:"",
-		              skills:{lists:["all",  "animal"], set:[], required:[], prohibited:[]},
+		              skills:{lists:["all",  "animal"], set:[], required:[], prohibited:["Jumping"]},
 		              magic:{uses:0, basicMagic:[]},
 					  treasureFactors:{multiAttack:0, special:0},
 		              mutations:{eBP:[]},
