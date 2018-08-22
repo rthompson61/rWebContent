@@ -396,7 +396,7 @@ function updateEnc(template, level){
 					template.equipment[keys[j]].sr.current = Number(template.equipment[keys[j]].sr.current)+encPenalty;
 //					template.equipment[keys[j]].attack.current = Number(template.equipment[keys[j]].attack.current)-(5*encPenalty);
 //					template.equipment[keys[j]].parry.current = Number(template.equipment[keys[j]].parry.current)-(5*encPenalty);
-					template.error = template.error+"<br/>Encumbrance calc. "+template.equipment[keys[j]].name+" Penalty "+encPenalty+" Base SR: "+template.equipment[keys[j]].sr.base+" Base Atk: "+template.equipment[keys[j]].attack.base+" Base Parry: "+template.equipment[keys[j]].parry.base;
+//					template.error = template.error+"<br/>Encumbrance calc. "+template.equipment[keys[j]].name+" Penalty "+encPenalty+" Base SR: "+template.equipment[keys[j]].sr.base+" Base Atk: "+template.equipment[keys[j]].attack.base+" Base Parry: "+template.equipment[keys[j]].parry.base;
 				}
 			}
 		}
