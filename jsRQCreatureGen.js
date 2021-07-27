@@ -467,7 +467,7 @@ function updateNaturalWeapons(template, level){
 					template.equipment[template.equipment.keys[e]].attack.current = setSkills(level,  template.baseSkills.attack,template.equipment[template.equipment.keys[e]].attack.base, template.equipment[template.equipment.keys[e]].attack.prof, "n");
 					template.equipment[template.equipment.keys[e]].parry.current = setSkills(level,  template.baseSkills.parry,template.equipment[template.equipment.keys[e]].parry.base, template.equipment[template.equipment.keys[e]].parry.prof, "n");
 					template.equipment[template.equipment.keys[e]].sr.current = template.equipment[template.equipment.keys[e]].sr.base + template.sr.siz + template.sr.dex;
-	//				window.alert("updatenaturalWeapons: "+level+"  "+  template.baseSkills.attack+"  "+template.equipment[template.equipment.keys[e]].attack.base+"  "+ template.equipment[template.equipment.keys[e]].attack.prof);
+					window.alert("updatenaturalWeapons: "+level+"  Current SR "+  template.equipment[template.equipment.keys[e]].sr.current+"  Base SR "+template.equipment[template.equipment.keys[e]].sr.base+"  Size SR"+ template.sr.siz +"   Dex SR "+template.sr.dex);
 				}
 			}else{
 //				window.alert("updatenaturalWeapons: "+template.equipment.keys[e].substring(0,template.equipment.keys[e].length-1));
