@@ -192,7 +192,7 @@ function updateCreature(paramAry, template, doc, level){
 //		}
 		if(params[0] == "armor"){
 			template = getDressed(template, doc, params);
-			template.error =template.error +"<br/>jsRQCreatureGen.updateCreature call getDressed Params2 "+params[2]+" Params3 "+params[3]);
+//			template.error =template.error +"<br/>jsRQCreatureGen.updateCreature call getDressed Params2 "+params[2]+" Params3 "+params[3]);
 		}else if(params[0]=="shield" || params[0]=="melee"  ){
 //			window.alert("jsRQCreatureGen.updateCreature call updateWeaponsandshield");
 			 template = updateWeaponsAndShield(template, params, level);
@@ -796,7 +796,7 @@ function getDressed(t, d, p){
 			t = takePantsOff(t,d,p);
 		}else if(p[2] != "Trews" && (p[1].indexOf("lleg")> -1 || p[1].indexOf("rleg")> -1) || ( p[1].indexOf("abdom")> -1 && getArmorByLocation(t.body.hitLocations, "abdom", p[2]) == "Trews")){
 			t = takePantsOff(t,d,p);	
-			template.error =template.error +"<br/>Test jsRQCreatureGen.getDressed: (1) "+p[1].indexOf("chest")+" | "+p[1].indexOf("rleg"))+ " Params2 "+p[2]+"  Params3 "+p[3];
+//			template.error =template.error +"<br/>Test jsRQCreatureGen.getDressed: (1) "+p[1].indexOf("chest")+" | "+p[1].indexOf("rleg"))+ " Params2 "+p[2]+"  Params3 "+p[3];
 		}else if(p[1].indexOf("chest")> -1 || p[1].indexOf("abdom2")> -1 || ( p[1].indexOf("abdom")> -1 && getArmorByLocation(t.body.hitLocations, "abdom", p[2]) == "Hauberk")){
 			t = takeShirtOff(t,d,p);	
 			if(p[3] == "Byrnie"  || p[3] == "Cuirass"){
