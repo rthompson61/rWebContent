@@ -307,7 +307,7 @@ function getEquip(){
 		     {type:"missile", subType:"Bow", locations:["missile1","missile2","missile3"], inner:0,
 		    	 individual:[{name:"Composite Bow", value:"CompositeBow", ap:10, enc:2, attack:{base:10, current:0, prof:0}, parry:{base:20, current:0, prof:0}, minStr:13, minDex:9, damage:"1d8+1", sr:{base:0, current:0}, range:100, rate:-1, damBonus:0 },
 		    	             {name:"Elf Bow", value:"ElfBow", ap:10, enc:2, attack:{base:10, current:0, prof:0}, parry:{base:20, current:0, prof:0}, minStr:1, minDex:1, damage:"1d8+1", sr:{base:0, current:0}, range:120, rate:-1, damBonus:0 },
-		    	 			 {name:"Self Biw", value:"SelfBow", ap:6, enc:2, attack:{base:10, current:0, prof:0}, parry:{base:20, current:0, prof:0}, minStr:9, minDex:9, damage:"1d6+1", sr:{base:0, current:0}, range:80, rate:-1, damBonus:0 }
+		    	 			 {name:"Self Bow", value:"SelfBow", ap:6, enc:2, attack:{base:10, current:0, prof:0}, parry:{base:20, current:0, prof:0}, minStr:9, minDex:9, damage:"1d6+1", sr:{base:0, current:0}, range:80, rate:-1, damBonus:0 }
 		    	 ]
 		     },
 		     {type:"missile", subType:"Crossbow", locations:["missile1","missile2","missile3"], inner:0,

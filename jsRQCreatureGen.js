@@ -393,7 +393,8 @@ function updateEnc(template, level){
 			template.defense.current = template.defense.base - (5*encPenalty);
 			for(var j = 0; j < template.equipment.keys.length; j++){
 				if(template.equipment[keys[j]].name != ""){
-					template.equipment[keys[j]].sr.current = Number(template.equipment[keys[j]].sr.current)+encPenalty;
+//					template.equipment[keys[j]].sr.current = Number(template.equipment[keys[j]].sr.current)+encPenalty;
+					template.equipment[keys[j]].sr.current = Number(template.equipment[keys[j]].sr.base) + Number(template.sr.siz) + Number(template.sr.dex)+encPenalty;
 //					template.equipment[keys[j]].attack.current = Number(template.equipment[keys[j]].attack.current)-(5*encPenalty);
 //					template.equipment[keys[j]].parry.current = Number(template.equipment[keys[j]].parry.current)-(5*encPenalty);
 //					template.error = template.error+"<br/>Encumbrance calc. "+template.equipment[keys[j]].name+" Penalty "+encPenalty+" Base SR: "+template.equipment[keys[j]].sr.base+" Base Atk: "+template.equipment[keys[j]].attack.base+" Base Parry: "+template.equipment[keys[j]].parry.base;
@@ -467,7 +468,7 @@ function updateNaturalWeapons(template, level){
 					template.equipment[template.equipment.keys[e]].attack.current = setSkills(level,  template.baseSkills.attack,template.equipment[template.equipment.keys[e]].attack.base, template.equipment[template.equipment.keys[e]].attack.prof, "n");
 					template.equipment[template.equipment.keys[e]].parry.current = setSkills(level,  template.baseSkills.parry,template.equipment[template.equipment.keys[e]].parry.base, template.equipment[template.equipment.keys[e]].parry.prof, "n");
 					template.equipment[template.equipment.keys[e]].sr.current = template.equipment[template.equipment.keys[e]].sr.base + template.sr.siz + template.sr.dex;
-	//				window.alert("updatenaturalWeapons: "+level+"  "+  template.baseSkills.attack+"  "+template.equipment[template.equipment.keys[e]].attack.base+"  "+ template.equipment[template.equipment.keys[e]].attack.prof);
+					//window.alert("updatenaturalWeapons: "+level+"  Current SR "+  template.equipment[template.equipment.keys[e]].sr.current+"  Base SR "+template.equipment[template.equipment.keys[e]].sr.base+"  Size SR"+ template.sr.siz +"   Dex SR "+template.sr.dex);
 				}
 			}else{
 //				window.alert("updatenaturalWeapons: "+template.equipment.keys[e].substring(0,template.equipment.keys[e].length-1));
@@ -794,7 +795,7 @@ function getDressed(t, d, p){
 			t = takePantsOff(t,d,p);
 		}else if(p[1].indexOf("lleg")> -1 || p[1].indexOf("rleg")> -1 || ( p[1].indexOf("abdom")> -1 && getArmorByLocation(t.body.hitLocations, "abdom", p[2]) == "Trews")){
 			t = takePantsOff(t,d,p);	
-		}else if(p[1].indexOf("chest")> -1 || p[1].indexOf("abdom2")> -1 || ( p[1].indexOf("abdom")> -1 && getArmorByLocation(t.body.hitLocations, "abdom", p[2]) == "Hauberk")){
+		}else if(p[3] == "Trews" && (p[1].indexOf("chest")> -1 || p[1].indexOf("abdom2")> -1) || ( p[1].indexOf("abdom")> -1 && getArmorByLocation(t.body.hitLocations, "abdom", p[2]) == "Hauberk")){
 			t = takeShirtOff(t,d,p);	
 //			window.alert("Test jsRQCreatureGen.getDressed: (1) "+p[1].indexOf("chest")+" | "+p[1].indexOf("rleg"));
 			if(p[3] == "Byrnie"  || p[3] == "Cuirass"){
