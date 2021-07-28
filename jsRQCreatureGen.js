@@ -192,7 +192,7 @@ function updateCreature(paramAry, template, doc, level){
 //		}
 		if(params[0] == "armor"){
 			template = getDressed(template, doc, params);
-//			window.alert("jsRQCreatureGen.updateCreature call getDressed Params2 "+params[2]+" Params3 "+params[3]);
+			template.error =template.error +"<br/>jsRQCreatureGen.updateCreature call getDressed Params2 "+params[2]+" Params3 "+params[3]);
 		}else if(params[0]=="shield" || params[0]=="melee"  ){
 //			window.alert("jsRQCreatureGen.updateCreature call updateWeaponsandshield");
 			 template = updateWeaponsAndShield(template, params, level);
