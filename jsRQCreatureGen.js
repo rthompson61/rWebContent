@@ -520,7 +520,6 @@ function updateMissileWeapons(template, params, level){
 				halfBonus = "-1d4";
 			}else{
 				halfBonus = (template.damageBonus.split("d"))[0]+"d3";
-//				halfBonus = template.damageBonus;
 			}
 			template.equipment[params[1]].damage= template.equipment[params[1]].damage+halfBonus;
 		}
