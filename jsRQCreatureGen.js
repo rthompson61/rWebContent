@@ -514,7 +514,7 @@ function updateMissileWeapons(template, params, level){
 		}
 		if(template.exp[level].damageBonus != "0"){
 			var halfBonus = "half";
-			halfBonus = template.damageBonus+"**";
+			halfBonus = template.exp[level].damageBonus+"**";
 //			if(template.damageBonus == "+1d4"){
 //				halfBonus = "+1d2";
 //			}else if(template.damageBonus == "-1d4"){
