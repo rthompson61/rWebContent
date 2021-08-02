@@ -513,15 +513,15 @@ function updateMissileWeapons(template, params, level){
 			template.equipment[params[1]].rate   = getRateOfFire(template.sr.dex);
 		}
 		if(template.damageBonus != "none" && template.equipment[params[1]].damBonus >0){
-			var halfBonus = "";
-			if(template.damageBonus == "+1d4"){
-				halfBonus = "+1d2";
-			}else if(template.damageBonus == "-1d4"){
-				halfBonus = "-1d4";
-			}else{
-				//halfBonus = String(template.damageBonus).split("d")[0]+"d3"+"_"+template.damageBonus;
-				halfBonus = template.damageBonus;
-			}
+			var halfBonus = "half";
+//			if(template.damageBonus == "+1d4"){
+//				halfBonus = "+1d2";
+//			}else if(template.damageBonus == "-1d4"){
+//				halfBonus = "-1d4";
+//			}else{
+//				//halfBonus = String(template.damageBonus).split("d")[0]+"d3"+"_"+template.damageBonus;
+//				halfBonus = template.damageBonus;
+//			}
 			template.equipment[params[1]].damage= template.equipment[params[1]].damage+halfBonus;
 		}
 
