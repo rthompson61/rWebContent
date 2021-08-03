@@ -206,6 +206,29 @@ function getTemplates(){
 	            	  chaos:1,
 				      error:""
 				     },
+					 {name: "Swarm, Tiny Centpedes",
+				      source:"D&D",
+				      characteristics:{
+				          	  str:{value:{}, nDice:0, szDice:0, mod: 0},
+				          	  con:{value:{}, nDice:3, szDice:6, mod: 0},
+				           	  siz:{value:{}, nDice:6, szDice:6, mod: 0},
+				           	  int:{value:{}, nDice:0, szDice:0, mod: 0},
+				           	  pow:{value:{}, nDice:3, szDice:6, mod: 0},
+				           	  dex:{value:{}, nDice:0, szDice:0, mod: 0},
+				           	  cha:{value:{}, nDice:0, szDice:0, mod: 0}
+				      },
+				      move:{base: 5, current:5},
+				      body:{type:"Ameboid",hitLocations:[], attacks:"Ameboid", naturalArmor:0},
+				      equipment:{keys:["naturalEnvelope"]},
+			          equipmentList:"",
+			          skills:{lists:[], set:[], required:[], prohibited:[]},
+			          magic:{uses:0, basicMagic:[]},
+		              treasureFactors:{multiAttack:0, special:1},
+		              mutations:{eBP:[]},
+		              special:"Gorp attack by moving next to a victim during movement phase.  If the victim fails a DEX roll the Gorp has enveloped it.  if the victim can still move on the second round, the victim can try another DEX roll.",
+	            	  chaos:1,
+				      error:""
+				     },
 				     {name: "Walktapus",
 					  source:"RuneQuest 2",
 					  characteristics:{
