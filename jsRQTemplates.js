@@ -225,7 +225,7 @@ function getTemplates(){
 			          magic:{uses:0, basicMagic:[]},
 		              treasureFactors:{multiAttack:0, special:1},
 		              mutations:{eBP:[]},
-		              special:"Centipede swarms hve a radius in meters equal to their Size.  They attack all within that area with a bite that does no damage, but which injects Manticore poison.",
+		              special:"Centipede swarms hve a radius in meters equal to their Size.  They attack all within that area with a bite that does no damage, but which injects Manticore poison.  Physical attacks to one point of damage or two on a critical hit.  Disruption only causes one point of damage. The centipedes will not cross barriers of fire or water and may be destroyed wholesale by certain attacks.",
 	            	  chaos:1,
 				      error:""
 				     },
