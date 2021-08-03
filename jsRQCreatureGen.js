@@ -796,7 +796,7 @@ function getDressed(t, d, p){
 			t = takePantsOff(t,d,p);
 		}else if(p[2] != "Trews" && (p[1].indexOf("lleg")> -1 || p[1].indexOf("rleg")> -1) || ( p[1].indexOf("abdom")> -1 && getArmorByLocation(t.body.hitLocations, "abdom", p[2]) == "Trews")){
 			t = takePantsOff(t,d,p);	
-			window.alert("Test jsRQCreatureGen.getDressed: (1 TREWS) "+ " Params2 "+p[2]+"  Params3 "+p[3];
+			window.alert("Test jsRQCreatureGen.getDressed: (1 TREWS) "+ " Params2 "+p[2]+"  Params3 "+p[3]);
 		}else if(p[1].indexOf("chest")> -1 || p[1].indexOf("abdom2")> -1 || ( p[1].indexOf("abdom")> -1 && getArmorByLocation(t.body.hitLocations, "abdom", p[2]) == "Hauberk")){
 			t = takeShirtOff(t,d,p);	
 			if(p[3] == "Byrnie"  || p[3] == "Cuirass"){
