@@ -219,7 +219,7 @@ function getTemplates(){
 				      },
 				      move:{base: 5, current:5},
 				      body:{type:"Ameboid",hitLocations:[], attacks:"Ameboid", naturalArmor:0},
-				      equipment:{keys:["naturalEnvelope"]},
+				      equipment:{keys:["naturalBite0"]},
 			          equipmentList:"",
 			          skills:{lists:[], set:[], required:[], prohibited:[]},
 			          magic:{uses:0, basicMagic:[]},
@@ -1891,6 +1891,8 @@ function setAttacks(equipment){
 			}else if(equipment.keys[k].indexOf("natural")> -1){
 				if(equipment.keys[k] == "naturalBite10"){
 					equipment[equipment.keys[k]] = {name:"Bite", ap:0, enc:0, attack:{base:30, current:0, prof:10}, parry:{base:-1, current:0, prof:0}, damage:"1d10", ammo:0, sr:{base:4, current:4}};
+				}else if(equipment.keys[k] == "naturalBite0"){
+					equipment[equipment.keys[k]] = {name:"Bite", ap:0, enc:0, attack:{base:15, current:25, prof:0}, parry:{base:-1, current:0, prof:0}, damage:"0", ammo:0, sr:{base:4, current:4}};
 				}else if(equipment.keys[k] == "naturalBite4"){
 					equipment[equipment.keys[k]] = {name:"Bite", ap:0, enc:0, attack:{base:15, current:25, prof:0}, parry:{base:-1, current:0, prof:0}, damage:"1d4", ammo:0, sr:{base:4, current:4}};
 				}else if(equipment.keys[k] == "naturalBite2d4"){
