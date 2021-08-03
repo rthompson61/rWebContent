@@ -206,14 +206,14 @@ function getTemplates(){
 	            	  chaos:1,
 				      error:""
 				     },
-					 {name: "Swarm, Tiny Centpedes",
+					 {name: "Swarm, Tiny Centipedes",
 				      source:"D&D",
 				      characteristics:{
 				          	  str:{value:{}, nDice:0, szDice:0, mod: 0},
-				          	  con:{value:{}, nDice:3, szDice:6, mod: 0},
-				           	  siz:{value:{}, nDice:6, szDice:6, mod: 0},
+				          	  con:{value:{}, nDice:2, szDice:6, mod: 0},
+				           	  siz:{value:{}, nDice:1, szDice:6, mod: 0},
 				           	  int:{value:{}, nDice:0, szDice:0, mod: 0},
-				           	  pow:{value:{}, nDice:3, szDice:6, mod: 0},
+				           	  pow:{value:{}, nDice:1, szDice:6, mod: 0},
 				           	  dex:{value:{}, nDice:0, szDice:0, mod: 0},
 				           	  cha:{value:{}, nDice:0, szDice:0, mod: 0}
 				      },
@@ -225,7 +225,7 @@ function getTemplates(){
 			          magic:{uses:0, basicMagic:[]},
 		              treasureFactors:{multiAttack:0, special:1},
 		              mutations:{eBP:[]},
-		              special:"Gorp attack by moving next to a victim during movement phase.  If the victim fails a DEX roll the Gorp has enveloped it.  if the victim can still move on the second round, the victim can try another DEX roll.",
+		              special:"Centipede swarms hve a radius in meters equal to their Size.  They attack all within that area with a bite that does no damage, but which injects Manticore poison.",
 	            	  chaos:1,
 				      error:""
 				     },
