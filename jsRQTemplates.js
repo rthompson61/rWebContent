@@ -451,7 +451,7 @@ function getTemplates(){
 			              special:"A demi-bird will peck and kick one or two foes at the same time.",
 						  error:""
 					     },
-					 {name: "A1-Demon, Manes",
+					 {name: "A2-Demon, Manes",
 				      source:"AD&D",
 					  characteristics:{
 					      str:{value:{}, nDice:3, szDice:6, mod: 6},
