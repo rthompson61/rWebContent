@@ -932,7 +932,7 @@ function setSkillLevel(prevObjAry, curObjAry, step, baseSkills){
 				cx = c;
 				for(var p = 0; p < prevObjAry.length; p++){
 					px = p;
-					window.alert(cx+":"+px);
+//					window.alert(cx+":"+px);
 					if(prevObjAry[p] !== undefined){
 //					window.alert("setSkillLevel 4: "+prevObjAry.length+" "+p+" "+prevObjAry[p].name);
 						if(prevObjAry[p].name == curObjAry[c].name ){
@@ -957,7 +957,7 @@ function setSkillLevel(prevObjAry, curObjAry, step, baseSkills){
 					tObj.name = curObjAry[c].name;
 					tObj.type = curObjAry[c].type;
 					objAry.push(tObj);
-//					window.alert("setSkillLevel 7: "+curObjAry.length+" "+c+" "+curObjAry[c].name);
+					window.alert("setSkillLevel 7: "+curObjAry.length+" "+c+" "+curObjAry[c].name);
 				}
 			}
 		}
