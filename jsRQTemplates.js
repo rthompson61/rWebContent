@@ -206,26 +206,26 @@ function getTemplates(){
 	            	  chaos:1,
 				      error:""
 				     },
-					 {name: "Swarm, Tiny Centipedes",
+					 {name: "Giant Centipede",
 				      source:"D&D",
 				      characteristics:{
-				          	  str:{value:{}, nDice:0, szDice:0, mod: 0},
+				          	  str:{value:{}, nDice:2, szDice:6, mod: 0},
 				          	  con:{value:{}, nDice:2, szDice:6, mod: 0},
 				           	  siz:{value:{}, nDice:1, szDice:6, mod: 0},
-				           	  int:{value:{}, nDice:0, szDice:0, mod: 0},
+				           	  int:{value:{}, nDice:0, szDice:0, mod: 1},
 				           	  pow:{value:{}, nDice:1, szDice:6, mod: 0},
-				           	  dex:{value:{}, nDice:0, szDice:0, mod: 0},
+				           	  dex:{value:{}, nDice:2, szDice:6, mod: 0},
 				           	  cha:{value:{}, nDice:0, szDice:0, mod: 0}
 				      },
 				      move:{base: 5, current:5},
-				      body:{type:"Ameboid",hitLocations:[], attacks:"Ameboid", naturalArmor:0},
-				      equipment:{keys:["naturalBite0"]},
+				      body:{type:"Snake",hitLocations:[], attacks:"Snake", naturalArmor:0},
+				      equipment:{keys:["naturalBite2"]},
 			          equipmentList:"",
 			          skills:{lists:[], set:[], required:[], prohibited:[]},
 			          magic:{uses:0, basicMagic:[]},
 		              treasureFactors:{multiAttack:0, special:1},
 		              mutations:{eBP:[]},
-		              special:"Centipede swarms hve a radius in meters equal to their Size.  They attack all within that area with a bite that does no damage, but which injects Manticore poison.  Physical attacks to one point of damage or two on a critical hit.  Disruption only causes one point of damage. The centipedes will not cross barriers of fire or water and may be destroyed wholesale by certain attacks.",
+		              special:"The bite injects a very weak Manticore poison. If a character's CON is reduced to or below 0, they are incapacitated, but not dead.  They recover at the normal rate.",
 	            	  chaos:1,
 				      error:""
 				     },
@@ -1891,8 +1891,8 @@ function setAttacks(equipment){
 			}else if(equipment.keys[k].indexOf("natural")> -1){
 				if(equipment.keys[k] == "naturalBite10"){
 					equipment[equipment.keys[k]] = {name:"Bite", ap:0, enc:0, attack:{base:30, current:0, prof:10}, parry:{base:-1, current:0, prof:0}, damage:"1d10", ammo:0, sr:{base:4, current:4}};
-				}else if(equipment.keys[k] == "naturalBite0"){
-					equipment[equipment.keys[k]] = {name:"Bite", ap:0, enc:0, attack:{base:15, current:25, prof:0}, parry:{base:-1, current:0, prof:0}, damage:"0", ammo:0, sr:{base:4, current:4}};
+				}else if(equipment.keys[k] == "naturalBite2"){
+					equipment[equipment.keys[k]] = {name:"Bite", ap:0, enc:0, attack:{base:15, current:25, prof:0}, parry:{base:-1, current:0, prof:0}, damage:"1d2", ammo:0, sr:{base:4, current:4}};
 				}else if(equipment.keys[k] == "naturalBite4"){
 					equipment[equipment.keys[k]] = {name:"Bite", ap:0, enc:0, attack:{base:15, current:25, prof:0}, parry:{base:-1, current:0, prof:0}, damage:"1d4", ammo:0, sr:{base:4, current:4}};
 				}else if(equipment.keys[k] == "naturalBite2d4"){
