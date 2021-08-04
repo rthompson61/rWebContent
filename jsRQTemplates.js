@@ -217,7 +217,7 @@ function getTemplates(){
 				           	  dex:{value:{}, nDice:2, szDice:6, mod: 0},
 				           	  cha:{value:{}, nDice:0, szDice:0, mod: 0}
 				      },
-				      move:{base: 5, current:5},
+				      move:{base: 8, current:8},
 				      body:{type:"Snake",hitLocations:[], attacks:"Snake", naturalArmor:0},
 				      equipment:{keys:["naturalBite2"]},
 			          equipmentList:"",
@@ -451,6 +451,28 @@ function getTemplates(){
 			              special:"A demi-bird will peck and kick one or two foes at the same time.",
 						  error:""
 					     },
+					 {name: "Demon, Manes",
+				      source:"AD&D",
+					  characteristics:{
+					      str:{value:{}, nDice:3, szDice:6, mod: 6},
+					      con:{value:{}, nDice:3, szDice:6, mod: 0},
+					      siz:{value:{}, nDice:2, szDice:4, mod: 6},
+					      int:{value:{}, nDice:3, szDice:6, mod: 0},
+					      pow:{value:{}, nDice:1, szDice:6, mod: 0},
+					      dex:{value:{}, nDice:3, szDice:6, mod: 0},
+					      cha:{value:{}, nDice:1, szDice:6, mod: 0}
+					  },
+				      move:{base: 8, current:8},
+					  body:{type:"Humanoid",hitLocations:[], attacks:"Humanoid", naturalArmor:4},
+					  equipment:{keys:["naturalBite4","naturalClaw3","naturalClaw3"]},
+			          equipmentList:"",
+			          skills:{lists:["all", "animal"], set:[], required:[], prohibited:[]},
+			          magic:{uses:0, basicMagic:[]},
+		              treasureFactors:{multiAttack:2, special:0},
+		              mutations:{eBP:[]},
+   			      special:"A Manes demon can only be damaged by magic weapons, or weapons with Bladesharp, Bludgeon, etc cast on them. Only the magically created missiles in a Multimissile spell can cause damage.",
+				      error:""
+					 },
 				 {name: "Dream Dragon",
 				      source:"RuneQuest 2",
 					  characteristics:{
