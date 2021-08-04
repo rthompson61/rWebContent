@@ -451,7 +451,7 @@ function getTemplates(){
 			              special:"A demi-bird will peck and kick one or two foes at the same time.",
 						  error:""
 					     },
-					 {name: "Demon-Manes",
+					 {name: "A-Demon, Manes",
 				      source:"AD&D",
 					  characteristics:{
 					      str:{value:{}, nDice:3, szDice:6, mod: 6},
@@ -466,7 +466,7 @@ function getTemplates(){
 					  body:{type:"Humanoid",hitLocations:[], attacks:"Humanoid", naturalArmor:4},
 					  equipment:{keys:["naturalBite4","naturalClaw3","naturalClaw3"]},
 			          equipmentList:"",
-			          skills:{lists:["all", "animal"], set:[], required:[], prohibited:[]},
+				 skills:{lists:["all",  "animal"], set:[], required:[], prohibited:[]},
 			          magic:{uses:0, basicMagic:[]},
 		              treasureFactors:{multiAttack:2, special:0},
 		              mutations:{eBP:[]},
