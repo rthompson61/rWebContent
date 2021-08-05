@@ -454,10 +454,10 @@ function getTemplates(){
 					 {name: "Demon, Manes",
 				      source:"AD&D",
 					  characteristics:{
-					      str:{value:{}, nDice:3, szDice:6, mod: 6},
+					      str:{value:{}, nDice:2, szDice:6, mod: 0},
 					      con:{value:{}, nDice:3, szDice:6, mod: 0},
-					      siz:{value:{}, nDice:2, szDice:4, mod: 6},
-					      int:{value:{}, nDice:3, szDice:6, mod: 0},
+					      siz:{value:{}, nDice:2, szDice:4, mod: 0},
+					      int:{value:{}, nDice:2, szDice:6, mod: 0},
 					      pow:{value:{}, nDice:1, szDice:6, mod: 0},
 					      dex:{value:{}, nDice:3, szDice:6, mod: 0},
 					      cha:{value:{}, nDice:1, szDice:6, mod: 0}
