@@ -674,7 +674,29 @@ function getTemplates(){
 	            	  chaos:1,
 		              error:""
 		             },
-				 {name: "Griffin",
+			 {name: "Giant Rat",
+			      source:"AD&D",
+				  characteristics:{
+					  str:{value:{}, nDice:1, szDice:6, mod: 0},
+					  con:{value:{}, nDice:3, szDice:6, mod: 0},
+					  siz:{value:{}, nDice:1, szDice:4, mod: 0},
+					  int:{value:{}, nDice:0, szDice:6, mod: 1},						       	  
+					  pow:{value:{}, nDice:2, szDice:6, mod: 0},
+					  dex:{value:{}, nDice:2, szDice:6, mod: 6},
+					  cha:{value:{}, nDice:0, szDice:6, mod: 0}
+				  },
+				  move:{base: 8, current:8},
+				  body:{type:"Quadruped",hitLocations:[], attacks:"Giant Rat", naturalArmor:2},
+				  equipment:{keys:["naturalBite4"]},
+				  equipmentList:"",
+				  skills:{lists:["all",  "animal"], set:[], required:[], prohibited:[]},
+				  magic:{uses:0, basicMagic:[]},
+		      treasureFactors:{multiAttack:0, special:1},
+		      mutations:{eBP:[]},
+		      special:"Charcaters bitten by giant rates a a 5% chance per point of damage of contracting Wasting Disease.",
+				  error:""
+				 },
+		 {name: "Griffin",
 				      source:"RuneQuest 2",
 					  characteristics:{
 					       	  str:{value:{}, nDice:8, szDice:6, mod: 0},

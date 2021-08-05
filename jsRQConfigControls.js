@@ -180,7 +180,7 @@ function cultureControl(race){
 function getExperienceLevels(bgRace){
 	try{
 		var exp = ["experienceLevel","updateSkills", "","Novice","Trained","Blooded","Experienced", "Veteran","Master","Exemplar"];
-		var animals = ["Basilisk", "Bison", "Bolo Lizard", "Cliff Toad", "Cockatrice", "Demi-bird", "Demon, Manes", "Dragonsnail", "Dream Dragon", "Ghoul", "Gorp", "High Llama", "Horse", "Horse, War", "Impala", "Jack O'Bear", "Rhino", "Rock Lizard", "Rubble Runner", "Sable", "Shadow Cat", "Skeleton", "Sky Bull", "Snake", "Tusker", "Unicorn", "Wyrm", "Wyvern", "Zombie" ];
+		var animals = ["Basilisk", "Bison", "Bolo Lizard", "Cliff Toad", "Cockatrice", "Demi-bird", "Demon, Manes", "Dragonsnail", "Dream Dragon", "Ghoul", "Giant Rat", "Gorp", "High Llama", "Horse", "Horse, War", "Impala", "Jack O'Bear", "Rhino", "Rock Lizard", "Rubble Runner", "Sable", "Shadow Cat", "Skeleton", "Sky Bull", "Snake", "Tusker", "Unicorn", "Wyrm", "Wyvern", "Zombie" ];
 		 if(bgRace == "Dragonewt"){
 			 exp = ["experienceLevel","updateSkills", "","Crested","Beaked","Tailed Priest","Full Priest", "Inhuman King"];
 		 }else{
