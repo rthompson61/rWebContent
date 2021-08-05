@@ -886,7 +886,7 @@ function getTemplates(){
 		              },
 		              move:{base:6, current:6},
   				      body:{type:"Humanoid",hitLocations:[], attacks:"Humanoid", naturalArmor:0},
-		              equipment:{keys:["naturalClaw4"]},
+		              equipment:{keys:["naturalClaw3"]},
 	            	  equipmentList:"",
 	            	  skills:{lists:["all", "sentient", "animal"], set:[], required:[], prohibited:[]},
 	            	  magic:{uses:1, basicMagic:[]},
