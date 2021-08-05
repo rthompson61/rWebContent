@@ -873,6 +873,28 @@ function getTemplates(){
 		              special:"",
 			          error:""
 			         },
+		             {name: "Mogura-Jin",
+		              source:"Grimsgate Adventure",
+		              characteristics:{
+		            	  str:{value:{}, nDice:3, szDice:6, mod: 0},
+		            	  con:{value:{}, nDice:3, szDice:6, mod: 0},
+		            	  siz:{value:{}, nDice:3, szDice:4, mod: 0},
+		            	  int:{value:{}, nDice:3, szDice:6, mod: 0},
+		            	  pow:{value:{}, nDice:3, szDice:6, mod: 0},
+		            	  dex:{value:{}, nDice:3, szDice:6, mod: 0},
+		            	  cha:{value:{}, nDice:3, szDice:6, mod: 0}
+		              },
+		              move:{base:6, current:6},
+  				      body:{type:"Humanoid",hitLocations:[], attacks:"Humanoid", naturalArmor:0},
+		              equipment:{keys:["naturalClaw4"]},
+	            	  equipmentList:"",
+	            	  skills:{lists:["all", "sentient", "animal"], set:[], required:[], prohibited:[]},
+	            	  magic:{uses:1, basicMagic:[]},
+		              treasureFactors:{multiAttack:0, special:0},
+		              mutations:{eBP:[]},
+			      special:"Cannibal molemen from Swords & Wizardy Grimmsgate adventure scenario. Can see in total darkness. Blinded by bright light.  They are squat beings with bright red eyes, no body hair and clawed hands.  They prefer to burrow under enemies to attack by surprise. ",
+		              error:""
+		             },
 		         {name: "Morokanth",
 					  source:"RuneQuest 2",
 			          characteristics:{
