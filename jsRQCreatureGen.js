@@ -202,10 +202,8 @@ function updateCreature(paramAry, template, doc, level){
 		}
 		var e = doc.activeElement;
 		if(e != undefined){e.options[e.selectedIndex].value}
-//		window.alert("jsRQCreatureGen_updateCreature call updateEnc");
 		template = updateEnc(template, level);
-//		template.error = template.error +"<br/> jsRQCreatureGen_updateCreature 2 "+Object.getOwnPropertyNames(template.enc);//+" 1>"+template.enc.max+" 2>"+template.enc.current=":";
-
+		
 		template.exp[level].tf = getTreasureFactors(template, level);
 		return template
 	}catch(err){
