@@ -202,7 +202,7 @@ function updateCreature(paramAry, template, doc, level){
 		}
 		var e = doc.activeElement;
 		if(e != undefined){e.options[e.selectedIndex].value}
-		window.alert("jsRQCreatureGen_updateCreature call updateEnc");
+//		window.alert("jsRQCreatureGen_updateCreature call updateEnc");
 		template = updateEnc(template, level);
 		window.alert("jsRQCreatureGen_updateCreature call "+template.enc+" 1>"+template.enc.max+" 2>"+template.enc.current=":" );
 
