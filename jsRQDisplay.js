@@ -44,6 +44,10 @@ function formatPreResults2(template, level){
 					}
 				}else if(lines[ln].elements[ele].type=="t_c"){
 					subEl = formatFixedLengthElement(3,0,[template.exp[level][lines[ln].elements[ele].el]]);
+					if(el == "enc"){
+						template.error = template.error +"<br/> jsRQCDisplay 1 "+Object.getOwnPropertyNames(template.enc);//+" 1>"+template.enc.max+" 2>"+template.enc.current=":";
+					}
+
 				}
 				line = line+formatFixedLengthElement(12,1,[lines[ln].elements[ele].label,subEl]);
 			}
