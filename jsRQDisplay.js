@@ -45,7 +45,13 @@ function formatPreResults2(template, level){
 				}else if(lines[ln].elements[ele].type=="t_c"){
 					subEl = formatFixedLengthElement(3,0,[template.exp[level][lines[ln].elements[ele].el]]);
 					if(lines[ln].elements[ele].el == "enc"){
-						template.error = template.error +"<br/> jsRQCDisplay 3 "+Object.getOwnPropertyNames(template.enc)+" 1>"+Object.values(template.enc);
+						template.error = template.error +"<br/> jsRQCDisplay 4 "+Object.getOwnPropertyNames(template.enc);//+" 1>"+Object.values(template.enc);
+						if(template.enc.max !== 'undefined'){
+							template.error = template.error +" Max>"+template.enc.max;
+						}
+						if(template.enc.current !== 'undefined'){
+							template.error = template.error +" Current>"template.enc.current;
+						}
 					}
 
 				}
