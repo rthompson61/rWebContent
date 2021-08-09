@@ -52,7 +52,7 @@ function formatPreResults2(template, level){
 						maxEnc = formatFixedLengthElement(3,0,[template.exp[level][lines[ln].elements[ele].el]]);
 						if(template.enc.current !== 'undefined'){
 //							template.error = template.error +" Current>"+template.enc.current;
-							subEl = formatFixedLengthElement(3,0,template.enc.current);
+							subEl = formatFixedLengthElement(3,0,[template.enc.current]);
 						}else{
 							subEl = formatFixedLengthElement(3,0,[template.exp[level][lines[ln].elements[ele].el]]);
 						}
