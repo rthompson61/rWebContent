@@ -26,6 +26,7 @@ function formatPreResults2(template, level){
 		var subEl = "";
 		var colorStr = 0;
 		var colors = [];
+		var maxEnc = 0;  // lost track of where I'm setting values so using this kludge
 		r = r +"<br/>";//12345678901234567890123456789012345678901<br/>";
 		for(var ln = 0; ln < lines.length; ln++){
 			for(var ele=0; ele<lines[ln].elements.length; ele++){
@@ -43,7 +44,21 @@ function formatPreResults2(template, level){
 						subEl = formatFixedLengthElement(3,0,[template[lines[ln].elements[ele].el]]);
 					}
 				}else if(lines[ln].elements[ele].type=="t_c"){
-					subEl = formatFixedLengthElement(3,0,[template.exp[level][lines[ln].elements[ele].el]]);
+					if(lines[ln].elements[ele].el == "enc"){
+//						template.error = template.error +"<br/> jsRQCDisplay 4 "+Object.getOwnPropertyNames(template.enc);//+" 1>"+Object.values(template.enc);
+//						if(template.enc.max !== 'undefined'){
+//							template.error = template.error +" Max>"+template.enc.max;
+//						}
+						maxEnc = formatFixedLengthElement(3,0,[template.exp[level][lines[ln].elements[ele].el]]);
+						if(template.enc.current !== 'undefined'){
+//							template.error = template.error +" Current>"+template.enc.current;
+							subEl = formatFixedLengthElement(3,0,[template.enc.current]);
+						}else{
+							subEl = formatFixedLengthElement(3,0,[template.exp[level][lines[ln].elements[ele].el]]);
+						}
+					}else{
+						subEl = formatFixedLengthElement(3,0,[template.exp[level][lines[ln].elements[ele].el]]);
+					}
 				}
 				line = line+formatFixedLengthElement(12,1,[lines[ln].elements[ele].label,subEl]);
 			}
@@ -138,7 +153,7 @@ function formatPreResults2(template, level){
 		 r = r + "<br/><br/>Base Attack "+template.exp[level].attack+"&nbsp;&nbsp;Base Parry "+template.exp[level].parry+";";//"&nbsp;&nbsp;Base Defense "+template.defense.base+"&nbsp;&nbsp;Damage Bonus "+template.exp[level].damageBonus+"<br/>";
 		 r = r + "Base Manipulation "+template.exp[level].manipulation+"&nbsp;&nbsp;Base Stealth "+template.exp[level].stealth+"&nbsp;&nbsp;Base Knowledge "+template.exp[level].knowledge+"<br/>";
 		 r = r + "Base Perception "+template.exp[level].perception+"&nbsp;&nbsp;Base Oratory "+template.exp[level].oratory+" ";
-		 r = r + "Base Move "+template.move.base;//+"&nbsp;&nbsp;Max Encumbrance "+template.enc.max+"<br/>";
+		 r = r + "Base Move "+template.move.base+"&nbsp;&nbsp;Max Encumbrance "+maxEnc+"<br/>";
 		 r = r + "<br/>Strike Rank (SIZ) "+template.exp[level].sr.siz+"&nbsp;&nbsp;Strike rank (DEX) "+template.exp[level].sr.dex;//+"&nbsp;&nbsp;Treasure Factors "+template.tf;
 
 		r= r+ "</pre>";

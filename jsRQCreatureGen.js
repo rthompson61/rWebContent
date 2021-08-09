@@ -203,7 +203,7 @@ function updateCreature(paramAry, template, doc, level){
 		var e = doc.activeElement;
 		if(e != undefined){e.options[e.selectedIndex].value}
 		template = updateEnc(template, level);
-
+		
 		template.exp[level].tf = getTreasureFactors(template, level);
 		return template
 	}catch(err){
