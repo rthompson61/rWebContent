@@ -53,6 +53,7 @@ function formatPreResults2(template, level){
 						if(template.enc.current !== 'undefined'){
 //							template.error = template.error +" Current>"+template.enc.current;
 							subEl = formatFixedLengthElement(3,0,[template.enc.current]);
+							template.error = template.error +"<br/> jsRQCDisplay 5 "+subEl.length;
 						}else{
 							subEl = formatFixedLengthElement(3,0,[template.exp[level][lines[ln].elements[ele].el]]);
 						}
