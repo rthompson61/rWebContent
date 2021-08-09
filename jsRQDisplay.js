@@ -50,7 +50,7 @@ function formatPreResults2(template, level){
 							template.error = template.error +" Max>"+template.enc.max;
 						}
 						if(template.enc.current !== 'undefined'){
-							template.error = template.error +" Current>"template.enc.current;
+							template.error = template.error +" Current>"+template.enc.current;
 						}
 					}
 
