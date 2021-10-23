@@ -83,7 +83,8 @@ function genStats(templateName){
 			template.exp[explvls[el]].knowledge = template.exp[explvls[el]].perception;
 			template.exp[explvls[el]].hp = template.characteristics.con.value[explvls[el]]+generalBonusCalc(template.characteristics.siz.value[explvls[el]], -2, 1, 1)+generalBonusCalc(template.characteristics.pow.value[explvls[el]], -1, 1, 1);
 			template.exp[explvls[el]].damageBonus = damageBonusCalc(template.characteristics.str.value[explvls[el]], template.characteristics.siz.value[explvls[el]]);
-			template.exp[explvls[el]].enc = calcMaxEnc(template.characteristics.str.value[explvls[el]],template.characteristics.con.value[explvls[el]]);
+			template.enc.max = calcMaxEnc(template.characteristics.str.value[explvls[el]],template.characteristics.con.value[explvls[el]]);
+   		template.exp[explvls[el]].enc = calcMaxEnc(template.characteristics.str.value[explvls[el]],template.characteristics.con.value[explvls[el]]);
 			template.exp[explvls[el]].sr = {};
 			template.exp[explvls[el]].sr.siz = calcStrikeRank(template.characteristics.siz.value[explvls[el]], "siz");
 			template.exp[explvls[el]].sr.dex = calcStrikeRank(template.characteristics.dex.value[explvls[el]], "dex");
@@ -389,6 +390,7 @@ function updateEnc(template, level){
 		}
 		template.enc.current = Math.ceil(template.enc.current);
 		var encPenalty = Number(template.enc.current) - Number(template.enc.max);
+	//	template.error = template.error+"<br/>Enc Penalty: "+encPenalty;
 		if(encPenalty > 0){
 			template.move.current = template.move.base - encPenalty;
 			template.defense.current = template.defense.base - (5*encPenalty);
@@ -401,6 +403,8 @@ function updateEnc(template, level){
 //					template.error = template.error+"<br/>Encumbrance calc. "+template.equipment[keys[j]].name+" Penalty "+encPenalty+" Base SR: "+template.equipment[keys[j]].sr.base+" Base Atk: "+template.equipment[keys[j]].attack.base+" Base Parry: "+template.equipment[keys[j]].parry.base;
 				}
 			}
+		}else{
+  //     template.error = template.error+"<br/>Encumbrance: "+template.enc.current+"-"+template.enc.max;
 		}
 		if(Number(template.enc.current) > 1.5*Number(template.characteristics.str.value)){
 			template.error = template.error+"<br/>Too many things! - Encumbrance cannot exceed "+Math.ceil(1.5*Number(template.characteristics.str.value));  
