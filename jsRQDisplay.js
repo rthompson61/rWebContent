@@ -57,8 +57,15 @@ function formatPreResults2(template, level){
 						}else{
 							subEl = formatFixedLengthElement(3,0,[template.exp[level][lines[ln].elements[ele].el]]);
 						}
+					}else if(lines[ln].elements[ele].el == "move"){
+                                                if (template.move.current !== 'undefined') {
+                                                       subEl = formatFixedLengthElement(3, 0, [template.move.current]);
+                                                } else {
+                                                       subEl = formatFixedLengthElement(3, 0, [template.exp[level][lines[ln].elements[ele].el]]);
+                                                }
 					}else{
-						subEl = formatFixedLengthElement(3,0,[template.exp[level][lines[ln].elements[ele].el]]);
+					  //Defense
+                                                subEl = formatFixedLengthElement(3, 0, [template.exp[level][lines[ln].elements[ele].el]]);
 					}
 				}
 				line = line+formatFixedLengthElement(12,1,[lines[ln].elements[ele].label,subEl]);
