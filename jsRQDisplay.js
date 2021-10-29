@@ -58,14 +58,20 @@ function formatPreResults2(template, level){
 							subEl = formatFixedLengthElement(3,0,[template.exp[level][lines[ln].elements[ele].el]]);
 						}
 					}else if(lines[ln].elements[ele].el == "move"){
-                                                if (template.move.current !== 'undefined') {
-                                                       subEl = formatFixedLengthElement(3, 0, [template.move.current]);
-                                                } else {
-                                                       subEl = formatFixedLengthElement(3, 0, [template.exp[level][lines[ln].elements[ele].el]]);
-                                                }
+               if (template.move.current !== 'undefined') {
+                 subEl = formatFixedLengthElement(3, 0, [template.move.current]);
+//                 subEl = formatFixedLengthElement(3, 0, [template.exp[level][lines[ln].elements[ele].el]]);
+      	//				template.error = template.error +" Current>"+template.move.current;
+               } else {
+                 subEl = formatFixedLengthElement(3, 0, [template.exp[level][lines[ln].elements[ele].el]]);
+               }
 					}else{
 					  //Defense
-                                                subEl = formatFixedLengthElement(3, 0, [template.exp[level][lines[ln].elements[ele].el]]);
+					     if(template.defense.current !== 'undefined'){
+					       subEl = formatFixedLengthElement(3,0, [template.exp[level].defenseCurrent]);
+					     }else{
+                 subEl = formatFixedLengthElement(3, 0, [template.exp[level][lines[ln].elements[ele].el]]);
+					     }
 					}
 				}
 				line = line+formatFixedLengthElement(12,1,[lines[ln].elements[ele].label,subEl]);
@@ -158,10 +164,10 @@ function formatPreResults2(template, level){
 		 }
 		 
 		 
-		 r = r + "Git Test<br/><br/>Base Attack "+template.exp[level].attack+"&nbsp;&nbsp;Base Parry "+template.exp[level].parry+";";//"&nbsp;&nbsp;Base Defense "+template.defense.base+"&nbsp;&nbsp;Damage Bonus "+template.exp[level].damageBonus+"<br/>";
+		 r = r + "<br/><br/>Base Attack "+template.exp[level].attack+"&nbsp;&nbsp;Base Parry "+template.exp[level].parry+";";//"&nbsp;&nbsp;Base Defense "+template.defense.base+"&nbsp;&nbsp;Damage Bonus "+template.exp[level].damageBonus+"<br/>";
 		 r = r + "Base Manipulation "+template.exp[level].manipulation+"&nbsp;&nbsp;Base Stealth "+template.exp[level].stealth+"&nbsp;&nbsp;Base Knowledge "+template.exp[level].knowledge+"<br/>";
 		 r = r + "Base Perception "+template.exp[level].perception+"&nbsp;&nbsp;Base Oratory "+template.exp[level].oratory+" ";
-		 r = r + "Base Move "+template.move.base+"&nbsp;&nbsp;Max Encumbrance "+maxEnc+"&nbsp;&nbsp;Base Defense "+baseDef+"<br/>"; 
+		 r = r + "Base Move "+template.move.base+"&nbsp;&nbsp;Max Encumbrance "+maxEnc+"&nbsp;&nbsp;Base Defense "+template.exp[level].defense+"<br/>"; 
 		 r = r + "<br/>Strike Rank (SIZ) "+template.exp[level].sr.siz+"&nbsp;&nbsp;Strike rank (DEX) "+template.exp[level].sr.dex;//+"&nbsp;&nbsp;Treasure Factors "+template.tf;
 
 		r= r+ "</pre>";
