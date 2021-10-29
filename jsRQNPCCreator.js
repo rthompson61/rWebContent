@@ -52,8 +52,8 @@ function buildRQNPC(level, sc){
 		npc.meleeMove = 8; //assumes huanoid
 		npc.baseStrikeRank = setBaseStrikeRank(npc.sz, npc.dex);
 		//Encumbrance based calculations
-		npc.maxEncumbrance = Math.ceil((npc.str+npc.con)/2);
-		if(npc.maxEncumbrance > npc.str){npc.maxEncumbrance > npc.str;}
+		npc.maxEncumbrance = calcMaxEnc(npc.str,npc.con);
+		if(npc.maxEncumbrance > npc.str){npc.maxEncumbrance = npc.str;}
 		npc.encumbrance = setEncumbrance(npc.encumbrance, npc.equipment);
 		if(npc.encumbrance > npc.maxEncumbrance){ 
 			npc.meleeMove = npc.meleeMove - Math.ceil(npc.encumbrance-npc.maxEncumbrance);
