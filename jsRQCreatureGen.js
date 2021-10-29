@@ -84,7 +84,8 @@ function genStats(templateName){
 			template.exp[explvls[el]].hp = template.characteristics.con.value[explvls[el]]+generalBonusCalc(template.characteristics.siz.value[explvls[el]], -2, 1, 1)+generalBonusCalc(template.characteristics.pow.value[explvls[el]], -1, 1, 1);
 			template.exp[explvls[el]].damageBonus = damageBonusCalc(template.characteristics.str.value[explvls[el]], template.characteristics.siz.value[explvls[el]]);
 			template.enc.max = calcMaxEnc(template.characteristics.str.value[explvls[el]],template.characteristics.con.value[explvls[el]]);
-   		template.exp[explvls[el]].enc = calcMaxEnc(template.characteristics.str.value[explvls[el]],template.characteristics.con.value[explvls[el]]);
+   		template.exp[explvls[el]].enc = template.enc.max;//calcMaxEnc(template.characteristics.str.value[explvls[el]],template.characteristics.con.value[explvls[el]]);
+   		template.error = template.error+"<br/> Max ENC: "+template.enc.max;
 			template.exp[explvls[el]].sr = {};
 			template.exp[explvls[el]].sr.siz = calcStrikeRank(template.characteristics.siz.value[explvls[el]], "siz");
 			template.exp[explvls[el]].sr.dex = calcStrikeRank(template.characteristics.dex.value[explvls[el]], "dex");
@@ -110,7 +111,7 @@ function genStats(templateName){
 			 if(template.exp[explvls[el]].defense < 0){
 					template.exp[explvls[el]].defense = 0;
 				}
-			test = test +" Defense "+ template.exp[explvls[el]].defense+", ";
+			template.exp[explvls[el]].defenseCurrent = template.exp[explvls[el]].defense;
 		}
 		if(template != null){
 			template = getChaoticFeature(template);	
@@ -203,12 +204,13 @@ function updateCreature(paramAry, template, doc, level){
 		}
 		var e = doc.activeElement;
 		if(e != undefined){e.options[e.selectedIndex].value}
+	  template.error =template.error +"<br/>updateCreature: max enc " + template.enc.max;
 		template = updateEnc(template, level);
 		
 		template.exp[level].tf = getTreasureFactors(template, level);
 		return template
 	}catch(err){
-		template.error =template.error +"<br/>Error jsRQCreatureGen.updateCreature: " + err;
+	//	template.error =template.error +"<br/>Error jsRQCreatureGen.updateCreature: " + err;
 		return template;
 	}
 }
@@ -389,17 +391,18 @@ function updateEnc(template, level){
 			}
 		}
 		template.enc.current = Math.ceil(template.enc.current);
-		var encPenalty = Number(template.enc.current) - Number(template.enc.max);
-	//	template.error = template.error+"<br/>Enc Penalty: "+encPenalty;
-		if(encPenalty > 0){
+		
+		var encPenalty = Number(template.enc.current) - Number(template.exp[level].enc);
+	//	template.error = template.error+"<br/>Enc Penalty: "+template.enc.current+" - "+template.enc.max+ " = "+encPenalty + " | "+template.exp[level].enc;
+		if(encPenalty >= 0){
 			template.move.current = template.move.base - encPenalty;
-			template.defense.current = template.defense.base - (5*encPenalty);
+			template.exp[level].defenseCurrent = template.exp[level].defense - (5*encPenalty);
 			for(var j = 0; j < template.equipment.keys.length; j++){
 				if(template.equipment[keys[j]].name != ""){
-//					template.equipment[keys[j]].sr.current = Number(template.equipment[keys[j]].sr.current)+encPenalty;
-					template.equipment[keys[j]].sr.current = Number(template.equipment[keys[j]].sr.base) + Number(template.sr.siz) + Number(template.sr.dex)+encPenalty;
-//					template.equipment[keys[j]].attack.current = Number(template.equipment[keys[j]].attack.current)-(5*encPenalty);
-//					template.equipment[keys[j]].parry.current = Number(template.equipment[keys[j]].parry.current)-(5*encPenalty);
+					template.equipment[keys[j]].sr.current = Number(template.equipment[keys[j]].sr.current)+encPenalty;
+//					template.equipment[keys[j]].sr.current = Number(template.equipment[keys[j]].sr.base) + Number(template.sr.siz) + Number(template.sr.dex)+encPenalty;
+					template.equipment[keys[j]].attack.current = Number(template.equipment[keys[j]].attack.current)-(5*encPenalty);
+					template.equipment[keys[j]].parry.current = Number(template.equipment[keys[j]].parry.current)-(5*encPenalty);
 //					template.error = template.error+"<br/>Encumbrance calc. "+template.equipment[keys[j]].name+" Penalty "+encPenalty+" Base SR: "+template.equipment[keys[j]].sr.base+" Base Atk: "+template.equipment[keys[j]].attack.base+" Base Parry: "+template.equipment[keys[j]].parry.base;
 				}
 			}
@@ -576,10 +579,10 @@ function calcMaxEnc(str, con){
 	 */
 	try{
 		var max = 0;
-		if(Math.ceil((str+con)/2)> str) {
+		if(Math.ceil((str/2+con/2))> str) {
 			max = str;
 	    	}else{
-	    		max = Math.ceil((str+con)/2);
+	    		max = Math.ceil(str/2+con/2);
 	    	}
 		return max;
 	}catch(err){
