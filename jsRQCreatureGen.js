@@ -204,7 +204,7 @@ function updateCreature(paramAry, template, doc, level){
 		}
 		var e = doc.activeElement;
 		if(e != undefined){e.options[e.selectedIndex].value}
-	  template.error =template.error +"<br/>updateCreature: max enc " + template.enc.max;
+//	  template.error =template.error +"<br/>updateCreature: max enc " + template.enc.max;
 		template = updateEnc(template, level);
 		
 		template.exp[level].tf = getTreasureFactors(template, level);
