@@ -83,7 +83,9 @@ function genStats(templateName){
 			template.exp[explvls[el]].knowledge = template.exp[explvls[el]].perception;
 			template.exp[explvls[el]].hp = template.characteristics.con.value[explvls[el]]+generalBonusCalc(template.characteristics.siz.value[explvls[el]], -2, 1, 1)+generalBonusCalc(template.characteristics.pow.value[explvls[el]], -1, 1, 1);
 			template.exp[explvls[el]].damageBonus = damageBonusCalc(template.characteristics.str.value[explvls[el]], template.characteristics.siz.value[explvls[el]]);
-			template.exp[explvls[el]].enc = calcMaxEnc(template.characteristics.str.value[explvls[el]],template.characteristics.con.value[explvls[el]]);
+			template.enc.max = calcMaxEnc(template.characteristics.str.value[explvls[el]],template.characteristics.con.value[explvls[el]]);
+   		template.exp[explvls[el]].enc = template.enc.max;//calcMaxEnc(template.characteristics.str.value[explvls[el]],template.characteristics.con.value[explvls[el]]);
+   		template.error = template.error+"<br/> Max ENC: "+template.enc.max;
 			template.exp[explvls[el]].sr = {};
 			template.exp[explvls[el]].sr.siz = calcStrikeRank(template.characteristics.siz.value[explvls[el]], "siz");
 			template.exp[explvls[el]].sr.dex = calcStrikeRank(template.characteristics.dex.value[explvls[el]], "dex");
@@ -109,7 +111,7 @@ function genStats(templateName){
 			 if(template.exp[explvls[el]].defense < 0){
 					template.exp[explvls[el]].defense = 0;
 				}
-			test = test +" Defense "+ template.exp[explvls[el]].defense+", ";
+			template.exp[explvls[el]].defenseCurrent = template.exp[explvls[el]].defense;
 		}
 		if(template != null){
 			template = getChaoticFeature(template);	
@@ -184,15 +186,15 @@ function setAltValues(t){
 	}
 }
 
-function updateCreature(paramAry, template, doc, level){
+function updateCreature(paramAry, template, doc, level, label){
 	try{
 		var params = paramAry.split("-");
 //		if(template.name == "Dragonewt"){
 //			template = updateDragonewt(template, level);
 //		}
 		if(params[0] == "armor"){
-			template = getDressed(template, doc, params);
-//			window.alert("jsRQCreatureGen.updateCreature call getDressed Params2 "+params[2]+" Params3 "+params[3]);
+			template = getDressed(template, doc, params, label);
+//			window.alert("jsRQCreatureGen.updateCreature call getDressed "+ label+" "+params[3]);
 		}else if(params[0]=="shield" || params[0]=="melee"  ){
 //			window.alert("jsRQCreatureGen.updateCreature call updateWeaponsandshield");
 			 template = updateWeaponsAndShield(template, params, level);
@@ -202,16 +204,17 @@ function updateCreature(paramAry, template, doc, level){
 		}
 		var e = doc.activeElement;
 		if(e != undefined){e.options[e.selectedIndex].value}
+	//  template.error =template.error +"<br/>updateCreature: max enc " + template.enc.max;
 		template = updateEnc(template, level);
 		
 		template.exp[level].tf = getTreasureFactors(template, level);
 		return template
 	}catch(err){
-		template.error =template.error +"<br/>Error jsRQCreatureGen.updateCreature: " + err;
+	//	template.error =template.error +"<br/>Error jsRQCreatureGen.updateCreature: " + err;
 		return template;
 	}
 }
-function takePantsOff(template, doc, params){
+function takePantsOff(template, doc, params, label){
 	try{
 		var selContUpdate = 0;
 		var locs = ["lleg","rleg","abdom"];
@@ -221,7 +224,7 @@ function takePantsOff(template, doc, params){
 		for( var i = 0; i<locs.length; i++){
 			blankParams[2] = params[2];
 			blankParams[1] = locs[i];
-			template = updateArmor(template, blankParams);
+			template = updateArmor(template, blankParams, "");
 			if(locs[i] != params[1]){
 				if(params[2]==1){
 					locs[i] = "inner:"+locs[i];
@@ -246,7 +249,7 @@ function takePantsOff(template, doc, params){
 			doc.getElementById(trewsAry[1]).style.visibility = "hidden";
 			selContUpdate = updateSelectorToValue(doc,trewsAry[1], nullParams);
 		}
-		template = updateArmor(template, params);
+		template = updateArmor(template, params, label);
 		return template;
 	}catch(err){
 		template.error =template.error +"<br/>Error jsRQCreatureGen.takePantsOff: " + err;
@@ -254,7 +257,7 @@ function takePantsOff(template, doc, params){
 	}
 }
 
-function takeShirtOff(template, doc, params, trews){
+function takeShirtOff(template, doc, params, trews, label){
 	try{
 		var selContUpdate = 0;
 		var locs = ["chest","abdom", "abdom2"];
@@ -265,7 +268,7 @@ function takeShirtOff(template, doc, params, trews){
 			if(getArmorByLocation(template.body.hitLocations,locs[i],params[2])=="Hauberk"){
 				blankParams[2] = params[2];
 				blankParams[1] = locs[i];
-				template = updateArmor(template, blankParams);
+				template = updateArmor(template, blankParams, "");
 				if(locs[i] != params[1]){
 					if(params[2]==1){
 						locs[i] = "inner:"+locs[i];
@@ -284,7 +287,7 @@ function takeShirtOff(template, doc, params, trews){
 	}
 }
 
-function putPantsOn(template, doc, params, hauberk){
+function putPantsOn(template, doc, params, hauberk, label){
 	/*
 	 * hauberk: 0=no, 1= yes
 	 */
@@ -294,7 +297,7 @@ function putPantsOn(template, doc, params, hauberk){
 		for(var i = 0; i< locs.length; i++){
 			params[1] = locs[i];
 //			window.alert("jsRQCreatureGen.puPantsOn "+params[1]);
-			template = updateArmor(template, params);
+			template = updateArmor(template, params, label);
 			if(params[2]==1){
 				params[1] = "inner:"+params[1];
 			}
@@ -323,7 +326,7 @@ function putPantsOn(template, doc, params, hauberk){
 	}
 }
 
-function putShirtOn(template, doc, params, trews){
+function putShirtOn(template, doc, params, trews, label){
 	/*
 	 * trews: 0=no, 1= yes
 	 */
@@ -333,7 +336,7 @@ function putShirtOn(template, doc, params, trews){
 		for(var i = 0; i< locs.length; i++){
 			params[1] = locs[i];
 			if((trews == 1 && locs[i] !="abdom") || (trews==0 && locs[i] !="abdom2")) {
-				template = updateArmor(template, params);
+				template = updateArmor(template, params, label);
 				if(params[2]==1){
 					params[1] = "inner:"+params[1];
 				}
@@ -388,19 +391,23 @@ function updateEnc(template, level){
 			}
 		}
 		template.enc.current = Math.ceil(template.enc.current);
-		var encPenalty = Number(template.enc.current) - Number(template.enc.max);
-		if(encPenalty > 0){
+		
+		var encPenalty = Number(template.enc.current) - Number(template.exp[level].enc);
+	//	template.error = template.error+"<br/>Enc Penalty: "+template.enc.current+" - "+template.enc.max+ " = "+encPenalty + " | "+template.exp[level].enc;
+		if(encPenalty >= 0){
 			template.move.current = template.move.base - encPenalty;
-			template.defense.current = template.defense.base - (5*encPenalty);
+			template.exp[level].defenseCurrent = template.exp[level].defense - (5*encPenalty);
 			for(var j = 0; j < template.equipment.keys.length; j++){
 				if(template.equipment[keys[j]].name != ""){
-//					template.equipment[keys[j]].sr.current = Number(template.equipment[keys[j]].sr.current)+encPenalty;
-					template.equipment[keys[j]].sr.current = Number(template.equipment[keys[j]].sr.base) + Number(template.sr.siz) + Number(template.sr.dex)+encPenalty;
-//					template.equipment[keys[j]].attack.current = Number(template.equipment[keys[j]].attack.current)-(5*encPenalty);
-//					template.equipment[keys[j]].parry.current = Number(template.equipment[keys[j]].parry.current)-(5*encPenalty);
+					template.equipment[keys[j]].sr.current = Number(template.equipment[keys[j]].sr.current)+encPenalty;
+//					template.equipment[keys[j]].sr.current = Number(template.equipment[keys[j]].sr.base) + Number(template.sr.siz) + Number(template.sr.dex)+encPenalty;
+					template.equipment[keys[j]].attack.current = Number(template.equipment[keys[j]].attack.current)-(5*encPenalty);
+					template.equipment[keys[j]].parry.current = Number(template.equipment[keys[j]].parry.current)-(5*encPenalty);
 //					template.error = template.error+"<br/>Encumbrance calc. "+template.equipment[keys[j]].name+" Penalty "+encPenalty+" Base SR: "+template.equipment[keys[j]].sr.base+" Base Atk: "+template.equipment[keys[j]].attack.base+" Base Parry: "+template.equipment[keys[j]].parry.base;
 				}
 			}
+		}else{
+  //     template.error = template.error+"<br/>Encumbrance: "+template.enc.current+"-"+template.enc.max;
 		}
 		if(Number(template.enc.current) > 1.5*Number(template.characteristics.str.value)){
 			template.error = template.error+"<br/>Too many things! - Encumbrance cannot exceed "+Math.ceil(1.5*Number(template.characteristics.str.value));  
@@ -415,7 +422,7 @@ function updateEnc(template, level){
 }
 
 
-function updateArmor(template, params){
+function updateArmor(template, params, label){
 	try{
 		for(var i = 0; i < template.body.hitLocations.length; i++ ){
 			if(params[1] == template.body.hitLocations[i].location){
@@ -424,15 +431,17 @@ function updateArmor(template, params){
 					template.body.hitLocations[i].armor.outer.enc = params[5];
 					template.body.hitLocations[i].armor.outer.silent = params[6];
 					template.body.hitLocations[i].armor.outer.subType = params[3];
+					template.body.hitLocations[i].armor.outer.armorDesc = label+ " "+ params[3];
 				}else{
 					template.body.hitLocations[i].armor.inner.ap = params[4];
 					template.body.hitLocations[i].armor.inner.enc = params[5];
 					template.body.hitLocations[i].armor.inner.silent = params[6];
 					template.body.hitLocations[i].armor.inner.subType = params[3];
+					template.body.hitLocations[i].armor.inner.armorDesc = label+ " "+ params[3];
 				}
 				template.body.hitLocations[i].armor.current = Number(template.body.hitLocations[i].armor.natural)+Number(template.body.hitLocations[i].armor.inner.ap)+Number(template.body.hitLocations[i].armor.outer.ap);
 				i = template.body.hitLocations.length;
-//				window.alert("jsRQCreatureGen.updateArmor  Armor: "+params[3]+" AP: " + params[4]+" Hit Location: "+params[1]);
+//				window.alert("jsRQCreatureGen.updateArmor  Armor: "+params[3]+" AP: " + params[4]+" Hit Location: "+params[1]+" Desc: "+label);
 			}
 		}
 		return template;
@@ -572,10 +581,10 @@ function calcMaxEnc(str, con){
 	 */
 	try{
 		var max = 0;
-		if(Math.ceil((str+con)/2)> str) {
+		if(Math.ceil((str/2+con/2))> str) {
 			max = str;
 	    	}else{
-	    		max = Math.ceil((str+con)/2);
+	    		max = Math.ceil(str/2+con/2);
 	    	}
 		return max;
 	}catch(err){
@@ -775,7 +784,7 @@ function getHitLocation(hitLocation, n){
 		return {label:"Error jsRQCreatureGen.getHitLocation: " + err, roll:n, aphp:loc};
 	}
 }
-function getDressed(t, d, p){
+function getDressed(t, d, p, label){
 	/*
 	 * Template t, Document d, Parameter array p - from updateCreature
 	 * returns template
@@ -784,35 +793,35 @@ function getDressed(t, d, p){
 
 		//Trews, no Hauberk : puPantsOn
 		if(p[3] == "Trews" && getArmorByLocation(t.body.hitLocations, "abdom", p[2]) != "Hauberk"){
-			t = putPantsOn(t, d, p, 0);
+			t = putPantsOn(t, d, p, 0, label);
 		}else if(p[3] == "Trews" && getArmorByLocation(t.body.hitLocations, "abdom", p[2]) == "Hauberk"){
-			t = putPantsOn(t, d, p, 1);
+			t = putPantsOn(t, d, p, 1), label;
 		}else if(p[3] == "Hauberk" && getArmorByLocation(t.body.hitLocations, "abdom", p[2]) != "Trews"){ 
-			t = putShirtOn(t, d, p, 0);
+			t = putShirtOn(t, d, p, 0, label);
 		}else if(p[3] == "Hauberk" && getArmorByLocation(t.body.hitLocations, "abdom", p[2]) == "Trews"){ 
-			t = putShirtOn(t, d, p, 1);
+			t = putShirtOn(t, d, p, 1, label);
 		}else if( p[1].indexOf("abdom")> -1 &&  p[1].indexOf("abdom2")== -1 && getArmorByLocation(t.body.hitLocations, "abdom", p[2]) == "Trews" && getArmorByLocation(t.body.hitLocations, "abdom2", p[2]) == "Hauberk"){
-			t = takeShirtOff(t,d,p);
-			t = takePantsOff(t,d,p);
+			t = takeShirtOff(t,d,p, label);
+			t = takePantsOff(t,d,p, label);
 		}else if(p[2] != "Trews" && (p[1].indexOf("lleg")> -1 || p[1].indexOf("rleg")> -1 || ( p[1].indexOf("abdom")> -1)) && getArmorByLocation(t.body.hitLocations, "abdom", p[2]) == "Trews"){
-			t = takePantsOff(t,d,p);	
+			t = takePantsOff(t,d,p, label);	
 //			window.alert("Test jsRQCreatureGen.getDressed: (1) "+p[1].indexOf("chest")+" | "+p[1].indexOf("rleg")+ " Params2 "+p[2]+"  Params3 "+p[3]+" 1Belly Armor: "+getArmorByLocation(t.body.hitLocations, "abdom", p[2]));
 		}else if(p[1].indexOf("chest")> -1 || p[1].indexOf("abdom2")> -1 || ( p[1].indexOf("abdom")> -1 && getArmorByLocation(t.body.hitLocations, "abdom", p[2]) == "Hauberk")){
 			t = takeShirtOff(t,d,p);	
 			if(p[3] == "Byrnie"  || p[3] == "Cuirass"){
-				t = updateArmor(t, p);
+				t = updateArmor(t, p, label);
 			}
 		}else if(p[1].indexOf("lhleg")> -1 || p[1].indexOf("rhleg")> -1 ||  p[1].indexOf("hndqtr")> -1 ||p[1].indexOf("lfleg")> -1 || p[1].indexOf("rfleg")> -1 ||  p[1].indexOf("foreqtr")> -1 ){
 			if(p[3] == "Barding"){
-				t = equipBarding(t, d, p, 0);
+				t = equipBarding(t, d, p, 0, label);
 //				window.alert("jsRQCreatureGen.getDressed: put on barding "+parms);
 			}else{
-				t = equipBarding(t, d, p, 1);
+				t = equipBarding(t, d, p, 1, label);
 //				window.alert("jsRQCreatureGen.getDressed: take off barding "+parms);
 			}
 		}else{
 //			window.alert("Test jsRQCreatureGen.getDressed: "+p[1].indexOf("chest")+" | "+p[1].indexOf("rleg"));
-			t = updateArmor(t, p);
+			t = updateArmor(t, p, label);
 		}		
 		return t;
 	}catch(err){
@@ -820,7 +829,7 @@ function getDressed(t, d, p){
 	}
 }
 
-function equipBarding(t, d, p, w){
+function equipBarding(t, d, p, w, label){
 	try{
 //		var parms = w+" ";
 //		for(var k = 0; k < p.length; k++){
@@ -841,7 +850,7 @@ function equipBarding(t, d, p, w){
 //			parms = parms+ "  Put On";
 			for(var i = 0; i< locs.length; i++){
 				p[1] = locs[i];
-				t = updateArmor(t, p);
+				t = updateArmor(t, p, label);
 				if(p[2]==1){
 					p[1] = "inner:"+p[1];
 				}
@@ -854,7 +863,7 @@ function equipBarding(t, d, p, w){
 				if(getArmorByLocation(t.body.hitLocations,locs[i],p[2])=="Barding"){
 					blankParams[2] = p[2];
 					blankParams[1] = locs[i];
-					t = updateArmor(t, blankParams);
+					t = updateArmor(t, blankParams, label);
 					if(locs[i] != p[1]){
 						if(p[2]==1){
 							locs[i] = "inner:"+locs[i];
