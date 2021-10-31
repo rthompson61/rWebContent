@@ -28,6 +28,7 @@ function formatPreResults2(template, level){
 		var colors = [];
 		var maxEnc = 0;  // lost track of where I'm setting values so using this kludge
 		var baseDef = 0; //same kludge
+		var armorDesc =""; //Holder for armor descriptions
 		r = r +"<br/>";//12345678901234567890123456789012345678901<br/>";
 		for(var ln = 0; ln < lines.length; ln++){
 			for(var ele=0; ele<lines[ln].elements.length; ele++){
@@ -85,9 +86,10 @@ function formatPreResults2(template, level){
 			 for(var n=hL.next; n < template.body.hitLocations.length; n++){
 				hL = getHitLocation(template.body.hitLocations, hL.next);
 				r = r + formatFixedLengthElement(25,1,[line])+hL.roll+" "+formatFixedLengthElement(5,0,[hL.label])+" "+hL.aphp+"<br/>";
+	//			armorDesc = armorDesc+hL.armor.inner.armorDesc+", "+hL.armor.inner.armorDesc+", ";
 			 }
 		 }
-
+    armorDesc = getArmorDesc(template);
 		 var equipKeys = template.equipment.keys;
 		 var title = 0;
 		 var name=[];
@@ -163,7 +165,7 @@ function formatPreResults2(template, level){
 			 r = r+"<br/>Special: "+formatLongString(strAry, 9, " ", 40);
 		 }
 		 
-		 
+		r = r+"<br/><br/>Armor Description: "+armorDesc;
 		 r = r + "<br/><br/>Base Attack "+template.exp[level].attack+"&nbsp;&nbsp;Base Parry "+template.exp[level].parry+";";//"&nbsp;&nbsp;Base Defense "+template.defense.base+"&nbsp;&nbsp;Damage Bonus "+template.exp[level].damageBonus+"<br/>";
 		 r = r + "Base Manipulation "+template.exp[level].manipulation+"&nbsp;&nbsp;Base Stealth "+template.exp[level].stealth+"&nbsp;&nbsp;Base Knowledge "+template.exp[level].knowledge+"<br/>";
 		 r = r + "Base Perception "+template.exp[level].perception+"&nbsp;&nbsp;Base Oratory "+template.exp[level].oratory+" ";
@@ -188,6 +190,86 @@ function formatPreResults2(template, level){
 	}	
 }
 
+function getArmorDesc(template){
+  try{
+    var descInnerAry = [];
+    var descOuterAry = [];
+    var n = 0;
+    var returnDesc = "";
+    for(n = 0; n<template.body.hitLocations.length; n++){
+      if(template.body.hitLocations[n].armor.inner.armorDesc !== undefined){
+        if(descInnerAry.length == 0){
+          descInnerAry.push(template.body.hitLocations[n].armor.inner.armorDesc);
+        }else{
+          for(var m=0; m < descInnerAry.length; m++){
+  //          window.alert("jsRQDisplay.getArmorDesc 0: "+ descInnerAry[m]+" "+m+" "+descInnerAry.length);
+            if(descInnerAry[m] == template.body.hitLocations[n].armor.inner.armorDesc){
+              m = descInnerAry.length;
+            }else{
+              descInnerAry.push(template.body.hitLocations[n].armor.inner.armorDesc);
+              m = descInnerAry.length;
+            }
+          }
+        }
+      }
+      if(template.body.hitLocations[n].armor.outer.armorDesc !== undefined){
+       if (descOuterAry.length == 0) {
+         descOuterAry.push(template.body.hitLocations[n].armor.outer.armorDesc);
+       } else {
+         for (var l = 0; l < descOuterAry.length; l++) {
+           if (descOuterAry[l] == template.body.hitLocations[n].armor.outer.armorDesc) {
+             l = descOuterAry.length;
+           } else {
+             descOuterAry.push(template.body.hitLocations[n].armor.outer.armorDesc);
+             l = descOuterAry.length;
+           }
+         }
+       }
+      }
+    }
+    if(descInnerAry.length >0 ){
+      //clean the array there are some rogue loops I can' track down when armor covers more than one location
+  //    window.alert("jsRQDisplay.getARmorDesc 1 "+ formatLongString(descInnerAry,0,", ", 40));
+      var popAry = [];
+      for(var k =0; k < descInnerAry.length - 1; k++){
+        if (descInnerAry[k] == descInnerAry[k+1]){
+          popAry.push(k+1);
+        }
+      }
+      if(popAry.length>0){
+//         window.alert("jsRQDisplay.getARmorDesc 2 "+ formatLongString(popAry,0,", ", 40));
+        for(var j = popAry.length-1; j > -1; j-- ){
+          
+//         window.alert("jsRQDisplay.getARmorDesc 3 "+ j+ "|" +popAry[j]);
+         descInnerAry.splice(popAry[j], 1); 
+        }
+      }
+      returnDesc = "inner: " +formatLongString(descInnerAry,0,", ", 40);
+    }
+    if(descOuterAry.length >0 ){
+      var popAry = [];
+      for (var k = 0; k < descOuterAry.length - 1; k++) {
+        if (descOuterAry[k] == descOuterAry[k + 1]) {
+          popAry.push(k + 1);
+        }
+      }
+      if (popAry.length > 0) {
+        //         window.alert("jsRQDisplay.getARmorDesc 2 "+ formatLongString(popAry,0,", ", 40));
+        for (var j = popAry.length - 1; j > -1; j--) {
+      
+          //         window.alert("jsRQDisplay.getARmorDesc 3 "+ j+ "|" +popAry[j]);
+          descOuterAry.splice(popAry[j], 1);
+        }
+      }
+      returnDesc = returnDesc + "Outer: "+formatLongString(descOuterAry,0,", ", 40);
+//      window.alert("jsDisplay.getArmorDesc;"+returnDesc);
+    }
+    return returnDesc;
+  }catch(err){
+		window.alert("Error: jsRQDisplay.getArmorDesc "+err);
+  }
+}
+
 function formatAlt(val, mult){
 	try{
 		return Math.ceil(Number(val)*Number(mult));
@@ -204,6 +286,7 @@ function formatAlt(val, mult){
 	 try{
 		 var tLine = "";
 		 var rLines ="";
+//		 window.alert("jsRQDisplay.formatLongString: input length: "+strAry[0].length)
 		 for(var sa = 0; sa < strAry.length; sa++){
 			 if(start + tLine.length+delimit.length+strAry[sa].length < lineLen){
 				 if(tLine.length > 0){
