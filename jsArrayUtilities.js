@@ -68,3 +68,32 @@ function selectFromWeightedArray(ary, cntr){
 	  return  "selectFromWeightedArray  "+err.message+ "| "+ary +" | "+cntr+" | "+oVal+" | "+rndVal;
 	 } 
 	 }
+
+function uniqueValues(ary){
+//returns an array of unique values form within an array
+  var uniqueAry = [];
+try{
+  for(var v=0; v < ary.length; v++){
+    var isUnique = 0;
+    
+      for(var v2=0; v2 < uniqueAry.length; v2++){
+        if(uniqueAry[v2] == ary[v]){
+          isUnique = 1;
+        }
+      }
+    
+    if(isUnique == 0){
+      uniqueAry.push(ary[v]);
+    }
+  }
+  return uniqueAry;
+} catch(err){
+  return "uniqueValues "+err.message;
+} 
+  
+}
+
+
+
+
+
