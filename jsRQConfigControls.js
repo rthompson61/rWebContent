@@ -92,7 +92,7 @@ function buildInitControls(control, bgRace){
 		   names = getTemplateNamesBySource(bgRace);
 		   names.sort();
 			 names.unshift("race", "basicGeneration", "");
-  		 initControls[0] = "<form name=\"NPC_Builder\">"+"Source:&nbsp;&nbsp;"+singleSelectOnChange(names)+"</form>";
+  		 initControls[0] = "<form name=\"NPC_Builder\">"+"Race:&nbsp;&nbsp;"+singleSelectOnChange(names)+"</form>";
 		 }
 		return initControls;
 	}catch(err){
