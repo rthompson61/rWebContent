@@ -18,7 +18,7 @@ function getTemplateNames(){
 function getTemplateNamesBySource(source) {
   try {
     
-//		  window.alert("jsRQTemplates.getTemplateNamesBySource: "+source);
+//window.alert("jsRQTemplates.getTemplateNamesBySource: "+source);
     var templates = getTemplates();
     var names = [];
     for (var i = 0; i < templates.length; i++) {
