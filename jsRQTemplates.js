@@ -15,6 +15,35 @@ function getTemplateNames(){
 	}
 }
 
+function getTemplateNamesBySource(source) {
+  try {
+    
+//		  window.alert("jsRQTemplates.getTemplateNamesBySource: "+source);
+    var templates = getTemplates();
+    var names = [];
+    for (var i = 0; i < templates.length; i++) {
+      if(templates[i].source == source){
+        names.push(templates[i].name);
+      }
+    }
+    return names;
+  } catch (err) {
+    return "error: jsRQTemplates.getTemplateNames: " + err;
+  }
+}
+function getTemplateSources(){
+	try{
+		var templates = getTemplates();
+		var names = [];
+		for( var i = 0; i< templates.length; i++){
+			names.push(templates[i].source);
+		}
+		return names;
+	}catch(err){
+		return "error: jsRQTemplates.getTemplateSources: " + err;
+	}
+}
+
 function getTemplateByName(templateName){
 	try{
 		var templates = getTemplates();

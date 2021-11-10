@@ -68,8 +68,9 @@ function buildInitControls(control, bgRace){
 	try{
 		var initControls = [];
 		 var formNPCBuilder = "<form name=\"NPC_Builder\">";
-		 var names = getTemplateNames();
+		 var names = getTemplateNames();  
 		 names.sort();
+		 initControls[0] = "<p>Error</p>";
 		 if(control == 1){
 			 names.unshift("race", "basicGeneration", "");
 			 initControls[0] = formNPCBuilder+"Race:&nbsp;&nbsp;"+singleSelectOnChange(names)+"</form>";
@@ -81,12 +82,24 @@ function buildInitControls(control, bgRace){
 //			 exp = ["experienceLevel","updateSkills", "","Crested","Beaked","Tailed Priest","Full Priest", "Inhuman King"];
 //		 }
 		 	initControls[0] = formExperience+"Experience:&nbsp;&nbsp;"+singleSelectOnChange(getExperienceLevels(bgRace))+"</form>";
+		 }else if(control==3){
+  		 var sources = getTemplateSources();
+  		 sources = uniqueValues(sources);
+  		 sources.sort();  
+  		 sources.unshift("source", "raceDropdown", "");
+  		 initControls[0] = "<form name=\"NPC_Source\">"+"Source:&nbsp;&nbsp;"+singleSelectOnChange(sources)+"</form>";
+		 }else if (control==4){
+		   names = getTemplateNamesBySource(bgRace);
+		   names.sort();
+			 names.unshift("race", "basicGeneration", "");
+  		 initControls[0] = "<form name=\"NPC_Builder\">"+"Race:&nbsp;&nbsp;"+singleSelectOnChange(names)+"</form>";
 		 }
 		return initControls;
 	}catch(err){
 		return "error: jsRQConfigControlss.buildInitControls: " + err;
 	}
 }
+
 
 function buildSelectionObjectAry(template, type, inner){
 	try{
