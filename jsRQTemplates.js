@@ -18,7 +18,7 @@ function getTemplateNames(){
 function getTemplateNamesBySource(source) {
   try {
     
-//window.alert("jsRQTemplates.getTemplateNamesBySource: "+source);
+//		  window.alert("jsRQTemplates.getTemplateNamesBySource: "+source);
     var templates = getTemplates();
     var names = [];
     for (var i = 0; i < templates.length; i++) {
@@ -236,7 +236,7 @@ function getTemplates(){
 				      error:""
 				     },
 					 {name: "Giant Centipede",
-				      source:"D&D",
+				      source:"AD&D",
 				      characteristics:{
 				          	  str:{value:{}, nDice:2, szDice:6, mod: 0},
 				          	  con:{value:{}, nDice:2, szDice:6, mod: 0},
@@ -392,6 +392,29 @@ function getTemplates(){
 		              disease:50,
 			          error:""
 			         },
+			         {
+			           name: "Cannibal Moleman",
+			           source: "S&W",
+			           characteristics: {
+			             str: { value: {}, nDice: 2, szDice: 6, mod: 0 },
+			             con: { value: {}, nDice: 2, szDice: 6, mod: 6 },
+			             siz: { value: {}, nDice: 2, szDice: 4, mod: 6 },
+			             int: { value: {}, nDice: 3, szDice: 6, mod: 0 },
+			             pow: { value: {}, nDice: 3, szDice: 6, mod: 0 },
+			             dex: { value: {}, nDice: 3, szDice: 6, mod: 3 },
+			             cha: { value: {}, nDice: 2, szDice: 6, mod: 0 }
+			           },
+			           move: { base: 8, current: 8 },
+			           body: { type: "Humanoid", hitLocations: [], attacks: "Bear", naturalArmor: 2 },
+			           equipment: { keys: ["naturalClaw3", "shield", "melee2", "melee3", "melee4", "melee5", "missile2", "missile3"] },
+			           equipmentList: "",
+			           skills: { lists: ["all", "animal", "sentient"], set: [], required: [{ name: "Tracking", type: "p", base: 75 }, { name: "Hide in Cover", type: "s", base: 55 }], prohibited: [] },
+			           magic: { uses: 1, basicMagic: [] },
+			           treasureFactors: { multiAttack: 0, special: 0 },
+			           mutations: { eBP: [] },
+			           special: "From Frog God Games Swords & Wizardry adventure Grimmsgate,based on AD&D Kobold. Burrow at regular Movement speed.  Blinded by bright light",
+			           error: ""
+			         },
 				     {name: "Centaur",
 					      source:"RuneQuest 2",
 						  characteristics:{
@@ -458,6 +481,29 @@ function getTemplates(){
 			              special:"The peck injects a poison into the body of the victim. This poison is just a conductor for the “attack” of the cockatrice’s POW versus the victim’s. If the cockatrice is successful, the victim turns to stone",
 						  error:""
 					     },
+			         {
+			           name: "Cursed Humans",
+			           source: "S&W",
+			           characteristics: {
+			             str: { value: {}, nDice: 3, szDice: 6, mod: 0 },
+			             con: { value: {}, nDice: 3, szDice: 6, mod: 0 },
+			             siz: { value: {}, nDice: 3, szDice: 6, mod: 6 },
+			             int: { value: {}, nDice: 3, szDice: 6, mod: 0 },
+			             pow: { value: {}, nDice: 3, szDice: 6, mod: 0 },
+			             dex: { value: {}, nDice: 3, szDice: 6, mod: 0 },
+			             cha: { value: {}, nDice: 2, szDice: 6, mod: 0 }
+			           },
+			           move: { base: 8, current: 8 },
+			           body: { type: "Humanoid", hitLocations: [], attacks: "Bear", naturalArmor: 2 },
+			           equipment: { keys: ["naturalClaw3", "shield", "melee2", "melee3", "melee4", "melee5", "missile2", "missile3"] },
+			           equipmentList: "",
+			           skills: { lists: ["all", "animal", "sentient"], set: [], required: [{ name: "Tracking", type: "p", base: 75 }, { name: "Hide in Cover", type: "s", base: 55 }], prohibited: [] },
+			           magic: { uses: 1, basicMagic: [] },
+			           treasureFactors: { multiAttack: 0, special: 0 },
+			           mutations: { eBP: [] },
+			           special: "From Frog God Games Swords & Wizardry adventure Grimmsgate. Blinded by bright light",
+			           error: ""
+			         },
 					 {name: "Demi-bird",
 					      source:"RuneQuest 2",
 						  characteristics:{
@@ -501,6 +547,28 @@ function getTemplates(){
 		              mutations:{eBP:[]},
    			      special:"A Manes demon can only be damaged by magic weapons, or weapons with Bladesharp, Bludgeon, etc cast on them. Only the magically created missiles in a Multimissile spell can cause damage.",
 				      error:""
+					 },{
+					   name: "Demonic Revenant",
+					   source: "S&W",
+					   characteristics: {
+					     str: { value: {}, nDice: 3, szDice: 6, mod: 0 },
+					     con: { value: {}, nDice: 3, szDice: 6, mod: 0 },
+					     siz: { value: {}, nDice: 3, szDice: 6, mod: 0 },
+					     int: { value: {}, nDice: 3, szDice: 6, mod: 0 },
+					     pow: { value: {}, nDice: 3, szDice: 6, mod: 0 },
+					     dex: { value: {}, nDice: 3, szDice: 6, mod: 0 },
+					     cha: { value: {}, nDice: 3, szDice: 6, mod: 0 }
+					   },
+					   move: { base: 8, current: 8 },
+					   body: { type: "Humanoid", hitLocations: [], attacks: "Bear", naturalArmor: 5 },
+					   equipment: { keys: ["naturalClaw8",] },
+					   equipmentList: "",
+					   skills: { lists: ["all", "sentient", "animal"], set: [], required: [], prohibited: [] },
+					   magic: { uses: 1, basicMagic: [] },
+					   treasureFactors: { multiAttack: 0, special: 0 },
+					   mutations: { eBP: [] },
+					   special:"From Frog God Games Swords & Wizardry adventure Grimmsgate.  In addition to the claw attack, the revenant is surrounded by a cloud of ash that it can direct to one oppoenent, causing them to suffocate in the cloud od ashes.  Treat as drowning.",
+					   error: ""
 					 },
 				 {name: "Dream Dragon",
 				      source:"RuneQuest 2",
@@ -2014,6 +2082,8 @@ function setAttacks(equipment){
 					equipment[equipment.keys[k]] = {name:"Claw", ap:0, enc:0, attack:{base:25, current:0, prof:0}, parry:{base:0, current:0, prof:0}, damage:"1d3", ammo:0, sr:{base:10, current:10}};
 				}else if(equipment.keys[k] == "naturalClaw6"){
 					equipment[equipment.keys[k]] = {name:"Claw", ap:0, enc:0, attack:{base:30, current:0, prof:0}, parry:{base:0, current:0, prof:0}, damage:"1d6", ammo:0, sr:{base:4, current:4}};
+				}else if(equipment.keys[k] == "naturalClaw8"){
+					equipment[equipment.keys[k]] = {name:"Claw", ap:0, enc:0, attack:{base:30, current:0, prof:0}, parry:{base:0, current:0, prof:0}, damage:"1d8", ammo:0, sr:{base:4, current:4}};
 				}else if(equipment.keys[k] == "naturalEnvelope"){
 					equipment[equipment.keys[k]] = {name:"Envelope", ap:0, enc:0, attack:{base:100, current:100, prof:0}, parry:{base:-1, current:0, prof:0}, damage:"8 pt Acid", ammo:0, sr:{base:1, current:1}};
 				}else if(equipment.keys[k] == "naturalGhoulHowl"){
