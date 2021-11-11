@@ -192,19 +192,37 @@ function cultureControl(race){
 
 function getExperienceLevels(bgRace){
 	try{
-		var exp = ["experienceLevel","updateSkills", "","Novice","Trained","Blooded","Experienced", "Veteran","Master","Exemplar"];
-		var animals = ["Basilisk", "Bison", "Bolo Lizard", "Cliff Toad", "Cockatrice", "Demi-bird", "Demon, Manes", "Dragonsnail", "Dream Dragon", "Ghoul", "Giant Rat", "Gorp", "High Llama", "Horse", "Horse, War", "Impala", "Jack O'Bear", "Rhino", "Rock Lizard", "Rubble Runner", "Sable", "Shadow Cat", "Skeleton", "Sky Bull", "Snake", "Tusker", "Unicorn", "Wyrm", "Wyvern", "Zombie" ];
-		 if(bgRace == "Dragonewt"){
-			 exp = ["experienceLevel","updateSkills", "","Crested","Beaked","Tailed Priest","Full Priest", "Inhuman King"];
-		 }else{
-			 for(var a = 0; a < animals.length; a++){
+//		var exp = ["experienceLevel","updateSkills", "","Novice","Trained","Blooded","Experienced", "Veteran","Master","Exemplar"];
+//		var animals = ["Basilisk", "Bison", "Bolo Lizard", "Cliff Toad", "Cockatrice", "Demi-bird", "Demon, Manes", "Dragonsnail", "Dream Dragon", "Ghoul", "Giant Centipede", "Giant Rat", "Gorp", "High Llama", "Horse", "Horse, War", "Impala", "Jack O'Bear", "Rhino", "Rock Lizard", "Rubble Runner", "Sable", "Shadow Cat", "Skeleton", "Sky Bull", "Snake", "Tusker", "Unicorn", "Wyrm", "Wyvern", "Zombie" ];
+//		 if(bgRace == "Dragonewt"){
+//			 exp = ["experienceLevel","updateSkills", "","Crested","Beaked","Tailed Priest","Full Priest", "Inhuman King"];
+//		 }else{
+//			 for(var a = 0; a < animals.length; a++){
 //				 window.alert("getExpereinceLevels: "+ bgRace +" ? " + animals[a] + " ? "+ bgRace.substring(0,5));
-				 if(bgRace == animals[a] || bgRace.substring(0,5) == "Snake"){ //I change the template.name value to include the type of snake during generation
-					 exp = ["experienceLevel","updateSkills", "","Yearling","Mature","Old and Cunning"];
-				 }
-			 }
-		 }
+//				 if(bgRace == animals[a] || bgRace.substring(0,5) == "Snake"){ //I change the template.name value to include the type of snake during generation
+//					 exp = ["experienceLevel","updateSkills", "","Yearling","Mature","Old and Cunning"];
+//				 }
+//			 }
+//		 }
+    var  exp = ["experienceLevel","updateSkills", "","Yearling","Mature","Old and Cunning"];
+		 	 if (bgRace == "Dragonewt") {
+		 	   			 exp = ["experienceLevel","updateSkills", "","Crested","Beaked","Tailed Priest","Full Priest", "Inhuman King"];
+		 	   		 }else{
+		 	   		   var t = getTemplateByName(bgRace);
+	//	 	   		   var lists =""; 
+	             if(t.skills.lists.length > 0){
+		 	   		   for(var m =0; m < t.skills.lists[0].length; m++){
+	//	 	   		     lists = lists +" | "+t.skills.lists[m];
+		 	   		     if(t.skills.lists[m] === "sentient" ){
+		 	   		       exp = ["experienceLevel","updateSkills", "","Novice","Trained","Blooded","Experienced", "Veteran","Master","Exemplar"];
+		 	   		     }
+		 	   		   }
+	             }
+		// 	   		     window.alert("jsRQConfigControls.getExperienceLevels"+" first skills list "+lists)
+		 	   		   
+		 	   		 }
 		 return exp;
+		 	   
 	}catch(err){
 		return "error: jsRQConfigControls.getExperienceLevels: " + err;
 	}
