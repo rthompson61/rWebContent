@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>HTML</title>
+  
+  <!-- HTML -->
+  
+
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="style.css">
+  
+  <script src="https://rawgit.com/rthompson61/rWebContent/master/jsBuildHTMLControls.js" type="text/javascript"></script>  
+  <script src="jsTravellerTradeConfigControls.js" type = "text/javascript"></script>
+</head>
+
+<body onload="initDropDown()">
+  <!-- Project -->
+<script>
+  function initDropDown() {
+   try {
+    
+    var sControls = buildTravellerUSPControls("source");
+    document.getElementById("source_starport").innerHTML = sControls[0];
+    document.getElementById("source_size").innerHTML = sControls[1];
+    document.getElementById("source_atmosphere").innerHTML = sControls[2];
+    document.getElementById("source_hydrographic").innerHTML = sControls[3];
+    document.getElementById("source_population").innerHTML = sControls[4];
+    document.getElementById("source_government").innerHTML = sControls[5];
+    document.getElementById("source_law").innerHTML = sControls[6];
+    document.getElementById("source_techLevel").innerHTML = sControls[7];
+    document.getElementById("trade_source").style.visibility = "visible";
+    sControls = buildTravellerUSPControls("market");
+    document.getElementById("market_starport").innerHTML = sControls[0];
+    document.getElementById("market_size").innerHTML = sControls[1];
+    document.getElementById("market_atmosphere").innerHTML = sControls[2];
+    document.getElementById("market_hydrographic").innerHTML = sControls[3];
+    document.getElementById("market_population").innerHTML = sControls[4];
+    document.getElementById("market_government").innerHTML = sControls[5];
+    document.getElementById("market_law").innerHTML = sControls[6];
+    document.getElementById("market_techLevel").innerHTML = sControls[7];
+    document.getElementById("market").style.visibility = "visible";
+   } catch (err) {
+    document.getElementById("trade_source").innerHTML = err;
+    document.getElementById("D_results").style.visibility = "visible";
+   }
+  }
+ </script>
+ 
+ <script>
+   function descUpdate(){
+     try{
+       systemUpdate(document);
+     }catch(err){
+       document.getElementById("Error").innerHTML = err;
+       document.getElementById("Error").style.visibility = "visible"; 
+     }
+   }
+ </script>
+   
+ 
+ 
+  <div id="trade_source" style="visibility: visible"> "<p>Source System Info</p>"
+  <div id="source_starport" style="float: left; visibility: visible; width: 100px;"></div>
+  <div id="source_size" style="float: left; visibility: visible; width: 70px;"></div>
+  <div id="source_atmosphere" style="float: left; visibility: visible; width: 80px;"></div>
+  <div id="source_hydrographic" style="float: left; visibility: visible; width: 80px;"></div>
+  <div id="source_population" style="float: left; visibility: visible; width: 50px;"></div>
+  <div id="source_government" style="float: left; visibility: visible; width: 70px;"></div>
+  <div id="source_law" style="float: left; visibility: visible; width: 50px;"></div>
+  <div id="source_techLevel" style="float: left; visibility: visible; width: 110px;"></div>
+  </div>
+  <br><br>
+  <div id="sourceInfo" style="visibility: hidden"></div>
+  <br>
+  <div id="market" style="visibility: visible" textAlign="left"> "<p>Market System Info</p>"
+  <div id="market_starport" style="float: left; visibility: visible; width: 100px;"></div>
+  <div id="market_size" style="float: left; visibility: visible; width: 70px;"></div>
+  <div id="market_atmosphere" style="float: left; visibility: visible; width: 80px;"></div>
+  <div id="market_hydrographic" style="float: left; visibility: visible; width: 80px;"></div>
+  <div id="market_population" style="float: left; visibility: visible; width: 50px;"></div>
+  <div id="market_government" style="float: left; visibility: visible; width: 70px;"></div>
+  <div id="market_law" style="float: left; visibility: visible; width: 50px;"></div>
+  <div id="market_techLevel" style="float: left; visibility: visible; width: 110px;"></div>
+  </div>
+  <br><br>
+  <div id="marketInfo" style="visibility: hidden">  </div>
+  <br/><br>
+  <div id="Error" style="visibility: hidden"></div>
+</body>
+</html>
