@@ -456,7 +456,11 @@ function buildTravellerUSPControls(control) {
            num = 15;
          }else if (num == "G"){
            num = 16;
-         }
+         }else if (num == "S"){
+          num = -1;
+        }else if (num == "R"){
+          num = -2;
+        }
          return num;
        }catch(err){
              window.alert("error jsTravellerTradeConfigCOntrols.hex2Dec: "+err);
