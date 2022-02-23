@@ -14,14 +14,22 @@
   <link rel="stylesheet" href="style.css">
   -->
   <script src="https://rawgit.com/rthompson61/rWebContent/master/jsBuildHTMLControls.js" type="text/javascript"></script>  
+  <script src="jsTravellerSystemConfig.js?v=2" type = "text/javascript"></script>
+  <script src="jsTravellerSystemNames.js" type = "text/javascript"></script>
+  <script src="jsConversionUtilities.js" type="text/javascript"></script>
+  <script src="jsTravellerSatelliteCreate.js" type="text/javascript"></script>
+  <script src="jsTravellerPlanetCreate.js" type="text/javascript"></script>
+  <script src="jsTravellerGasGiantCreate.js" type="text/javascript"></script>
   <script src="jsTravellerTradeConfigControls.js" type = "text/javascript"></script>
+  <script src="jsTravellerStarCreate.js" type = "text/javascript"></script>
+  <script src="jsTravellerTestHarness.js?v=4" type = "text/javascript"></script>
 </head>
 
 <body onload="initControls()">
 <script>
     function initControls(){
         try {
-            
+                
         } catch (error) {
             
         }
@@ -29,7 +37,7 @@
 </script>
 
 <div id="pageControls" visibility="visible">
-    <input type="button" onclick="document.getElementById('pageOutput').style.visibility='visible'" value="Test">
+    <input type="button" onclick="testSystemGeneration()"" value="Test">
 </div>
 <div id="pageOutput" style="visibility: hidden">
     <p>Output</p>
