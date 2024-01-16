@@ -1237,7 +1237,7 @@ function getTemplates(){
 			 },
 			 {
 			   name: "Sharkman",
-			   source: "Homebrew",
+			   source: "Home",
 			   characteristics: {
 			     str: { value: {}, nDice: 3, szDice: 6, mod: 12 },
 			     con: { value: {}, nDice: 2, szDice: 6, mod: 9 },
@@ -1255,7 +1255,7 @@ function getTemplates(){
 			   magic: { uses: 1, basicMagic: [] },
 			   treasureFactors: { multiAttack: 0, special: 0 },
 			   mutations: { eBP: [] },
-			   special: "Adapted from BRP Medium Shark.  Swim at regular Movement speed.  Blinded by bright light",
+			   special: "Adapted from BRP Medium Shark.  Swim at regular Movement speed.  ",
 			   error: ""
 			 },
 	         {name: "Skeleton",
