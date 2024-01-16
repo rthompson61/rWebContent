@@ -1234,7 +1234,30 @@ function getTemplates(){
 	              mutations:{eBP:[]},
 	              special:"",
 				  error:""
-				 },
+			 },
+			 {
+			   name: "Sharkman",
+			   source: "Homebrew",
+			   characteristics: {
+			     str: { value: {}, nDice: 3, szDice: 6, mod: 12 },
+			     con: { value: {}, nDice: 2, szDice: 6, mod: 9 },
+			     siz: { value: {}, nDice: 3, szDice: 6, mod: 12 },
+			     int: { value: {}, nDice: 3, szDice: 6, mod: 0 },
+			     pow: { value: {}, nDice: 3, szDice: 6, mod: 0 },
+			     dex: { value: {}, nDice: 2, szDice: 6, mod: 3 },
+			     cha: { value: {}, nDice: 2, szDice: 4, mod: 0 }
+			   },
+			   move: { base: 8, current: 8 },
+			   body: { type: "Humanoid", hitLocations: [], attacks: "", naturalArmor: 5 },
+			   equipment: { keys: ["naturalBite2d6", "melee2",   "missile3"] },
+			   equipmentList: "",
+			   skills: { lists: ["all", "animal", "sentient"], set: [], required: [{ name: "Swimming", type: "p", base: 75 }], prohibited: [] },
+			   magic: { uses: 1, basicMagic: [] },
+			   treasureFactors: { multiAttack: 0, special: 0 },
+			   mutations: { eBP: [] },
+			   special: "Adapted from BRP Medium Shark.  Swim at regular Movement speed.  Blinded by bright light",
+			   error: ""
+			 },
 	         {name: "Skeleton",
 	              source:"RuneQuest 2",
 	              characteristics:{
