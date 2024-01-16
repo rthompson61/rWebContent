@@ -1251,7 +1251,7 @@ function getTemplates(){
 			   body: { type: "Humanoid", hitLocations: [], attacks: "", naturalArmor: 5 },
 			   equipment: { keys: ["naturalBite2d6", "melee2",   "missile3"] },
 			   equipmentList: "",
-			   skills: { lists: ["all", "animal", "sentient"], set: [], required: [{ name: "Swimming", type: "p", base: 75 }], prohibited: [] },
+			   skills: { lists: ["all", "animal", "sentient"], set: [], required: [{ name: "Swim", type: "p", base: 75 }], prohibited: [] },
 			   magic: { uses: 1, basicMagic: [] },
 			   treasureFactors: { multiAttack: 0, special: 0 },
 			   mutations: { eBP: [] },
