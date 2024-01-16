@@ -2060,6 +2060,8 @@ function setAttacks(equipment){
 					equipment[equipment.keys[k]] = {name:"Bite", ap:0, enc:0, attack:{base:15, current:25, prof:0}, parry:{base:-1, current:0, prof:0}, damage:"1d4", ammo:0, sr:{base:4, current:4}};
 				}else if(equipment.keys[k] == "naturalBite2d4"){
 					equipment[equipment.keys[k]] = {name:"Bite", ap:0, enc:0, attack:{base:15, current:25, prof:0}, parry:{base:-1, current:0, prof:0}, damage:"2d4", ammo:0, sr:{base:4, current:4}};
+				}else if(equipment.keys[k] == "naturalBite2d6"){
+					equipment[equipment.keys[k]] = {name:"Bite", ap:0, enc:0, attack:{base:15, current:25, prof:0}, parry:{base:-1, current:0, prof:0}, damage:"2d6", ammo:0, sr:{base:4, current:4}};
 				}else if(equipment.keys[k] == "naturalBite2d8"){
 					equipment[equipment.keys[k]] = {name:"Bite", ap:0, enc:0, attack:{base:15, current:25, prof:0}, parry:{base:-1, current:0, prof:0}, damage:"2d8", ammo:0, sr:{base:4, current:4}};
 				}else if(equipment.keys[k] == "naturalBite8"){
