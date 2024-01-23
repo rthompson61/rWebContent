@@ -1248,14 +1248,14 @@ function getTemplates(){
 			     cha: { value: {}, nDice: 2, szDice: 4, mod: 0 }
 			   },
 			   move: { base: 8, current: 8 },
-			   body: { type: "Humanoid", hitLocations: [], attacks: "", naturalArmor: 5 },
+			   body: { type: "Sharkman", hitLocations: [], attacks: "", naturalArmor: 5 },
 			   equipment: { keys: ["naturalBite2d6", "melee2",   "missile3"] },
 			   equipmentList: "",
 			   skills: { lists: ["all", "animal", "sentient"], set: [], required: [{ name: "Swim", type: "p", base: 75 }], prohibited: [] },
 			   magic: { uses: 1, basicMagic: [] },
 			   treasureFactors: { multiAttack: 0, special: 0 },
 			   mutations: { eBP: [] },
-			   special: "Adapted from BRP Medium Shark.  Swim at regular Movement speed.  ",
+			   special: "Adapted from BRP Medium Shark.  A Sharkman has short legs in place of a tail and short arms in place of fins. Base Move is Swimming or on all fours.  On two legs Move:6.  Sharkmen have no vocal cord, but communicate by modulating their electrical field allowing any creature with electrolocation to 'hear' the conversation.  Their electrolocation sense negates any advantage of Invisible opponents in melee.",
 			   error: ""
 			 },
 	         {name: "Skeleton",
@@ -1810,7 +1810,26 @@ function getHLTemplates(shape){
 	            		 {location:"rarm", label:"R ARM", roll:"15-16",armor:{natural:0, current:0, inner:{ap:0, enc:0, silent:0, subType:""},outer:{ap:0, enc:0, silent:0, subType:""}}, hp:{base:1, current:0}, hidden:0},
 	            		 {location:"larm", label:"L ARM", roll:"17-18",armor:{natural:0, current:0, inner:{ap:0, enc:0, silent:0, subType:""},outer:{ap:0, enc:0, silent:0, subType:""}}, hp:{base:1, current:0}, hidden:0},
 	            		 {location:"head", label:"HEAD", roll:"19-20",armor:{natural:0, current:0, inner:{ap:0, enc:0, silent:0, subType:""},outer:{ap:0, enc:0, silent:0, subType:""}}, hp:{base:2, current:0}, hidden:0}
-            		 ]},
+			 ]},
+			     {type:"Shark",
+				  hitLocations:[
+				 {location:"tail", label:"TAIL", roll:"01-03",armor:{natural:0, current:0, inner:{ap:0, enc:0, silent:0, subType:""},outer:{ap:0, enc:0, silent:0, subType:""}}, hp:{base:2, current:0}, hidden:0},
+				 {location:"hbdy", label:"H BDY", roll:"04-08",armor:{natural:0, current:0, inner:{ap:0, enc:0, silent:0, subType:""},outer:{ap:0, enc:0, silent:0, subType:""}}, hp:{base:2, current:0}, hidden:0},
+				 {location:"fbdy", label:"F BDY", roll:"09-13",armor:{natural:0, current:0, inner:{ap:0, enc:0, silent:0, subType:""},outer:{ap:0, enc:0, silent:0, subType:""}}, hp:{base:2, current:0}, hidden:0},
+				 {location:"rfin", label:"R FIN", roll:"14",armor:{natural:0, current:0, inner:{ap:0, enc:0, silent:0, subType:""},outer:{ap:0, enc:0, silent:0, subType:""}}, hp:{base:2, current:0}, hidden:1},
+				 {location:"lfin", label:"L FIN", roll:"15",armor:{natural:0, current:0, inner:{ap:0, enc:0, silent:0, subType:""},outer:{ap:0, enc:0, silent:0, subType:""}}, hp:{base:3, current:0}, hidden:0},
+				 {location:"head", label:"HEAD", roll:"16-20",armor:{natural:0, current:0, inner:{ap:0, enc:0, silent:0, subType:""},outer:{ap:0, enc:0, silent:0, subType:""}}, hp:{base:2, current:0}, hidden:0}
+				 ]},
+			     {type:"Sharkman",
+				  hitLocations:[
+				 {location:"rleg", label:"R LEG", roll:"01-02",armor:{natural:0, current:0, inner:{ap:0, enc:0, silent:0, subType:""},outer:{ap:0, enc:0, silent:0, subType:""}}, hp:{base:2, current:0}, hidden:0},
+				 {location:"lleg", label:"L LEG", roll:"03-04",armor:{natural:0, current:0, inner:{ap:0, enc:0, silent:0, subType:""},outer:{ap:0, enc:0, silent:0, subType:""}}, hp:{base:2, current:0}, hidden:0},
+				 {location:"hbdy", label:"H BDY", roll:"04-09",armor:{natural:0, current:0, inner:{ap:0, enc:0, silent:0, subType:""},outer:{ap:0, enc:0, silent:0, subType:""}}, hp:{base:2, current:0}, hidden:0},
+				 {location:"fbdy", label:"F BDY", roll:"10-14",armor:{natural:0, current:0, inner:{ap:0, enc:0, silent:0, subType:""},outer:{ap:0, enc:0, silent:0, subType:""}}, hp:{base:2, current:0}, hidden:0},
+				 {location:"rfin", label:"R FIN", roll:"15",armor:{natural:0, current:0, inner:{ap:0, enc:0, silent:0, subType:""},outer:{ap:0, enc:0, silent:0, subType:""}}, hp:{base:2, current:0}, hidden:1},
+				 {location:"lfin", label:"L FIN", roll:"16",armor:{natural:0, current:0, inner:{ap:0, enc:0, silent:0, subType:""},outer:{ap:0, enc:0, silent:0, subType:""}}, hp:{base:3, current:0}, hidden:0},
+				 {location:"head", label:"HEAD", roll:"17-20",armor:{natural:0, current:0, inner:{ap:0, enc:0, silent:0, subType:""},outer:{ap:0, enc:0, silent:0, subType:""}}, hp:{base:2, current:0}, hidden:0}
+				 ]},
             		 {type:"Snake",
        	              hitLocations:[{location:"tail", label:"TAIL", roll:"01-06",armor:{natural:0, current:0, inner:{ap:0, enc:0, silent:0, subType:""},outer:{ap:0, enc:0, silent:0, subType:""}}, hp:{base:4, current:0}, hidden:0},
        	                 {location:"body", label:"BODY", roll:"07-14",armor:{natural:0, current:0, inner:{ap:0, enc:0, silent:0, subType:""},outer:{ap:0, enc:0, silent:0, subType:""}}, hp:{base:2, current:0}, hidden:0},
