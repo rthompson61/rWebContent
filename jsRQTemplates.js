@@ -1826,7 +1826,7 @@ function getHLTemplates(shape){
 				 {location:"lleg", label:"L LEG", roll:"03-04",armor:{natural:0, current:0, inner:{ap:0, enc:0, silent:0, subType:""},outer:{ap:0, enc:0, silent:0, subType:""}}, hp:{base:2, current:0}, hidden:0},
 				 {location:"hbdy", label:"H BDY", roll:"04-09",armor:{natural:0, current:0, inner:{ap:0, enc:0, silent:0, subType:""},outer:{ap:0, enc:0, silent:0, subType:""}}, hp:{base:2, current:0}, hidden:0},
 				 {location:"fbdy", label:"F BDY", roll:"10-14",armor:{natural:0, current:0, inner:{ap:0, enc:0, silent:0, subType:""},outer:{ap:0, enc:0, silent:0, subType:""}}, hp:{base:2, current:0}, hidden:0},
-				 {location:"rfin", label:"R FIN", roll:"15",armor:{natural:0, current:0, inner:{ap:0, enc:0, silent:0, subType:""},outer:{ap:0, enc:0, silent:0, subType:""}}, hp:{base:2, current:0}, hidden:1},
+				 {location:"rfin", label:"R FIN", roll:"16",armor:{natural:0, current:0, inner:{ap:0, enc:0, silent:0, subType:""},outer:{ap:0, enc:0, silent:0, subType:""}}, hp:{base:3, current:0}, hidden:0},
 				 {location:"lfin", label:"L FIN", roll:"16",armor:{natural:0, current:0, inner:{ap:0, enc:0, silent:0, subType:""},outer:{ap:0, enc:0, silent:0, subType:""}}, hp:{base:3, current:0}, hidden:0},
 				 {location:"head", label:"HEAD", roll:"17-20",armor:{natural:0, current:0, inner:{ap:0, enc:0, silent:0, subType:""},outer:{ap:0, enc:0, silent:0, subType:""}}, hp:{base:2, current:0}, hidden:0}
 				 ]},
