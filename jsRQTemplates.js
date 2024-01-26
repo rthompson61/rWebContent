@@ -1241,14 +1241,14 @@ function getTemplates(){
 			   characteristics: {
 			     str: { value: {}, nDice: 3, szDice: 6, mod: 12 },
 			     con: { value: {}, nDice: 2, szDice: 6, mod: 9 },
-			     siz: { value: {}, nDice: 3, szDice: 6, mod: 12 },
+			     siz: { value: {}, nDice: 3, szDice: 6, mod: 0 },
 			     int: { value: {}, nDice: 3, szDice: 6, mod: 0 },
 			     pow: { value: {}, nDice: 3, szDice: 6, mod: 0 },
 			     dex: { value: {}, nDice: 2, szDice: 6, mod: 3 },
 			     cha: { value: {}, nDice: 2, szDice: 4, mod: 0 }
 			   },
 			   move: { base: 8, current: 8 },
-			   body: { type: "Sharkman", hitLocations: [], attacks: "", naturalArmor: 5 },
+			   body: { type: "Sharkman", hitLocations: [], attacks: "", naturalArmor: 3 },
 			   equipment: { keys: ["naturalBite2d6", "melee2",   "missile3"] },
 			   equipmentList: "",
 			   skills: { lists: ["all", "animal", "sentient"], set: [], required: [{ name: "Swim", type: "p", base: 75 }], prohibited: [] },
